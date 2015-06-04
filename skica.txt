@@ -34,3 +34,13 @@ Dodatak ili CD : upute za reproduciranje rezultata sa svime što je potrebno
 
 Prezentacija i Demo - iza roka
 
+
+
+Kostur
+1. Uvod
+2. Pregled literature
+3. Opis formalnog modela i metodologije
+4. Opis konkretne primjene modela ili metodologije
+5. Rezultati i diskusija
+6. Zaključak
+7. Literatura
