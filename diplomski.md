@@ -19,10 +19,18 @@ tekstualne zapise (engl. speech-to-text) sadrže i razne smetnje
 koje su prisutne jer govor nije bio sniman u studijskim uvjetima.
 Smetnje mogu biti razni šumovi, buka, muzika ili najgorem slučaju čak
 i drugi govor.
-Zadatak ovog diplomskog rada je 
+Sve takve smetnje uzrokuju jako veliki pad točnosti računalnog prepoznavnja
+govora.
+Zadatak ovog diplomskog rada je pronaći odgovarajući algoritam i programski
+paket koji bi omogućio izdvajanje što čišćeg govora iz takvih zvučnih zapisa.
+Između mnogih opcija kao algoritam je odabrana RNN-BLSTM neuronska mreža
+implementiran u programskom paketu CURRENNT, koji ubrzava treniranje modela
+pomoću GPU-a.
 
+Efikasnost ovog pristupa je ispitana pomoću skupa podataka "CHiME 2nd Challenge" 
+i pripadnih alata.
 
-slika
+[slika]
 
 Pregled poglavlja [to će trebat i naknadno apdejtat]
 
@@ -33,8 +41,10 @@ opis organizacije ostatka dokumenta (najčešće, po poglavljima)
 za ovo obično ne treba više od 1 stranice
 
 
+----- Literatura ---------
 
 Opis problema
+
 
 Izdvajanje tj. pročišćavanje govora je ključan korak u velikom broju praktičnih
 primjena računalnog prepoznavanja govora. To je zato jer je mnogo lakše doći
@@ -47,6 +57,8 @@ razumjeti govor i kada je signal smetnje višestruko jači od korisnog signala. 
 Proučavanje ljudskog slušnog sustava dalo je mnoge ideje za rješavanje ovog problema,
 između ostalih i primjenu neuronskih mreža za izvlačenje značajki (engl. feature extraction).
 
+
+
 Tip neuronske mreže koji se pokazao najprikladniji za ovaj problem je
 rekurzivna neuronska mreža (RNN) sa dvosmjernom dugom-kratkom memorijom (BLSTM).
 Iako je taj pristup već poznat duže vrijeme [ reference ? ], pojava pristupačnih
@@ -57,11 +69,44 @@ To je dio većeg trenda u strojnom učenju poznatog pod imenom Deep Learning, tj
 Budući da je to u zadnje vrijeme vrlo popularno područje za istraživanje,
 pojavili su se mnogi programski paketi koji bi bili prikladni za tu namjenu 
 
+CHiME
 
+Odabir strategije
 
+Odabir programskog paketa
 
+-------- Literatura ---------
+
+--------- Metodologija ------
+
+Opis BLSTM-RNN
+
+Opis CURRENNT
+
+Opis kriterija testiranja kod CHiME
+
+--------- Metodologija ---------
+
+---------- Primjena -----------
+
+Priprema podataka
+  - pomoćne skripte, openSMILE ?
+
+Uvježbavanje algoritma, opis radne okoline i stroja, komentar na trajanje
+
+Nešto o validation i test setu
+
+Rezultati - dobivena točnost, u usporedbi sa očekivanom
+
+OpenSMILE - mjerenje brzine real-time izvršavanja mreže ?
+
+---------- Primjena -----------
+
+# Rezultati i diskusija
+	- obrada rezultata, što se iz njih može zaključiti
 
 # Zaključak
-
+	- koliko je super, ali da poboljšanje na small-vocabulary tasku ne znači
+	nužno da će biti toliko na mid i big vocabulary task
 
 # Literatura
