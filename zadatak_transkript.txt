@@ -1,0 +1,22 @@
+
+Diplomski zadatak br. 1043
+
+Pristupnik: Stjepan Henc (0036456141)
+Studij: Računarstvo
+Profil: Računalno inžinjerstvo
+
+Zadatak: Neuralne mreže u izdvajanju govornog signala iz zvučnog zapisa
+
+Opis zadatka:
+
+Zvučni zapisi namijenjeni sustavima za strojno prepoznavanje govora često
+su snimljeni u neidealni uvjetima, te pored govora, često sadrže šumove,
+pozadinsku buku, glazbu, odjeke i druge oblike negovornog signala, uzrokujući 
+time povećanje udjela grešaka prilikom pretvorbe govora u tekst.
+Neuralne mreže pokazale su se učinkovitim sredstvom za izdvajanje govornog
+od negovornih oblika signala. Ovo potvrđuju i brojni javno dostupni programski
+paketi temeljeni na primjeni neuralnih mreža u pripremi zvučnih zapisa za 
+što uspješnije prepoznavanje govora. Vaš je zadatak da istražite svojstva tih
+paketa i odaberete jedan, s kojim ćete eksperimentalno utvrditi koliki mu je
+doprinos u povećanju uspješnosti prepoznavanja govora.
+

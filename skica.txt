@@ -1,0 +1,36 @@
+﻿Uvod - 200-300 riječi, 1 str
+
+Teoretski dio:
+
+- opis problema (pregled područja), na kraju spomenuti CHiME
+
+- CHiME2 kao dobar dataset  za evaluaciju algoritama, opis istoga
+
+- pregled radova i mogućih algoritama, te primjeri dobivenih rezultata, usporedba složenosti algoritama
+
+- BSS     rješenja : microphone array, NMF, NMD, ICA, PCA, još nešta - maznut dio iz diplomskog seminara
+
+- opis BLSTM RNN algoritma 
+
+
+Dio ovisan o paketu:
+
+- pregled postojećih frameworka (pyBrain, Torch, Theano, RNNLIB,  CURRENNT)
+i zašto je odabran baš ovaj 
+
+- opis treniranja i evaluacija različitih arhitektura, možda LSTM, BLSTM - graves knjiga, ostalo...
+
+- real-time performanse
+
+Zadnje:
+
+Zaključak - 200-300 riječi, 1 str
+Sažetak - 100 riječi, 1 str (na engleskom ?)
+
+literatura - urediti 
+
+Dodatak ili CD : upute za reproduciranje rezultata sa svime što je potrebno
+
+
+Prezentacija i Demo - iza roka
+
