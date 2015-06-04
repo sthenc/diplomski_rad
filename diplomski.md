@@ -14,9 +14,28 @@ CUDA
 
 # Uvod
 
-Zadatak ovog diplomskog rada je pronaći prikladan programski paket za 
-izdvajanje govornog signala u zvučnim zapisima u kojima su prisutne 
-smetnje, jeka, žamor i slično. 
+U praksi je jako često da zvučne zapisi govora koje treba pretočiti u 
+tekstualne zapise (engl. speech-to-text) sadrže i razne smetnje 
+koje su prisutne jer govor nije bio sniman u studijskim uvjetima.
+Smetnje mogu biti razni šumovi, buka, muzika ili najgorem slučaju čak
+i drugi govor.
+Zadatak ovog diplomskog rada je 
+
+
+slika
+
+Pregled poglavlja [to će trebat i naknadno apdejtat]
+
+što je zadatak (problem)
+zašto ga rješavamo (motivacija)
+kako ga rješavamo (pristup)
+opis organizacije ostatka dokumenta (najčešće, po poglavljima)
+za ovo obično ne treba više od 1 stranice
+
+
+
+Opis problema
+
 Izdvajanje tj. pročišćavanje govora je ključan korak u velikom broju praktičnih
 primjena računalnog prepoznavanja govora. To je zato jer je mnogo lakše doći
 do nekvalitetnih nego do kvalitetnih snimki govora.
@@ -40,11 +59,6 @@ pojavili su se mnogi programski paketi koji bi bili prikladni za tu namjenu
 
 
 
-što je zadatak (problem)
-zašto ga rješavamo (motivacija)
-kako ga rješavamo (pristup)
-opis organizacije ostatka dokumenta (najčešće, po poglavljima)
-za ovo obično ne treba više od 1 stranice
 
 
 # Zaključak
