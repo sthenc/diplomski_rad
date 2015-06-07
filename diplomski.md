@@ -54,14 +54,14 @@ računalno prepoznavanje govora u praksi.
 
 
 
-/Pregled poglavlja [to će trebat i naknadno apdejtat]
 
+{Upute:
 što je zadatak (problem)
 zašto ga rješavamo (motivacija)
 kako ga rješavamo (pristup)
 opis organizacije ostatka dokumenta (najčešće, po poglavljima)
 za ovo obično ne treba više od 1 stranice/
-
+}
 
 
 
@@ -71,8 +71,7 @@ Opis problema
 
 
 Izdvajanje tj. pročišćavanje govora je ključan korak u velikom broju praktičnih
-primjena računalnog prepoznavanja govora. To je zato jer je mnogo lakše doći
-do nekvalitetnih nego do kvalitetnih snimki govora.
+primjena računalnog prepoznavanja govora. U mnogim primjenama je nemoguće
 Također, većini sustava za računalno prepoznavanje govora performanse naglo
 padaju ako se ulaznom govornom signalu dodaje smetnja. [ referenca? ]
 
@@ -152,3 +151,5 @@ OpenSMILE - mjerenje brzine real-time izvršavanja mreže ?
 
 
 # Literatura
+
+[ubacit iz literatura.md]
