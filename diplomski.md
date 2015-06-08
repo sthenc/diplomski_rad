@@ -113,9 +113,11 @@ no njegovu opravdanost potvrđuju mnoga otrkića na području psihologije
 U zadnjih nekoliko godina veoma je značajno CHiME natjecanje u razdvajanju
 i prepoznavanju govora (engl. CHiME Speech Separation and Recognition Challenge)
 kao platforma gdje različite istraživačke skupine iz akademskog svijeta i industrije
-mogu usporediti svoja rješenja na prilično realističnom skupu podataka. [chime_data]
+mogu usporediti svoja rješenja na skupu podataka koji daje dobar pokazatelj koliko
+dobro ta rješenja rade na stvarnim podacima. [chime_data]
 
 CHiME
+
 
 
 
