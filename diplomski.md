@@ -89,48 +89,28 @@ Računalno prepoznavanje govora počinje gubiti na točnosti več oko +20 dB,
 a na 0 dB (jednaka snaga signala govora i smetnje) se već približava nasumičnom
 pogađanju. [book_articulation]
 
+Činjenica da su ljudi tako sposobni u obavljanju tog zadatka potaknula je mnoge
+istraživače da u proučavanju ljudskog slušnog sustava pokušaju naći inspiraciju
+za nova tehnološka rješenja [book_asa][book_casa].
 
+Postoje tri glavna pristupa za izdvajanje govornog signala:
 
-An important area of application is the automatic recognition of sounds by computers. Many of the methods that
-are currently in use, for example, in speech recognition, deteriorate badly when extraneous sounds are present.
-Incorporating a primitive scene-analysis stage into the recognition process might allow the systems to resist being
-derailed by these sounds. Some beginnings have been made by using a few features of a voice, such as its
-fundamental or its spatial location, to track it through a mixture, but no computational system has so far attempted
-to implement the full range of heuristics described in the earlier chapters. [book_asa]
+1. Tehnologija nizova mikrofona (engl. microphone-array technology)
+2. Slijepo razdvajanje signala
+3. Razdvajanje temeljeno na modelu govora
 
-There are three major approaches to speech signal separation: (1) an approach based on microphone-
-array technology [48], (2) an approach based on blind signal separation [2, 9, 26], and (3) an approach
-based on model-based separation [33, 42, 64]. The first approach, i.e., acoustic-technology-based, is
-the most traditional and orthodox, and is already used in real-world recognizers. However, although it
-works sufficiently under some limited conditions, it cannot emulate the high flexibility and capability
-of humans in separating a target speech signal with a reasonably small-size implementation. The
-second approach is based on the information theory, and it presently represents a main research trend
-in the field of signal separation. The third approach attempts to emulate the human hearing process
-to some extent by assuming the importance of model-based (top-down or a priori) knowledge about
-target signals. Compared to the second approach, blind signal separation, this model-based approach
-is still at the beginning stages of research. Nonetheless, the validity and prospects of this approach
-are supported by many psychological findings [5].
-This chapter focuses on two recent trends, i.e., blind separation and model-based separation. From
-the standpoint of speech recognition, the techniques of these two separation approaches have not yet
-been fully developed. They also do not necessarily have a direct link to ANN technologies. Only a
-few links can be observed in the structural similarities between the ANN and the problem formalism
-of signal separation. However, studying these technical topics is clearly worthwhile because math-
-ematics and ultimate research goals, i.e., the development of speech recognition technologies that
-successfully emulate humans, are common to both the ANN and signal separation.
+Prvi od tih pristupa, temeljen na akustičnoj tehnologiji, je tradicionalan
+i već u prisutan u praksi. No, iako radi dovoljno dobro u određenim uvjetima,
+kompaktnija rješenja su daleko od ljudske fleksibilnosti i sposobnosti.
+Drugi pristup se temelji na teoriji informacija, i trenutno je glavni trend
+na polju istraživanja razdvajanja signala.
+Treći pristup pokušava donekle emulirati ljudski slušni sustav koristeći
+apriorno znanje tj. model ciljnih signala kao najvažniji faktor.
+U usporedbi sa slijepim razdvajanjem signala ovaj pristup je još u povojima,
+no njegovu opravdanost potvrđuju mnoga otrkića na području psihologije
+[book_nn_sp].
 
-[book_nn_sp]
-
-
-
-Dokaz da je problem moguće riješiti je činjenica da ljudska bića mogu 
-razumjeti govor i kada je signal smetnje višestruko jači od korisnog signala. [ referenca? ]
-Proučavanje ljudskog slušnog sustava dalo je mnoge ideje za rješavanje ovog problema,
-između ostalih i primjenu neuronskih mreža za izvlačenje značajki (engl. feature extraction). 
-
-
-
-
-
+Problem se formalno može definirati kao  [?]
 
 CHiME
 
