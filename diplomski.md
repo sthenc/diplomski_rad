@@ -17,6 +17,7 @@ LSTM
 RNN
 CUDA
 SDR signal-to-distortion ratio
+SNR
 
 
 
@@ -72,57 +73,21 @@ Opis problema
 U svim primjenama koje se bave govorom, prisutnost smetnji je neizbježna.
 Bilo da se radi o snimanju zvuka, telekomunikacijama ili ljudsko-računalnim
 sučeljima (engl. human–machine interfaces), mikrofon koji snima govor uglavnom
-će snimiti i smetnje. Zbog toga se snimljeni govorni signal prije svoje upotrebe
-mora pročistiti. Taj proces pročišćavanja govora obično se naziva ili suzbijanje
-buke (engl. noise reduction) ili 
-The existence of noise is inevitable. In all ap-
-plications that are related to voice and speech,
-from sound recording, telecommunications, and
-telecollaborations, to human–machine inter-
-faces, the signal of interest that is picked up
-by a microphone is generally contaminated by
-noise. As a result, the microphone signal has
-to be cleaned up with digital signal-processing
-tools before it is stored, analyzed, transmit-
-ted, or played out. The cleaning process, which
-is often referred to as either noise reduction
-or speech enhancement, has attracted a con-
-siderable amount of research and engineering
-attention for several decades. Remarkable ad-
-vances have already been made, and this area
-is continuing to progress, with the aim of cre-
-ating processors that can extract the desired
-speech signal as if there is no noise. This chap-
-ter presents a methodical overview of the state
-of the art of noise-reduction algorithms. Based
-on their theoretical origin, the algorithms are
-categorized into three fundamental classes:
-filtering techniques, spectral restoration, and
-model-based methods. We outline the ba-
-sic ideas underlying these approaches, discuss
-their characteristics, explain their intrinsic re-
-lationships, and review their advantages and
-disadvantages [book_springer]
+će snimiti i smetnje. Zbog toga se snimljeni govorni signal treba pročistiti
+digitalnom obradom signala prije svoje upotrebe.
+Taj proces pročišćavanja govora obično se naziva ili suzbijanje
+buke (engl. noise reduction) ili poboljšavanje govora (engl. speech enhancement)
+ili izdvajanje govora (engl. speech separation). 
+To je područje koje se intenzivno proučava već nekoliko desetljeća [book_springer],
+no problem još uvijek nije riješen.
 
-
-
-Izdvajanje tj. pročišćavanje govora je ključan korak u velikom broju praktičnih
-primjena računalnog prepoznavanja govora. U mnogim primjenama je nemoguće
-Također, većini sustava za računalno prepoznavanje govora performanse naglo
-padaju ako se ulaznom govornom signalu dodaje smetnja. [ referenca? ]
-
-As we shall see, human recognition performance drops to chance levels at a
-wideband SNR somewhere between −20 and −25 dB and saturates at a minimum
-error rate when the SNR is between −6 and 0 dB. The actual numbers depend
-on the complexity (i.e., the entropy) of the recognition task. Machine performance
-starts degrading by +20 dB SNR and approaches chance level near 0 dB SNR.
-This large discrepancy in performance is called the robustness problem, which refers
-to the sensitivity of the score to the SNR. What is needed is some insight into
-why this large difference between human performance and present day machine
-performance exists. I believe we can answer this question, and this is one of the
-goals of this monograph [book_articulation]
-
-
+Posebno važna primjena izdvajanja govora je računalno prepoznavanje govora (engl. ASR).
+Iz inžinjerske perspektive ljudsko uho radi nevjerojatno dobro.
+Kod ljudskih bića razumijevanje govora, ovisno o primjeni, počinje padati
+kada je SNR od -6 do 0 dB, a tek se od -25 do -20 dB sasvim gubi razumljivost.
+Računalno prepoznavanje govora počinje gubiti na točnosti več oko +20 dB,
+a na 0 dB (jednaka snaga signala govora i smetnje) se već približava nasumičnom
+pogađanju. [book_articulation]
 
 
 
