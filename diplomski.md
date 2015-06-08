@@ -18,7 +18,7 @@ RNN
 CUDA
 SDR signal-to-distortion ratio
 SNR
-
+CHiME
 
 
 # Uvod
@@ -68,7 +68,7 @@ za ovo obično ne treba više od 1 stranice/
 
 ----- Pregled literature ---------
 
-Opis problema
+Stanje istraživanja
 
 U svim primjenama koje se bave govorom, prisutnost smetnji je neizbježna.
 Bilo da se radi o snimanju zvuka, telekomunikacijama ili ljudsko-računalnim
@@ -110,9 +110,14 @@ U usporedbi sa slijepim razdvajanjem signala ovaj pristup je još u povojima,
 no njegovu opravdanost potvrđuju mnoga otrkića na području psihologije
 [book_nn_sp].
 
-Problem se formalno može definirati kao  [?]
+U zadnjih nekoliko godina veoma je značajno CHiME natjecanje u razdvajanju
+i prepoznavanju govora (engl. CHiME Speech Separation and Recognition Challenge)
+kao platforma gdje različite istraživačke skupine iz akademskog svijeta i industrije
+mogu usporediti svoja rješenja na prilično realističnom skupu podataka. [chime_data]
 
 CHiME
+
+
 
 Odabir strategije
 
@@ -126,10 +131,12 @@ To je dio većeg trenda u strojnom učenju poznatog pod imenom Deep Learning, tj
 Budući da je to u zadnje vrijeme vrlo popularno područje za istraživanje,
 pojavili su se mnogi programski paketi koji bi bili prikladni za tu namjenu 
 
-što onda točno radimo
+što onda točno radimo - ubacit malo formalizma čisto iz fore
 [slika]
 
 Odabir programskog paketa
+
+- usporedba svih živih
 
 ----- Pregled literature ---------
 
