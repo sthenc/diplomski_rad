@@ -133,7 +133,7 @@ Računalno prepoznavanje govora čak i u uvjetima savršeno čistog govornog sig
 Budući da je fokus CHiME natjecanja izdvajanje govora, autori su odlučili napraviti
 set podataka sa realnim signalima smetnje, snimljenim u pravoj dnevnoj sobi,
 no govor kojeg treba prepoznati je nerealno jednostavan. [chime_data]
-[chime_grid_cite]
+Koristi se [chime_grid_cite]
 
 the challenge entrants highlighted three main
 additional dimensions of difficulty to be considered in future
