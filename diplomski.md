@@ -28,14 +28,14 @@ koje su prisutne jer govor nije bio sniman u studijskim uvjetima.
 Smetnje mogu biti razni šumovi, buka, muzika ili najgorem slučaju čak
 i drugi govor.
 Sve takve smetnje uzrokuju jako veliki pad točnosti računalnog prepoznavnja
-govora. [ referenca? ]
+govora. [ book_articulation ]
 Zadatak ovog diplomskog rada je pronaći odgovarajući algoritam i programski
 paket koji bi omogućio izdvajanje što čišćeg govora iz takvih zvučnih zapisa.
-Između mnogih opcija kao algoritam je odabrana RNN-BLSTM neuronska mreža [ referenca? ]
-implementiran u programskom paketu CURRENNT, koji ubrzava treniranje modela [ referenca? ]
+Između mnogih opcija kao algoritam je odabrana RNN-BLSTM neuronska mreža 
+implementiran u programskom paketu CURRENNT, koji ubrzava treniranje modela 
 pomoću GPU-a.
 
-Efikasnost ovog pristupa je ispitana pomoću skupa podataka "CHiME 2nd Challenge"  [ referenca? ]
+Efikasnost ovog pristupa je ispitana pomoću skupa podataka "CHiME 2nd Challenge"  
 i pripadnih alata.
 
 [stavit brojeve]
@@ -69,7 +69,12 @@ za ovo obično ne treba više od 1 stranice/
 
 Opis problema
 
-U mnogim primjenama koje se bave govorom, 
+U svim primjenama koje se bave govorom, prisutnost smetnji je neizbježna.
+Bilo da se radi o snimanju zvuka, telekomunikacijama ili ljudsko-računalnim
+sučeljima (engl. human–machine interfaces), mikrofon koji snima govor uglavnom
+će snimiti i smetnje. Zbog toga se snimljeni govorni signal prije svoje upotrebe
+mora pročistiti. Taj proces pročišćavanja govora obično se naziva ili suzbijanje
+buke (engl. noise reduction) ili 
 The existence of noise is inevitable. In all ap-
 plications that are related to voice and speech,
 from sound recording, telecommunications, and
