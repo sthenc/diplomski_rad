@@ -110,13 +110,42 @@ U usporedbi sa slijepim razdvajanjem signala ovaj pristup je još u povojima,
 no njegovu opravdanost potvrđuju mnoga otrkića na području psihologije
 [book_nn_sp].
 
+CHiME
+
 U zadnjih nekoliko godina veoma je značajno CHiME natjecanje u razdvajanju
 i prepoznavanju govora (engl. CHiME Speech Separation and Recognition Challenge)
 kao platforma gdje različite istraživačke skupine iz akademskog svijeta i industrije
 mogu usporediti svoja rješenja na skupu podataka koji daje dobar pokazatelj koliko
 dobro bi ta rješenja mogla raditi na stvarnim podacima. [chime_data]
 
-CHiME
+Iako je u tijeku već treća iteracija CHiME natjecanja, u ovom radu će se
+koristiti podaci za drugo CHiME natjecanje (engl. 2nd CHiME challenge),
+budući da u ovom trenutku već postoji mnogo objavljenih rezultata za taj skup podataka,
+a napravljena su i neka poboljšanja u odnosu na prvu verziju. [chime_overview]
+
+Cilj CHiME natjecanja je dobiti što veću točnost prepoznavanja govornog
+izobličenog sa realističnim izvorima smetnji.
+Problem pročišćivanja govora za prepoznavanje je različit od običnog pročišćivanja
+govora, zato jer velik broj tehnika pročišćivanja govora samo poboljšava doživljaj
+kvalitete govora, ali ne povećava i njegovu razumljivost. [book_speech_enhancement]
+
+Računalno prepoznavanje govora čak i u uvjetima savršeno čistog govornog signala je težak problem.
+Budući da je fokus CHiME natjecanja izdvajanje govora, autori su odlučili napraviti
+set podataka sa realnim signalima smetnje, snimljenim u pravoj dnevnoj sobi,
+no govor kojeg treba prepoznati je nerealno jednostavan. [chime_data]
+[chime_grid_cite]
+
+the challenge entrants highlighted three main
+additional dimensions of difficulty to be considered in future
+challenges: variability of speaker location, vocabulary size
+and speech naturalness. Indeed, ASR systems can be surpris-
+ingly sensitive to speaker location and it is well known that
+systems optimized for small vocabulary read speech often fail
+to scale to larger vocabulary spontaneous speech.
+
+
+Detalji:
+[chime_website]
 
 
 

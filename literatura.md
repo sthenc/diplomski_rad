@@ -19,3 +19,5 @@ howpublished = {\url{http://sourceforge.net/projects/rnnl/}}}
 Frank Sehnke, Thomas Rückstieß, Jürgen Schmidhuber. PyBrain. To appear in: Journal of Machine Learning Research, 2010. 
 
 [book_asa] Bregman, Albert S. Auditory Scene Analysis : The Perceptual Organization of Sound. Cambridge, Massachusetts:MIT Press, 1994.
+
+[chime_website]
