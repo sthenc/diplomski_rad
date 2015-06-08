@@ -114,7 +114,7 @@ U zadnjih nekoliko godina veoma je značajno CHiME natjecanje u razdvajanju
 i prepoznavanju govora (engl. CHiME Speech Separation and Recognition Challenge)
 kao platforma gdje različite istraživačke skupine iz akademskog svijeta i industrije
 mogu usporediti svoja rješenja na skupu podataka koji daje dobar pokazatelj koliko
-dobro ta rješenja rade na stvarnim podacima. [chime_data]
+dobro bi ta rješenja mogla raditi na stvarnim podacima. [chime_data]
 
 CHiME
 
