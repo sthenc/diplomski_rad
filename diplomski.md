@@ -130,24 +130,42 @@ govora, zato jer velik broj tehnika pročišćivanja govora samo poboljšava do�
 kvalitete govora, ali ne povećava i njegovu razumljivost. [book_speech_enhancement]
 
 Računalno prepoznavanje govora čak i u uvjetima savršeno čistog govornog signala je težak problem.
+Faktori koji taj problem mogu dodatno otežati su promjenjivost položaja govornika, 
+veličina rječnika i prirodnost govora. 
 Budući da je fokus CHiME natjecanja izdvajanje govora, autori su odlučili napraviti
-set podataka sa realnim signalima smetnje, snimljenim u pravoj dnevnoj sobi,
-no govor kojeg treba prepoznati je nerealno jednostavan. [chime_data]
-Koristi se [chime_grid_cite]
+set podataka sa realnim signalima smetnje, snimljenim u pravoj dnevnoj sobi.
+Tako je govoru superponirana izrazito realna smetnja, no kako bi zadatak ostao
+rješiv, govor kojeg treba prepoznati je nerealno jednostavan. [chime_data]
 
-the challenge entrants highlighted three main
-additional dimensions of difficulty to be considered in future
-challenges: variability of speaker location, vocabulary size
-and speech naturalness. Indeed, ASR systems can be surpris-
-ingly sensitive to speaker location and it is well known that
-systems optimized for small vocabulary read speech often fail
-to scale to larger vocabulary spontaneous speech.
+Izvor čistog govora je Grid korpus govora, koji se sastoji
+od zvučnih zapisa jednostavnih komandi od 34 različita govornika engleskog jezika. [chime_grid_cite]
+Zvučni zapisi su rečenice od šest riječi u obliku 
+<naredba:4><boja:4><prijedlog.:4><slovo:25><znamenka:10><prilog:4>,
+brojevi u uglatim zagradama označuju koliko u svakoj kategoriji ima mogućih riječi.
+Zadatak je prepoznati slovo i znamenku, i točnost prepoznavanja se mjeri 
+samo na te dvije riječi.
 
+Dakle govor kojeg treba prepoznati se sastoji od malog rječnika i jednostavne gramatike,
+nije prirodan i govornik je uglavnom na istom položaju, što prepoznavanje
+čistog govora čini vrlo laganim - [navesti nekakvu tocnost]
 
-Detalji:
-[chime_website]
+Kako bi se dobio željeni raspon odnosa signala prema smetnji (engl. SNR),
+izgovorene rečenice su tako pozicionirane u odnosu na pozadinsku buku da se dobiju željenne
+vrijednost: -6, -3, 0, 3, 6 i 9 dB. To je učinjeno tako da je pozadinska buka
+nasumično pretražena i odabran je onaj vremenski interval koji ima željeni SNR
+za tu rečenicu. Na 9dB, najpoboljnijem odnosu željenog i neželjenog signala,
+smetnje su uglavnom kvazi-stacionarni šumovi, dok su oni na -6dB uglavnom
+iznenadni nestacionarni zvučni događaji.
+Da bi zadatak bio još realističniji, napravljena je konvolucija čiste izgovorene rečenice 
+sa binauralnim impolsnim odzivima sobe [ BRIR-om] koji simuliraju jeku i ograničeno pomicanje govornika. 
+[chime_data]
 
+Sve snimke su u 16-bitnom WAV formatu uzorkovanom na 16kHz.
+Set podataka za uvježbavanje (engl. training set) sarži 17000 rečenica, 500 za svakog od 34 govornika.
+Razvojni set podataka (engl. development set) i ispitni set podataka (engl. test set)
+sadrže 600 rečenica na 6 različitih SNR-a. [chime_website]
 
+- opis alata za prepoznavanje
 
 
 Odabir strategije
@@ -216,7 +234,10 @@ OpenSMILE - mjerenje brzine real-time izvršavanja mreže ?
 	- koliko je super, ali da poboljšanje na small-vocabulary tasku ne znači
 	nužno da će biti toliko na mid i big vocabulary task
 
-
+Indeed, ASR systems can be surpris-
+ingly sensitive to speaker location and it is well known that
+systems optimized for small vocabulary read speech often fail
+to scale to larger vocabulary spontaneous speech.[chime_data]
 
 
 # Literatura
