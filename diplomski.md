@@ -112,6 +112,8 @@ no njegovu opravdanost potvrđuju mnoga otrkića na području psihologije
 
 CHiME
 
+
+### Motivacija
 U zadnjih nekoliko godina veoma je značajno CHiME natjecanje u razdvajanju
 i prepoznavanju govora (engl. CHiME Speech Separation and Recognition Challenge)
 kao platforma gdje različite istraživačke skupine iz akademskog svijeta i industrije
@@ -123,20 +125,22 @@ koristiti podaci za drugo CHiME natjecanje (engl. 2nd CHiME challenge),
 budući da u ovom trenutku već postoji mnogo objavljenih rezultata za taj skup podataka,
 a napravljena su i neka poboljšanja u odnosu na prvu verziju. [chime_overview]
 
-Cilj CHiME natjecanja je dobiti što veću točnost prepoznavanja govornog
+Cilj CHiME natjecanja je dobiti što veću točnost prepoznavanja govora
 izobličenog sa realističnim izvorima smetnji.
-Problem pročišćivanja govora za prepoznavanje je različit od običnog pročišćivanja
+Problem pročišćivanja govora za automatsko prepoznavanje je različit od običnog pročišćivanja
 govora, zato jer velik broj tehnika pročišćivanja govora samo poboljšava doživljaj
 kvalitete govora, ali ne povećava i njegovu razumljivost. [book_speech_enhancement]
 
 Računalno prepoznavanje govora čak i u uvjetima savršeno čistog govornog signala je težak problem.
-Faktori koji taj problem mogu dodatno otežati su promjenjivost položaja govornika, 
+Faktori koji taj problem mogu dodatno otežati su promjenjivost položaja i udaljenost govornika u odnosu na mikrofon, 
 veličina rječnika i prirodnost govora. 
 Budući da je fokus CHiME natjecanja izdvajanje govora, autori su odlučili napraviti
 set podataka sa realnim signalima smetnje, snimljenim u pravoj dnevnoj sobi.
 Tako je govoru superponirana izrazito realna smetnja, no kako bi zadatak ostao
 rješiv, govor kojeg treba prepoznati je nerealno jednostavan. [chime_data]
 
+
+###Grid corpus 
 Izvor čistog govora je Grid korpus govora, koji se sastoji
 od zvučnih zapisa jednostavnih komandi od 34 različita govornika engleskog jezika. [chime_grid_cite]
 Zvučni zapisi su rečenice od šest riječi u obliku 
@@ -147,8 +151,10 @@ samo na te dvije riječi.
 
 Dakle govor kojeg treba prepoznati se sastoji od malog rječnika i jednostavne gramatike,
 nije prirodan i govornik je uglavnom na istom položaju, što prepoznavanje
-čistog govora čini vrlo laganim - [navesti nekakvu tocnost]
+čistog govora čini vrlo laganim. Točnost za čisti govor je 97.25% [chime_data], usporedivim sa 
+ljudskom točnosti koja je u tom slučaju oko 98.3% (točnost za slova je 99.05%, a za brojke 99.3%) [chime_grid_cite].
 
+###Smetnje
 Kako bi se dobio željeni raspon odnosa signala prema smetnji (engl. SNR),
 izgovorene rečenice su tako pozicionirane u odnosu na pozadinsku buku da se dobiju željenne
 vrijednost: -6, -3, 0, 3, 6 i 9 dB. To je učinjeno tako da je pozadinska buka
@@ -160,15 +166,45 @@ Da bi zadatak bio još realističniji, napravljena je konvolucija čiste izgovor
 sa binauralnim impolsnim odzivima sobe [ BRIR-om] koji simuliraju jeku i ograničeno pomicanje govornika. 
 [chime_data]
 
+###Podaci
 Sve snimke su u 16-bitnom WAV formatu uzorkovanom na 16kHz.
 Set podataka za uvježbavanje (engl. training set) sarži 17000 rečenica, 500 za svakog od 34 govornika.
 Razvojni set podataka (engl. development set) i ispitni set podataka (engl. test set)
 sadrže 600 rečenica na 6 različitih SNR-a. [chime_website]
 
-- opis alata za prepoznavanje
+###Ocjenjivanje točnosti
+Osim ispitnih podataka, u sklopu CHiME 2 natjecanja dostupni su i alati za
+provođenje mjerenja točnosti baziranih na sustavu za prepoznavanje baziranom
+na besplatnom i standardnom HTK programskom paketu [book_htk].
+[chime_readme] Iako CHiME dozvoljava korištenje vlastitog
+rješenja za prepoznavanje govora, na raspolaganje je stavljen osnovni (engl. baseline)
+sustav sa nekoliko unaprijed istreniranih modela.
+To je učinjeno kako bi se moglo odrediti koji dio poboljšanja točnosti se može
+pripisati pročišćavanju govora, a koji sustavu za prepoznavanje govora 
+i olakšala usporedba između različitih sustava. [chime_readme]
+
+Osnovni sustav za prepoznavanje je prilagođen sintaksi rečenica u Grid korpusu.
+Sustav je baziran na skrivenim markovljevim modelima. Svaka od 51 riječi
+prisutna u Grid korpusu modelirana pomoću skrivenog markovljevog modela sa 
+2 stanja po fonemu. Vjerojatnost izostavljanja svakog stanja je predstavljena pomoću
+mješovitog Gaussovog modela sa 7 komponenti i dijagonalnom kovarijancom. [chime_data]
+
+Govor je parametriziran kao niz standardnih MFCC značajki.
+Svaki vektor značajke sadrži 39 parametara:
+12 mel-kepstralnih koeficijenata koji su normalizirani po srednjoj vrijednosti
+(ali ne i standardnoj devijaciji) (engl. CMN), zatim logaritamska energija okvira,
+ta zatim 13 differencijalnih koeficijenata prvog reda i 13 drugog reda 
+(engl. delta and acceleration coefficients). 
+Standardna HTK šifra za te značajke je MFCC_E_D_A_Z i detaljno (ali ne i jednoznačno)
+je opisana u literaturi [book_htk][book_opensmile]
+MFCC značajke se računaju na vremenskim okvirima od 25 ms, a korak je 10 ms.
+Budući da su zvučni podaci dani u stereo formatu, signal je pretvoren u
+mono signal uzimanjem srednje vrijednosti oba kanala. [chime_data]
 
 
 Odabir strategije
+
+- po mogućnosti rezultati na CHiME-u [chime_overview - proletit prije spavanja]
 
 Tip neuronske mreže koji se pokazao najprikladniji za ovaj problem je
 rekurzivna neuronska mreža (RNN) sa dvosmjernom dugom-kratkom memorijom (BLSTM).
@@ -186,6 +222,8 @@ pojavili su se mnogi programski paketi koji bi bili prikladni za tu namjenu
 Odabir programskog paketa
 
 - usporedba svih živih
+
+
 
 ----- Pregled literature ---------
 
@@ -212,6 +250,8 @@ Priprema podataka
   - pomoćne skripte, openSMILE ?
 
 Uvježbavanje algoritma, opis radne okoline i stroja, komentar na trajanje
+
+	-12 dana, 211 epoha po 4850 sekundi (oko 1h 21 min)
 
 Nešto o validation i test setu
 
