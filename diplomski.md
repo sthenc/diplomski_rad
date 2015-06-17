@@ -204,6 +204,10 @@ mono signal uzimanjem srednje vrijednosti oba kanala. [chime_data]
 
 Odabir strategije
 
+
+
+
+
 - po mogućnosti rezultati na CHiME-u [chime_overview - proletit prije spavanja]
 
 Tip neuronske mreže koji se pokazao najprikladniji za ovaj problem je
@@ -213,13 +217,14 @@ GPGPU-a u zadnjih nekoliko godina i vrtoglavi rast računalne snage koji je to
 uzrokovalo omogućio je i njihovu praktičnu primjenu.
 To je dio većeg trenda u strojnom učenju poznatog pod imenom Deep Learning, tj. uže Deep Neural Networks.
 [citirat nešto od Andrew Ng-a o algoritamskoj efikasnosti i poboljšavanju performansi strojnog učenja]
-Budući da je to u zadnje vrijeme vrlo popularno područje za istraživanje,
-pojavili su se mnogi programski paketi koji bi bili prikladni za tu namjenu 
 
-što onda točno radimo - ubacit malo formalizma čisto iz fore
+što onda točno radimo
 [slika]
 
 Odabir programskog paketa
+
+Budući da je to u zadnje vrijeme vrlo popularno područje za istraživanje,
+pojavili su se mnogi programski paketi koji bi bili prikladni za tu namjenu 
 
 - usporedba svih živih
 
