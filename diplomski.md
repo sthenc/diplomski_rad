@@ -275,14 +275,26 @@ i to će biti daljnji fokus ovog rada [wen_chime13][wen_chime14][wen_sdr_lstm][w
 Odabir programskog paketa
 
 Budući da su duboke neuronske mreže u zadnje vrijeme vrlo popularno područje za istraživanje,
-pojavili su se mnogi programski paketi 
+pojavili su se mnogi programski paketi koji olakšavaju njihovu upotrebu.
 
-- usporedba svih živih
+Budući da je odabran BLSTM tip rekurzivne neuronske mreže, u obzir dolaze samo paketi
+koji podržavaju takve slojeve. 
+Odabrani paket također mora podržavati ubrzavanje izvođenja na grafičkim 
+procesorima i biti općenito dovoljno učinkovit, jer bi u suprotnom treniranje
+mreže moglo premašiti trajanje ljetnog semestra.
 
-			pybrain	          torch7 	      theano          rnnlib           CURRENNT
-CUDA		ne                 da             da              ne               da
+Tablica [broj N] daje usporedbu dostupnih paketa otvorenog koda i neke
+njihove karakteristike [pybrain_cite][theano_cite1][theano_cite2][torch7_cite][wen_currennt_cite][rnnlib]. 
+
+			pybrain		    torch7 	      theano          rnnlib           CURRENNT
+GPU 		ne                 da             da              ne               da
 BLSTM		da                 ne             ne              da               da
 jezik       python             lua            python          c++              c++
+
+Jedino programski paket CURRENNT zadovoljava sve potrebne kriterije,
+podržava BLSTM-RNN neuronske mreže, ubrzavanje izvršavanja na grafičkim procesorima
+korištenjem biblioteke CUDA [cuda-cite] i napisan je u programskom jeziku C++,
+što vjerojatno znači da će zadovoljavajuće brzo obaviti treniranje mreže.
 
 ----- Pregled literature ---------
 

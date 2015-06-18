@@ -21,3 +21,7 @@ Frank Sehnke, Thomas Rückstieß, Jürgen Schmidhuber. PyBrain. To appear in: Jo
 [book_asa] Bregman, Albert S. Auditory Scene Analysis : The Perceptual Organization of Sound. Cambridge, Massachusetts:MIT Press, 1994.
 
 [chime_website] http://spandh.dcs.shef.ac.uk/chime_challenge/chime2013/chime2_task1.html 15.6.2015
+
+[cuda-cite]
+
+[audeering] ?
