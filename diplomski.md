@@ -29,7 +29,7 @@ koje su prisutne jer govor nije bio sniman u studijskim uvjetima.
 Smetnje mogu biti razni šumovi, buka, muzika ili najgorem slučaju čak
 i drugi govor.
 Sve takve smetnje uzrokuju jako veliki pad točnosti računalnog prepoznavnja
-govora. [ book_articulation ]
+govora. [ book_articulation:2]
 Zadatak ovog diplomskog rada je pronaći odgovarajući algoritam i programski
 paket koji bi omogućio izdvajanje što čišćeg govora iz takvih zvučnih zapisa.
 Između mnogih opcija kao algoritam je odabrana RNN-BLSTM neuronska mreža 
@@ -78,8 +78,8 @@ digitalnom obradom signala prije svoje upotrebe.
 Taj proces pročišćavanja govora obično se naziva ili suzbijanje
 buke (engl. noise reduction) ili poboljšavanje govora (engl. speech enhancement)
 ili izdvajanje govora (engl. speech separation). 
-To je područje koje se intenzivno proučava već nekoliko desetljeća [book_springer],
-no problem još uvijek nije riješen.
+To je područje koje se intenzivno proučava već nekoliko desetljeća ,
+no problem još uvijek nije riješen [book_springer:843-845].
 
 Posebno važna primjena izdvajanja govora je računalno prepoznavanje govora (engl. ASR).
 Iz inžinjerske perspektive ljudsko uho radi nevjerojatno dobro.
@@ -87,11 +87,11 @@ Kod ljudskih bića razumijevanje govora, ovisno o primjeni, počinje padati
 kada je SNR od -6 do 0 dB, a tek se od -25 do -20 dB sasvim gubi razumljivost.
 Računalno prepoznavanje govora počinje gubiti na točnosti več oko +20 dB,
 a na 0 dB (jednaka snaga signala govora i smetnje) se već približava nasumičnom
-pogađanju. [book_articulation]
+pogađanju. [book_articulation:2]
 
 Činjenica da su ljudi tako sposobni u obavljanju tog zadatka potaknula je mnoge
 istraživače da u proučavanju ljudskog slušnog sustava pokušaju naći inspiraciju
-za nova tehnološka rješenja [book_asa][book_casa].
+za nova tehnološka rješenja [book_asa][book_casa][book_human_machine].
 
 Postoje tri glavna pristupa za izdvajanje govornog signala:
 
@@ -108,7 +108,7 @@ Treći pristup pokušava donekle emulirati ljudski slušni sustav koristeći
 apriorno znanje tj. model ciljnih signala kao najvažniji faktor.
 U usporedbi sa slijepim razdvajanjem signala ovaj pristup je još u povojima,
 no njegovu opravdanost potvrđuju mnoga otrkića na području psihologije
-[book_nn_sp].
+[book_nn_sp: 184].
 
 CHiME
 
@@ -129,7 +129,7 @@ Cilj CHiME natjecanja je dobiti što veću točnost prepoznavanja govora
 izobličenog sa realističnim izvorima smetnji.
 Problem pročišćivanja govora za automatsko prepoznavanje je različit od običnog pročišćivanja
 govora, zato jer velik broj tehnika pročišćivanja govora samo poboljšava doživljaj
-kvalitete govora, ali ne povećava i njegovu razumljivost. [book_speech_enhancement]
+kvalitete govora, ali ne povećava i njegovu razumljivost. [book_speech_enhancement:609]
 
 Računalno prepoznavanje govora čak i u uvjetima savršeno čistog govornog signala je težak problem.
 Faktori koji taj problem mogu dodatno otežati su promjenjivost položaja i udaljenost govornika u odnosu na mikrofon, 
@@ -196,7 +196,7 @@ Svaki vektor značajke sadrži 39 parametara:
 ta zatim 13 differencijalnih koeficijenata prvog reda i 13 drugog reda 
 (engl. delta and acceleration coefficients). 
 Standardna HTK šifra za te značajke je MFCC_E_D_A_Z i detaljno (ali ne i jednoznačno)
-je opisana u literaturi [book_htk][book_opensmile]
+je opisana u literaturi [book_htk:80][book_opensmile:32]
 MFCC značajke se računaju na vremenskim okvirima od 25 ms, a korak je 10 ms.
 Budući da su zvučni podaci dani u stereo formatu, signal je pretvoren u
 mono signal uzimanjem srednje vrijednosti oba kanala. [chime_data]
@@ -204,19 +204,52 @@ mono signal uzimanjem srednje vrijednosti oba kanala. [chime_data]
 
 Odabir strategije
 
+Zanimljiva povijesna činjenica je da su neuronske mreže u području slijepog
+razdvajanja signala prisutne od samog početka istraživanja na tom području
+80-ih godina prošlog stoljeća.
+Prvi algoritam koji je korišten je analiza principalnih komponenata (eng. PCA),
+gdje se parametrizirana reprezentacija signala (najčešće spektar) pokušavala
+razdvojiti na komponente koje odgovaraju pojedinim izvorima signala pomoću
+određenih statističkih svojstava tih signala.
+Analiza neovisnih komponenata (eng. ICA) još je jedna metoda koja se može
+svrstati u metode strojnog učenja pomoću neuronskih mrežam, a nastala je
+kao poboljšanje originalnog PCA algoritma [book_bss_ica:7-9] [book_nn_sp:180].
 
+U literaturi se mogu naći stvarno brojni i nerijetko vrlo složeni pristupi ovoj problematici, 
+no valja izdvojiti dva koja su se pokazala posebno uspješnima i popularnima u posljednjih
+nekoliko godina.
 
+To su nenegativna faktorizacija matrica (eng. NMF) [book_bss_ica:515] i 
+duboke neuronske mreže (eng. DNN).
+Oba pristupa su relativno jednostavna, no NMF ima nekoliko nedostataka u
+usporedbi sa DNN.
+NMF je isključivo linearan model, dok DNN (ovisno o konkretnoj izvedbi)
+u pravilu može modelirati i nelinearno preslikavanje iz izvora signala 
+u mješavinu.
+Također, kod primjene istreniranog NMF modela mora se provoditi iterativni
+postupak koji uključuje operacije množenja matrica, što je jako zahtjevno
+po računalne resurse.
+S druge strane, DNN-ovi se u pravilu duže treniraju, ali se zato primjena
+istreniranog modela sastoji samo od množenja nekoliko matrica, što ih
+čini pogodnima sa primjenu u stvarnom vremenu.
+Svi ti faktori čine DNN-ove moćnijim i bržim modelom (jednom kada ga se uspije istrenirati) [dnn_faster_nmf].
 
-
-- po mogućnosti rezultati na CHiME-u [chime_overview - proletit prije spavanja]
-
-Tip neuronske mreže koji se pokazao najprikladniji za ovaj problem je
+Tip duboke neuronske mreže koji se pokazao najprikladniji za ovaj problem je
 rekurzivna neuronska mreža (RNN) sa dvosmjernom dugom-kratkom memorijom (BLSTM).
 Iako je taj pristup već poznat duže vrijeme [ reference ? ], pojava pristupačnih
 GPGPU-a u zadnjih nekoliko godina i vrtoglavi rast računalne snage koji je to
 uzrokovalo omogućio je i njihovu praktičnu primjenu.
 To je dio većeg trenda u strojnom učenju poznatog pod imenom Deep Learning, tj. uže Deep Neural Networks.
 [citirat nešto od Andrew Ng-a o algoritamskoj efikasnosti i poboljšavanju performansi strojnog učenja]
+
+[wen_chime13][wen_chime14][wen_sdr_lstm]
+
+
+Zanimljivo je da je na CHiME 2nd challenge pobijedio [wen_chime_pobjednik]
+
+Uglavnom svi visokorangirani sustavi koriste kombinaciju nekoliko složenih algoritama,
+i za razliku od ovog rada nije im cilj doći do sustava koji bi bio dovoljno brz za
+primjenu u praksi, već pod svaku cijenu dobiti čim veće performanse na testnim podacima [chime_overview].
 
 što onda točno radimo
 [slika]
@@ -242,7 +275,8 @@ Opis BLSTM-RNN
 Opis CURRENNT
 
 Opis kriterija testiranja kod CHiME
-
+	kako se računa greška u usporedbi s onim što se stvarno optimizira
+	
 --------- Metodologija ------
 
 
