@@ -238,39 +238,51 @@ No, zanimljivo je da je na CHiME 2nd challenge pobijedio sustav koji, između os
 koristi oba ova pristupa [wen_chime_pobjednik], te su u literaturi poznate 
 razne kombinacije ovih pristupa [dnn_nmf][dnn_vs_nmf][deep_nmf].
 
-Uglavnom svi visokorangirani sustavi koriste kombinaciju nekoliko složenih algoritama,
+Uglavnom svi visokorangirani sustavi koriste kombinaciju nekoliko složenih pristupa,
 i za razliku od ovog rada nije im cilj doći do sustava koji bi bio dovoljno brz za
 primjenu u praksi, već pod svaku cijenu dobiti čim veće performanse na testnim podacima [chime_overview].
 
+Duboke neuronske mreže su dio jednog većeg pokreta na području umjetne inteligencije
+pod nazivom duboko učenje.
+Ideja vodilja tog pokreta je da su korištenje veće količine podataka [ang_banko_brill_scale]
+i većih modela [ang_coates_model_size] glavni motori povećanja performansi.
+Cilje je iskoristiti sve veću raspoloživu računalna moć kako bi se u osnovi stari
+algoritmi iskoristili za rješavanje dosad nezamislivih problema.
+Računalni resursi koji se koriste mogu biti tisuće servera u nekoj od velikih
+internetskih kompanija [ang_large_dnn], ili pak grafički procesori [ang_cudnn] koji 
+danas i običnim studentima čine dostupnom računalnu moć u rangu nekadašnjih 
+superračunala.
+No, najmoćnija je kombinacija više servera sa nekoliko grafičkih procesora,
+što omogućuje brzo treniranje neuronskih mreža sa nekoliko milijardi parametara [ang_cots_hpc].
+
+Povećani intenzitet istraživanja na ovom području doveo je i do novih
+algoritama i ideja, između ostalog i obećavajućih postignuća na području
+računalnog prepoznavanja govora [ang_deep_speech][graves14].
+
 
 Dosad je u ovom poglavlju pojam DNN korišten kao da se radi o jednom pristupu,
+no samo u području pročišćavanja govora može se odnositi na mnogo različitih
+tipova mreža sa različitim svojstvima[dnn_turci][dnn_wang_ss_frontend][dnn_rnn_smaragdis]
+[dnn_kinezi][dnn_multitalker][dnn_music].
 
-Iako je taj pristup već poznat duže vrijeme [ reference ? ], pojava pristupačnih
-GPGPU-a u zadnjih nekoliko godina i vrtoglavi rast računalne snage koji je to
-uzrokovalo omogućio je i njihovu praktičnu primjenu.
-To je dio većeg trenda u strojnom učenju poznatog pod imenom Deep Learning, tj. uže Deep Neural Networks.
-[citirat nešto od Andrew Ng-a o algoritamskoj efikasnosti i poboljšavanju performansi strojnog učenja]
-
+Povećani interes za i šira primjena neuronskih mreža dovela 
 
 Tip duboke neuronske mreže koji se pokazao najprikladniji za ovaj problem je
-rekurzivna neuronska mreža (RNN) sa dvosmjernom dugom-kratkom memorijom (BLSTM).
+rekurzivna neuronska mreža (RNN) sa dvosmjernom dugom-kratkom memorijom (BLSTM),
+i to će biti daljnji fokus ovog rada [wen_chime13][wen_chime14][wen_sdr_lstm][wen_chime1].
 
-[wen_chime13][wen_chime14][wen_sdr_lstm]
-
-
-
-
-što onda točno radimo
-[slika]
 
 Odabir programskog paketa
 
-Budući da je to u zadnje vrijeme vrlo popularno područje za istraživanje,
-pojavili su se mnogi programski paketi koji bi bili prikladni za tu namjenu 
+Budući da su duboke neuronske mreže u zadnje vrijeme vrlo popularno područje za istraživanje,
+pojavili su se mnogi programski paketi 
 
 - usporedba svih živih
 
-
+			pybrain	          torch7 	      theano          rnnlib           CURRENNT
+CUDA		ne                 da             da              ne               da
+BLSTM		da                 ne             ne              da               da
+jezik       python             lua            python          c++              c++
 
 ----- Pregled literature ---------
 
@@ -280,6 +292,10 @@ pojavili su se mnogi programski paketi koji bi bili prikladni za tu namjenu
 --------- Metodologija ------
 
 Opis BLSTM-RNN
+
+Arhitektura mreže
+što onda točno radimo
+[slika]
 
 Opis CURRENNT
 
@@ -326,6 +342,7 @@ Indeed, ASR systems can be surpris-
 ingly sensitive to speaker location and it is well known that
 systems optimized for small vocabulary read speech often fail
 to scale to larger vocabulary spontaneous speech.[chime_data]
+
 
 
 # Literatura
