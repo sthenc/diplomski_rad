@@ -234,22 +234,31 @@ istreniranog modela sastoji samo od množenja nekoliko matrica, što ih
 čini pogodnima sa primjenu u stvarnom vremenu.
 Svi ti faktori čine DNN-ove moćnijim i bržim modelom (jednom kada ga se uspije istrenirati) [dnn_faster_nmf].
 
-Tip duboke neuronske mreže koji se pokazao najprikladniji za ovaj problem je
-rekurzivna neuronska mreža (RNN) sa dvosmjernom dugom-kratkom memorijom (BLSTM).
+No, zanimljivo je da je na CHiME 2nd challenge pobijedio sustav koji, između ostalih,
+koristi oba ova pristupa [wen_chime_pobjednik], te su u literaturi poznate 
+razne kombinacije ovih pristupa [dnn_nmf][dnn_vs_nmf][deep_nmf].
+
+Uglavnom svi visokorangirani sustavi koriste kombinaciju nekoliko složenih algoritama,
+i za razliku od ovog rada nije im cilj doći do sustava koji bi bio dovoljno brz za
+primjenu u praksi, već pod svaku cijenu dobiti čim veće performanse na testnim podacima [chime_overview].
+
+
+Dosad je u ovom poglavlju pojam DNN korišten kao da se radi o jednom pristupu,
+
 Iako je taj pristup već poznat duže vrijeme [ reference ? ], pojava pristupačnih
 GPGPU-a u zadnjih nekoliko godina i vrtoglavi rast računalne snage koji je to
 uzrokovalo omogućio je i njihovu praktičnu primjenu.
 To je dio većeg trenda u strojnom učenju poznatog pod imenom Deep Learning, tj. uže Deep Neural Networks.
 [citirat nešto od Andrew Ng-a o algoritamskoj efikasnosti i poboljšavanju performansi strojnog učenja]
 
+
+Tip duboke neuronske mreže koji se pokazao najprikladniji za ovaj problem je
+rekurzivna neuronska mreža (RNN) sa dvosmjernom dugom-kratkom memorijom (BLSTM).
+
 [wen_chime13][wen_chime14][wen_sdr_lstm]
 
 
-Zanimljivo je da je na CHiME 2nd challenge pobijedio [wen_chime_pobjednik]
 
-Uglavnom svi visokorangirani sustavi koriste kombinaciju nekoliko složenih algoritama,
-i za razliku od ovog rada nije im cilj doći do sustava koji bi bio dovoljno brz za
-primjenu u praksi, već pod svaku cijenu dobiti čim veće performanse na testnim podacima [chime_overview].
 
 što onda točno radimo
 [slika]
