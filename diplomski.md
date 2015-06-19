@@ -303,13 +303,16 @@ korištenjem biblioteke CUDA [cuda-cite] i napisan je u programskom jeziku C++,
 
 --------- Metodologija ------
 
-Opis BLSTM-RNN
+Opis BLSTM-RNN [graves_blstm][lstm]
 
-Arhitektura mreže
+Opis CURRENNT [wen_currennt_README][wen_currennt_cite]
+
+Arhitektura sustava
 što onda točno radimo
+signal, spektar, mfcc, [čisti, smetnje, i mješavine]
+ mreža, slojevi 
+izlaz (mfcc, spektar, signal?)
 [slika]
-
-Opis CURRENNT
 
 Opis kriterija testiranja kod CHiME
 	kako se računa greška u usporedbi s onim što se stvarno optimizira
@@ -323,13 +326,14 @@ Opis kriterija testiranja kod CHiME
 ---------- Primjena -----------
 
 Priprema podataka
-  - pomoćne skripte, openSMILE ?
+  - pomoćne skripte, openSMILE ? [wen_opensmile_cite][wen_currennt_tools_README][github_nc_packer]
+  
 
 Uvježbavanje algoritma, opis radne okoline i stroja, komentar na trajanje
 
 	-12 dana, 211 epoha po 4850 sekundi (oko 1h 21 min)
 
-Nešto o validation i test setu
+Nešto o validation i test setu [test_val]
 
 Rezultati - dobivena točnost, u usporedbi sa očekivanom
 

@@ -25,3 +25,5 @@ Frank Sehnke, Thomas Rückstieß, Jürgen Schmidhuber. PyBrain. To appear in: Jo
 [cuda-cite]
 
 [audeering] ?
+
+[github_nc_packer] https://github.com/sthenc/nc_packer
