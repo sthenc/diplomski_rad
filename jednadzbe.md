@@ -67,19 +67,34 @@ ili "iščezavajućeg" gradijenta, tj. greška pri prolazu unatrag kroz mrežu i
 naglo raste sa svakim korakom ili se naglo smanjuje.
 Problem eksplodirajućeg gradijenta može dovesti do nestabilnosti mreže,
 pa je jedan način da se smanji stopa učenja, što kao i iščezavajući gradijent
-vodi sporijem učenju mreže.
+vodi sporijem učenju mreže. Posljedica toga je da rekurzivne neuronske mreže
+teško pamte kontekst duže od nekoliko desetaka koraka.
 
-Nadogradnja na rekurzivne mreže koja rješava ovaj problem je dugotrajna-kratkotrajna
+Nadogradnja na rekurzivne mreže koja rješava te probleme je dugotrajna-kratkotrajna
 memorija (eng. LSTM) [lstm]. Na slici [lstm.png] je prikazana arhitektura LSTM
-ćelije. 
+ćelije.
 
-slika, opis,
-
-4.1 - 4.16 ? (str. 37-38)
-
-
-### Dvosmjerna LSTM mreža
-
+Slika [lstm.png] LSTM memorijski blok sa jednom ćelijom. Troja vrata koja su prikazana
+su nelinearne sume koje skupljaju pobude izvan i unutar bloka, i kontroliraju aktivnost
+ćelije preko množenja (mali crni krugovi). Ulazna i izlazna vrata množe ulaz i izlaz ćelije,
+dok vrata za brisanje množe ćelijino prethodno stanje. Unutar ćelije nema aktivacijske
+funkcije. Aktivacijska funkcija vrata 'f' je obično sigmoidna funkcija, tako da joj 
+je izlaz između 0 (vrata zatvorena) i 1 (vrata otvorena).
+Ulazna i izlazna aktivacijska funkcija ćelije ('g' i 'h') su obično tangens hiperbolni
+i sigmoidna funkcija, iako 'h' nekada može biti i funkcija identiteta.
+Veze od memorijske ćelije prema vratima (eng. peephole connections) su prikazane
+isprekidanim strelicama, i one za razliku od ostalih veza unutar bloka imaju težinu. [graves_blstm]
+Blok ima četiri ulaza i samo jedan izlaz. Tako svaki LSTM blok ima sedam parametara,
+tri unutarnje veze sa težinom, te još četiri pomaka (eng. bias) za svaki od ulaza.
+Izlaz svakog od N neurona na koji je ovaj blok spojen spaja se na sva
+četiri ulaza, tako da je broj ulaznih težina 4 * N.
 
 ### Arhitektura mreže
 
+U ovom radu je korištena dvosmjerna LSTM mreža (eng. BLSTM), koja je zapravo
+obična dvosmjerna rekurzivna mreža samo su neuroni zamijenjeni sa LSTM blokovima.
+
+Na slici [arhitektura.png] 
+
+Jednadžbe - prilagodit ? 
+4.1 - 4.16 ? (str. 37-38)
