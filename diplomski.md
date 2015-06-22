@@ -298,9 +298,6 @@ korištenjem biblioteke CUDA [cuda-cite] i napisan je u programskom jeziku C++,
 
 ----- Pregled literature ---------
 
-
-
-
 --------- Metodologija ------
 
 Opis BLSTM-RNN [graves_blstm][lstm]
@@ -334,6 +331,7 @@ Uvježbavanje algoritma, opis radne okoline i stroja, komentar na trajanje
 	-12 dana, 211 epoha po 4850 sekundi (oko 1h 21 min)
 
 Nešto o validation i test setu [test_val]
+[graves_blstm: 26]
 
 Rezultati - dobivena točnost, u usporedbi sa očekivanom
 
