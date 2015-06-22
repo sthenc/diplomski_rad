@@ -89,12 +89,21 @@ tri unutarnje veze sa težinom, te još četiri pomaka (eng. bias) za svaki od u
 Izlaz svakog od N neurona na koji je ovaj blok spojen spaja se na sva
 četiri ulaza, tako da je broj ulaznih težina 4 * N.
 
+
+[Jednadžbe - prilagodit ?  4.1 - 4.16 ? (str. 37-38)]
+
 ### Arhitektura mreže
 
 U ovom radu je korištena dvosmjerna LSTM mreža (eng. BLSTM), koja je zapravo
 obična dvosmjerna rekurzivna mreža samo su neuroni zamijenjeni sa LSTM blokovima.
 
-Na slici [arhitektura.png] 
+Na slici [arhitektura.png] je nacrtana arhitektura mreže koja je korištena.
+Arhitektura je preuzeta iz drugog rada [wen_chime13] jer zbog ograničenih
+računalnih resursa nije bilo vremena da se empirijski odredi optimalna
+arhitektura.
 
-Jednadžbe - prilagodit ? 
-4.1 - 4.16 ? (str. 37-38)
+Svaki BLSTM blok je povezan sa svim blokovima u slojevima ispod i iznad.
+BLSTM blok se sastoji od dva nepovezana LSTM bloka.
+Jedan je povezan sa izlazom iz prošlog koraka od svih LSTM blokova koji računaju unaprijed u tom sloju.
+Drugi je povezan sa izlazom iz idućeg koraka od svih LSTM blokova koji računaju unazad u tom sloju.
+Tako je ukupni broj parametara za ovu mrežu 582339.
