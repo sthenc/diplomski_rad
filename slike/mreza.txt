@@ -8,3 +8,13 @@
 2*78	blstm			tezina 7*2*78 + 2*128*2*78*4 + 2*78*78*4 = 209508
 	
 39		izlazni identity f(x)=x		tezina  2*78*39 + 39 = 6123
+
+
+formula: 
+
+
+(broj vrata po bloku + broj peep hole veza = 7) * broj celija u sloju
++
+(broj ulaznih vrijednost) * (broj blstm blokova u oba smjera= 2*N) * (broj vrata po bloku = 4)
++
+(jednom za unazad i jednom za naprijed = 2) * (blstm blokovi u jednom smjeru = N) * (isto = N) * (broj vrata = 4)
