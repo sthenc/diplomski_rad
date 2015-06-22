@@ -1,16 +1,10 @@
-Memorijska
-ćelija
 
-Ulazna vrata
+39 		ulazni
 
-Izlazna vrata
+2*78	blstm			tezina  7* 2*78 + 39 * 2*78 * 4 + 2*78*78*4 = 74100
 
-Vrata za brisanje
+2*128	blstm			tezina 7*2*128 + 2*78*2*128*4 + 2*128*128*4 = 292608
 
-Blok
-
-f
-
-h
-
-g
+2*78	blstm			tezina 7*2*78 + 2*128*2*78*4 + 2*78*78*4 = 209508
+	
+39		izlazni identity f(x)=x		tezina  2*78*39 + 39 = 6123
