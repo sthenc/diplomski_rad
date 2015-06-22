@@ -1,10 +1,10 @@
-Izlazni sloj
+izlazni sloj
 
-Sloj unazad
+sloj unazad
 
-Sloj unaprijed
+sloj unaprijed
 
-Ulazni sloj
+ulazni sloj
 
 w1
 w2

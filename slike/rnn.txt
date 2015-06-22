@@ -1,0 +1,6 @@
+
+izlazni sloj
+
+skriveni sloj
+
+ulazni sloj

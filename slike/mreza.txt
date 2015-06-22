@@ -20,6 +20,21 @@ formula:
 (jednom za unazad i jednom za naprijed = 2) * (blstm blokovi u jednom smjeru = N) * (isto = N) * (broj vrata = 4)
 
 
-sloj unaprijed
+ulazni sloj
+(39 neurona) 
 
-sloj unazad
+1. blstm sloj
+(2 × 78 ćelija) 
+
+2. blstm sloj
+(2 × 128 ćelija) 
+
+3. blstm sloj
+(2 × 78 ćelija)
+
+izlazni sloj
+(39 neurona) 
+
+t + 1
+
+t - 1

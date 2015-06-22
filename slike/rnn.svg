@@ -755,7 +755,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -775,7 +775,7 @@
            height="7.5"
            x="404.25"
            y="140.5" /></flowRegion><flowPara
-         id="flowPara6750"></flowPara></flowRoot>    <flowRoot
+         id="flowPara6750" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot6752"
        style="font-size:6px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -786,7 +786,7 @@
            height="17.5"
            x="404.75"
            y="140" /></flowRegion><flowPara
-         id="flowPara6758"></flowPara></flowRoot>    <flowRoot
+         id="flowPara6758" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot6760"
        style="font-size:6px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -797,7 +797,7 @@
            height="10.25"
            x="404.25"
            y="146" /></flowRegion><flowPara
-         id="flowPara6766"></flowPara></flowRoot>    <flowRoot
+         id="flowPara6766" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot6768"
        style="font-size:6px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -831,7 +831,7 @@
            height="17.75"
            x="403"
            y="144.5" /></flowRegion><flowPara
-         id="flowPara6790"></flowPara></flowRoot>    <flowRoot
+         id="flowPara6790" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot6792"
        style="font-size:8px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -843,7 +843,7 @@
            x="405.25"
            y="146.75"
            style="font-size:8px" /></flowRegion><flowPara
-         id="flowPara6798"></flowPara></flowRoot>    <g
+         id="flowPara6798" /></flowRoot>    <g
        transform="matrix(2,0,0,2,-237.8486,-659.26702)"
        id="layer1-5"
        inkscape:label="Layer 1">
@@ -1169,7 +1169,7 @@
            x="404.75"
            y="45.5" /></flowRegion><flowPara
          id="flowPara6742"
-         style="font-size:8px">Izlazni sloj</flowPara></flowRoot>    <flowRoot
+         style="font-size:10px">izlazni sloj</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot6800"
        style="font-size:8px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -1181,7 +1181,8 @@
            x="405"
            y="144.5"
            style="font-size:8px" /></flowRegion><flowPara
-         id="flowPara6806">Skriveni sloj</flowPara></flowRoot>    <flowRoot
+         id="flowPara6806"
+         style="font-size:10px">skriveni sloj</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot6808"
        style="font-size:6px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -1193,7 +1194,7 @@
            x="404.75"
            y="241" /></flowRegion><flowPara
          id="flowPara6814"
-         style="font-size:8px">Ulazni sloj</flowPara></flowRoot>    <path
+         style="font-size:10px">ulazni sloj</flowPara></flowRoot>    <path
        sodipodi:nodetypes="cssc"
        style="fill:none;stroke:#000000;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-mid:none;marker-end:url(#Arrow1Mend)"
        d="m 971.00438,456.8208 c 10,14 33.00002,5.5412 37.00002,-2.4588 4,-8 2,-18 -4,-24 -5.92854,-5.92852 -11.65302,-6.84722 -29.00002,-3.5412"

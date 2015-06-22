@@ -1,13 +1,13 @@
-Memorijska
+memorijska
 ćelija
 
-Ulazna vrata
+ulazna vrata
 
-Izlazna vrata
+izlazna vrata
 
-Vrata za brisanje
+vrata za brisanje
 
-Blok
+blok
 
 f
 

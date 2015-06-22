@@ -359,6 +359,8 @@ ingly sensitive to speaker location and it is well known that
 systems optimized for small vocabulary read speech often fail
 to scale to larger vocabulary spontaneous speech.[chime_data]
 
+Pristup većim računalnim resursima omogućio bi više eksperimentiranja i
+bolje rezultate [ang_deep_speech].
 
 
 # Literatura
