@@ -18,3 +18,8 @@ formula:
 (broj ulaznih vrijednost) * (broj blstm blokova u oba smjera= 2*N) * (broj vrata po bloku = 4)
 +
 (jednom za unazad i jednom za naprijed = 2) * (blstm blokovi u jednom smjeru = N) * (isto = N) * (broj vrata = 4)
+
+
+sloj unaprijed
+
+sloj unazad
