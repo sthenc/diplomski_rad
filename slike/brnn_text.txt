@@ -1,0 +1,14 @@
+Izlazni sloj
+
+Sloj unazad
+
+Sloj unaprijed
+
+Ulazni sloj
+
+w1
+w2
+w3
+w4
+w5
+w6

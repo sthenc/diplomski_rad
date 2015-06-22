@@ -1,0 +1,16 @@
+Memorijska
+ćelija
+
+Ulazna vrata
+
+Izlazna vrata
+
+Vrata za brisanje
+
+Blok
+
+f
+
+h
+
+g
