@@ -9,12 +9,12 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="191.64876"
-   height="103.16402"
+   width="103.16402"
+   height="191.64874"
    id="svg5717"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="vrata.svg">
+   sodipodi:docname="vrata_okomita.svg">
   <defs
      id="defs5719">
     <marker
@@ -81,9 +81,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="7.1503356"
-     inkscape:cx="76.700555"
-     inkscape:cy="48.211027"
+     inkscape:zoom="3.9708059"
+     inkscape:cx="51.582014"
+     inkscape:cy="65.603809"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -104,8 +104,8 @@
        visible="true"
        enabled="true"
        snapvisiblegridlinesonly="true"
-       originx="81.000005px"
-       originy="36.597421px" />
+       originx="36.757645px"
+       originy="80.839784px" />
   </sodipodi:namedview>
   <metadata
      id="metadata5722">
@@ -123,10 +123,10 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-300.92649,-404.24791)">
+     transform="translate(-345.16885,-360.00554)">
     <g
        id="g6173"
-       transform="matrix(2,0,0,2,-396.92649,-455.81451)">
+       transform="matrix(2,0,0,2,-397.11752,-455.97473)">
       <path
          transform="matrix(0.96774194,0,0,0.96774194,348.50915,605.33064)"
          d="m 65.03125,-154.5 c 0,8.28427 -6.715729,15 -15,15 -8.284271,0 -15,-6.71573 -15,-15 0,-8.28427 6.715729,-15 15,-15 8.284271,0 15,6.71573 15,15 z"
@@ -148,7 +148,7 @@
        xml:space="preserve"
        id="flowRoot4374"
        style="font-size:6px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       transform="translate(366.92649,425.81451)"><flowRegion
+       transform="translate(363.88939,422.91797)"><flowRegion
          id="flowRegion4376"><rect
            id="rect4378"
            width="7.6243582"
@@ -156,8 +156,8 @@
            x="37.375645"
            y="37.650375" /></flowRegion><flowPara
          id="flowPara4380"
-         style="font-size:12px">f</flowPara></flowRoot>    <g
-       transform="translate(-61.595162,-58.588181)"
+         style="font-size:12px">g</flowPara></flowRoot>    <g
+       transform="matrix(0,-1,1,0,-117.66724,914.17594)"
        id="layer1-3"
        inkscape:label="Layer 1">
       <path
@@ -170,17 +170,17 @@
     <path
        inkscape:connector-curvature="0"
        id="path3014-7"
-       d="m 311.79061,405.24791 47,35"
+       d="m 346.16885,540.79017 35,-47"
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-mid:none;marker-end:url(#Arrow2Mend)"
        sodipodi:nodetypes="cc" />
     <path
        inkscape:connector-curvature="0"
        id="path3014-7-1"
-       d="m 311.81356,506.41193 47,-35"
+       d="m 447.33287,540.76722 -35,-47"
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-mid:none;marker-end:url(#Arrow2Mend)"
        sodipodi:nodetypes="cc" />
     <g
-       transform="translate(69.404843,-58.39023)"
+       transform="matrix(0,-1,1,0,-117.46929,783.17594)"
        id="layer1-3-1"
        inkscape:label="Layer 1">
       <path
