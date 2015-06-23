@@ -1,0 +1,13 @@
+
+					signal 	  spektar	mfcc
+
+čisti govor
+
+smetnja
+
+govor sa jekom
+
+mješavina
+
+pročišćeni				x 		x
+govor
