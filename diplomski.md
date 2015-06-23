@@ -410,17 +410,21 @@ Drugi je povezan sa izlazom iz idućeg koraka od svih LSTM blokova koji računaj
 Tako je ukupni broj parametara za ovu mrežu 582339.
 
 
-Opis CURRENNT [wen_currennt_README][wen_currennt_cite]
 
-Arhitektura sustava
+
+Arhitektura sustava  #Opis CURRENNT [wen_currennt_README][wen_currennt_cite]
 što onda točno radimo
 signal, spektar, mfcc, [čisti, smetnje, i mješavine]
  mreža, slojevi 
 izlaz (mfcc, spektar, signal?)
 [slika]
 
-Opis kriterija testiranja kod CHiME
+Treniranje
+			#Opis kriterija testiranja kod CHiME
 	kako se računa greška u usporedbi s onim što se stvarno optimizira
+
+	Nešto o validation i test setu [test_val]
+	[graves_blstm: 26] - koristi se sve za izbjegavanje overfittinga
 	
 --------- Metodologija ------
 
@@ -437,9 +441,9 @@ Priprema podataka
 Uvježbavanje algoritma, opis radne okoline i stroja, komentar na trajanje
 
 	-12 dana, 211 epoha po 4850 sekundi (oko 1h 21 min)
+	- najbolje bi bilo pokrenuti nekoliko puta ispočetka zato jer se koristi random inicijalizacija
 
-Nešto o validation i test setu [test_val]
-[graves_blstm: 26]
+
 
 Rezultati - dobivena točnost, u usporedbi sa očekivanom
 
