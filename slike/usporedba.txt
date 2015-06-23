@@ -1,13 +1,24 @@
 
-					signal 	  spektar	mfcc
+					signal 	  spektar	MFCC
 
 čisti govor
 
 smetnja
 
-govor sa jekom
+govor s
+odjekom
 
 mješavina
 
-pročišćeni				x 		x
+pročišćeni				x		x
 govor
+
+
+5 redova x 3 stupca
+
+width: 300 px
+height: 250 px
+
+ukupno
+
+1260x930	hxw
