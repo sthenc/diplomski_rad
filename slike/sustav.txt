@@ -1,0 +1,24 @@
+mono signal
+sa smetnjom
+
+spektar snage
+
+MFCC 
+
+normalizirani
+MFCC
+
+BLSTM
+pročišćavanje
+
+pročišćeni
+norm. MFCC
+
+pročišćeni
+MFCC
+
+pročišćeni MFCC
+HTK normiran 
+
+CHiME HTK
+prepoznavač govora
