@@ -478,30 +478,34 @@ Skup za testiranje se ne može koristiti za treniranje ili validaciju jer snimke
 
 ###Priprema podataka
 
-Prije treniranja mreže potrebno je dobro pripremiti podatke.
-
-CURRENNT podatcima pristupa isključivo preko NetCDF znanstvenog formata sa
-razmjenu podataka, što znači da je sve podatke potrebno prebaciti u taj format. [wen_currennt_README]
-
-Razlog odabira MFCC_E_D_A_Z značajki, tj. normiranih mel-kepstralnih koeficijenata sa logaritamskom
-energijom i diferencijalnim i akceleracijskim koeficijentima, je već prije
-objašnjen.
+Prije treniranja mreže potrebno je pripremiti podatke, što je u mnogim 
+primjenama strojnog učenja, a tako i ovdje, velik dio posla.
 
 Za generiranje značajki korišten je paket otvorenog koda [wen_opensmile_cite] tvrtke
-audEERING UG (haftungsbeschränkt) [audeering], koji nažalost trenutno ne podržava 
-normalizaciju značajki na način koji nam je potreban, već se to mora obaviti pomoću 
-programa 'nc-standardize' koji je dio programskog paketa CURRENNT [wen_currennt_tools_README].
+audEERING UG (haftungsbeschränkt) [audeering], koji podržava generiranje HTK-kompatibilnih
+značajki. No budući da openSMILE ne podržava njihovo normiranje na način koji je potreban,
+generirane su MFCC_E_D_A značajke, a normalizacija je provedena naknadno.
 
-  - pomoćne skripte, openSMILE ? [wen_currennt_tools_README]
+CURRENNT podatcima pristupa isključivo preko NetCDF znanstvenog formata sa
+razmjenu podataka, što znači da je sve podatke potrebno prebaciti u taj format [wen_currennt_README]. 
+Za to je korišten program 'htk2nc' koji je dio programskog paketa CURRENNT [wen_currennt_tools_README].
+
+Normalizacija se obavlja nakon što se skupovi za treniranje, testiranje i validaciju
+obrade i pospreme i zasebne NetCDF datoteke.
+U sklopu programskog paketa CURRENNT dostupan je 'nc-standardize' alat
+koji može automatski izračunati 
+koji automatski normalizira ulazne i izlazne nizove spremljene u NetCDF datoteci 
+
+Na training i s tim vrijednostima na val i test
   
 Set podataka za treniranje se sastoji od ulaznih nizova značajki dobivenih
 od zašumljenog signala i očekivanih nizova značajki koji odgovaraju signalu
 koji je izobličen sa jekom.
 Jeka u ovom slučaju ne utječe značajno na točnost
 prepoznavanja, a pokusno treniranje je pokazalo da ova neuronska mreža ima problema sa konvergiranjem
-ako joj se dade zadatak da nauči i poništiti utjecaj jeke.
+ako joj se dade zadatak da nauči i poništavanje utjecaja jeke.
 
-Sve python skripte koje su razvijene za pripremanje podataka su javno dostupne [github_nc_packer].
+Sve Python skripte koje su razvijene za pripremanje podataka su javno dostupne [github_nc_packer].
 
 ###Treniranje mreže
 
