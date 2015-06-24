@@ -441,6 +441,7 @@ Priprema podataka
 Uvježbavanje algoritma, opis radne okoline i stroja, komentar na trajanje
 
 	-12 dana, 211 epoha po 4850 sekundi (oko 1h 21 min)
+	-- ukupno oko 17 dana
 	- najbolje bi bilo pokrenuti nekoliko puta ispočetka zato jer se koristi random inicijalizacija
 
 
@@ -457,12 +458,15 @@ OpenSMILE - mjerenje brzine real-time izvršavanja mreže ?
 # Rezultati i diskusija
 	- obrada rezultata, što se iz njih može zaključiti
 
+- koliko je super, ali da poboljšanje na small-vocabulary tasku ne znači
+	nužno da će biti toliko na mid i big vocabulary task
 
-
+spomenut razlik
 
 # Zaključak
-	- koliko je super, ali da poboljšanje na small-vocabulary tasku ne znači
-	nužno da će biti toliko na mid i big vocabulary task
+	
+Ipak sa dovoljno računalnih resursa vjerojatno bi se mogao napraviti primjenjivi
+sustav
 
 Indeed, ASR systems can be surpris-
 ingly sensitive to speaker location and it is well known that

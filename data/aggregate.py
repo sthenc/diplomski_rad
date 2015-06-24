@@ -7,7 +7,13 @@ import datetime
 import os
 
 
-data_root = "/mnt/data/Fer/diplomski/"
+data_root = "/mnt/data/Fer/diplomski/rad/data/"
+
+
+
+
+
+
 
 def save_score(strid, netname, results):
 	
