@@ -493,16 +493,17 @@ Za to je korišten program 'htk2nc' koji je dio programskog paketa CURRENNT [wen
 Normalizacija se obavlja nakon što se skupovi za treniranje, testiranje i validaciju
 obrade i pospreme i zasebne NetCDF datoteke.
 U sklopu programskog paketa CURRENNT dostupan je 'nc-standardize' alat
-koji može automatski izračunati 
-koji automatski normalizira ulazne i izlazne nizove spremljene u NetCDF datoteci 
-
-Na training i s tim vrijednostima na val i test
+koji izračunava srednje vrijednosti i standardne devijacije za ulazne i izlazne podatke u NetCDF datoteci,
+sprema ih u istu datoteku, te normalizira nizove s tim vrijednostima.
+Normalizacija je provedena tako da su skup podataka za validaciju i testiranje
+normalizirani sa srednjim vrijednostima i standardnim devijacijama skupa podataka
+za treniranje.
   
-Set podataka za treniranje se sastoji od ulaznih nizova značajki dobivenih
+Skup podataka za treniranje i validaciju se sastoje se od ulaznih nizova značajki dobivenih
 od zašumljenog signala i očekivanih nizova značajki koji odgovaraju signalu
-koji je izobličen sa jekom.
-Jeka u ovom slučaju ne utječe značajno na točnost
-prepoznavanja, a pokusno treniranje je pokazalo da ova neuronska mreža ima problema sa konvergiranjem
+koji je izobličen sa jekom. Skup podataka za testiranje sadrži samo zašumljene signale.
+Jeka u ovom slučaju ne utječe značajno na točnost prepoznavanja,
+a pokusno treniranje je pokazalo da ova neuronska mreža ima problema sa konvergiranjem
 ako joj se dade zadatak da nauči i poništavanje utjecaja jeke.
 
 Sve Python skripte koje su razvijene za pripremanje podataka su javno dostupne [github_nc_packer].
