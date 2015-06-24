@@ -444,7 +444,8 @@ CURRENNT podržava podešavanje parametara distribucija za slučajnu inicijaliza
 
 Kod dubokih neuronskih mreža također je veliki problem i pretreniranje (eng. overfitting).
 
-CURRENNT može koristiti sve tri uobičajene metode [graves_blstm: 26][wen_currennt_README] da bi smanjio problem pretreniranja:
+CURRENNT može koristiti sve tri uobičajene metode [graves_blstm: 26][wen_currennt_README]
+da bi smanjio problem pretreniranja:
 uranjeno zaustavljanje (eng. early stopping),
 zašumljavanje ulaza (eng. input noise),
 zašumljavanje težina (eng. weight noise), i u ovom radu su i korištene.
@@ -453,12 +454,22 @@ Zašumljvanje ulaza i težina se provodi tako da se jednostavno pri treniranju
 svakom ulazu ili težini pribroji mala slučajna vrijednost da bi se poboljšala
 sposobnost generalizacije kod mreže. Kod testiranja se te vrijednosti ne dodaju.
 
+Za uranjeno zaustavljanje je osim uobičajenog skupa za treniranje i skupa
+za testiranje potrebno imati i skup za validaciju.
+Kod uranjenog zaustavljanja se mreža trenira na skupu za treniranje i 
+računa se greška na skupu za treniranje i skupu za validaciju.
+U jednom trenutku će greška na skupu za validaciju prestati padati iako će
+greška na skupu za treniranje i dalje padati. Obično se treniranje nastavi još
+nekoliko epoha da bi se osiguralo da je to stvarno minimum, ali se kao najbolja
+mreža odabire ona koja daje najbolji rezultat na skupu za validaciju.
+U tu svrhu bi se mogao koristiti i skup za testiranje, no to bi bio oblik 
+indirektnog treniranja na skupu za testiranje. To ne bi imalo smisla jer 
+nam skup za testiranje služi kako bismo dobili procjenu kako će se mreža 
+ponašati ako na ulaz dobije još neviđene podatke [test_val].
 
-	
+CHiME skup podataka je već podijeljen na skup za treniranje sa 17000 zapisa (500 za svakog od 34 govornika),
+skup za testiranje sa 600 zapisa i skup sa validaciju sa 600 zapisa (100 za svaki od 6 SNR vrijednosti) [chime_data].
 
-	Nešto o validation i test setu [test_val]
-	[graves_blstm: 26] - koristi se sve za izbjegavanje overfittinga
-	
 --------- Metodologija ------
 
 
