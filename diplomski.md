@@ -289,7 +289,7 @@ njihove karakteristike [pybrain_cite][theano_cite1][theano_cite2][torch7_cite][w
 			pybrain		    torch7 	      theano          rnnlib           CURRENNT
 GPU 		ne                 da             da              ne               da
 BLSTM		da                 ne             ne              da               da
-jezik       python             lua            python          c++              c++
+jezik       python             lua/c          python          c++              c++
 
 Jedino programski paket CURRENNT zadovoljava sve potrebne kriterije,
 podržava BLSTM-RNN neuronske mreže, ubrzavanje izvršavanja na grafičkim procesorima
@@ -429,11 +429,32 @@ no one su po svemu sudeći nekako drugačije normalizirane. Stoga se izlazne MFC
 moraju normalizirati tako da im statistička svojstva odgovaraju značajkama na kojima je treniran
 model koji se koristi u sustavu za prepoznavanje, jer će u suprotnom doći do pada točnosti prepoznavanja.
 
+###Treniranje neuronske mreže
+
+Treniranje i izvršavanje neuronske mreže obavljeno je korištenjem programskog
+paketa CURRENNT, jedinog koji podržava treniranje BLSTM mreža pomoću grafičkih
+procesora i time omogućuje ubrzavanje treniranja i do 20 puta u nekim scenarijima [wen_currennt_cite].
+
+Kako bi se ostvarilo ubrzanje u treniranju CURRENNT obavlja treniranje na više 
+ulaznih sekvenci paralelno i tako izračunava gradijent greške na cijelom tom
+skupu ulaznih podataka. Zatim se nakon svake te mini-serije osvježavaju težine,
+dakle riječ je o hibridnom online-batch treniranju.
+Kod dubokih neuronskih mreža ključna je dobra početna inicjalizacija, pa 
+CURRENNT podržava podešavanje parametara distribucija za slučajnu inicijalizaciju. [wen_currennt_README]
+
+Kod dubokih neuronskih mreža također je veliki problem i pretreniranje (eng. overfitting).
+
+CURRENNT može koristiti sve tri uobičajene metode [graves_blstm: 26][wen_currennt_README] da bi smanjio problem pretreniranja:
+uranjeno zaustavljanje (eng. early stopping),
+zašumljavanje ulaza (eng. input noise),
+zašumljavanje težina (eng. weight noise), i u ovom radu su i korištene.
+
+Zašumljvanje ulaza i težina se provodi tako da se jednostavno pri treniranju
+svakom ulazu ili težini pribroji mala slučajna vrijednost da bi se poboljšala
+sposobnost generalizacije kod mreže. Kod testiranja se te vrijednosti ne dodaju.
 
 
-Treniranje# Opis CURRENNT [wen_currennt_README][wen_currennt_cite]
-			
-	kako se računa greška u usporedbi s onim što se stvarno optimizira
+	
 
 	Nešto o validation i test setu [test_val]
 	[graves_blstm: 26] - koristi se sve za izbjegavanje overfittinga
@@ -447,10 +468,28 @@ Treniranje# Opis CURRENNT [wen_currennt_README][wen_currennt_cite]
 ---------- Primjena -----------
 
 Priprema podataka
+
+CURRENNT podatcima pristupa isključivo preko NetCDF znanstvenog formata sa
+razmjenu podataka, što znači da je sve podatke potrebno prebaciti u taj format. [wen_currennt_README]
+
   - pomoćne skripte, openSMILE ? [wen_opensmile_cite][wen_currennt_tools_README][github_nc_packer]
   
 
 Uvježbavanje algoritma, opis radne okoline i stroja, komentar na trajanje
+
+
+
+Za treniranje na grafičkim procesorima koristi se biblioteka CUDA verzije 5 ili više,
+što znači da je potreban pristup računalu sa NVIDIA grafičkom karticom.
+
+specifikacije...
+
+Set podataka za treniranje se sastoji od ulaznih nizova značajki dobivenih
+od zašumljenog signala i očekivanih nizova značajki koji odgovaraju signalu
+koji je izobličen sa jekom. Jeka u ovom slučaju ne utječe značajno na točnost
+prepoznavanja, a pokus je pokazao da ova neuronska mreža ima problema sa konvergiranjem
+ako joj se dade zadatak da nauči i poništiti utjecaj jeke.
+
 
 	-12 dana, 211 epoha po 4850 sekundi (oko 1h 21 min)
 	-- ukupno oko 17 dana
@@ -458,7 +497,9 @@ Uvježbavanje algoritma, opis radne okoline i stroja, komentar na trajanje
 
 [training.png]
 
+kako se računa greška u usporedbi s onim što se stvarno optimizira - euklidska udaljenost 
 
+[rezultati]
 Rezultati - dobivena točnost, u usporedbi sa očekivanom
 
 [usporedba.png]
@@ -483,10 +524,14 @@ OpenSMILE - mjerenje brzine real-time izvršavanja mreže ?
 Ipak sa dovoljno računalnih resursa vjerojatno bi se mogao napraviti primjenjivi
 sustav
 
+
+
 Indeed, ASR systems can be surpris-
 ingly sensitive to speaker location and it is well known that
 systems optimized for small vocabulary read speech often fail
 to scale to larger vocabulary spontaneous speech.[chime_data]
+
+CTC možda bi dao bolje rezultate [graves14]
 
 Pristup većim računalnim resursima omogućio bi više eksperimentiranja i
 bolje rezultate [ang_deep_speech].
