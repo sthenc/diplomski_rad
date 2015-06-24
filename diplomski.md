@@ -429,7 +429,7 @@ no one su po svemu sudeći nekako drugačije normalizirane. Stoga se izlazne MFC
 moraju normalizirati tako da im statistička svojstva odgovaraju značajkama na kojima je treniran
 model koji se koristi u sustavu za prepoznavanje, jer će u suprotnom doći do pada točnosti prepoznavanja.
 
-###Treniranje neuronske mreže
+###Metoda treniranja neuronske mreže
 
 Treniranje i izvršavanje neuronske mreže obavljeno je korištenjem programskog
 paketa CURRENNT, jedinog koji podržava treniranje BLSTM mreža pomoću grafičkih
@@ -468,74 +468,82 @@ nam skup za testiranje služi kako bismo dobili procjenu kako će se mreža
 ponašati ako na ulaz dobije još neviđene podatke [test_val].
 
 CHiME skup podataka je već podijeljen na skup za treniranje sa 17000 zapisa (500 za svakog od 34 govornika),
-skup za testiranje sa 600 zapisa i skup sa validaciju sa 600 zapisa (100 za svaki od 6 SNR vrijednosti) [chime_data].
+skup za testiranje sa 3600 zapisa i skup sa validaciju sa 3600 zapisa (600 za svaku od 6 SNR vrijednosti) [chime_data].
+Skup za testiranje se ne može koristiti za treniranje ili validaciju jer snimke sa čistim signalom nisu dostupne.
 
 --------- Metodologija ------
 
 
-
-
-
 ---------- Primjena -----------
 
-Priprema podataka
+###Priprema podataka
+
+Prije treniranja mreže potrebno je dobro pripremiti podatke.
 
 CURRENNT podatcima pristupa isključivo preko NetCDF znanstvenog formata sa
 razmjenu podataka, što znači da je sve podatke potrebno prebaciti u taj format. [wen_currennt_README]
 
-  - pomoćne skripte, openSMILE ? [wen_opensmile_cite][wen_currennt_tools_README][github_nc_packer]
+Razlog odabira MFCC_E_D_A_Z značajki, tj. normiranih mel-kepstralnih koeficijenata sa logaritamskom
+energijom i diferencijalnim i akceleracijskim koeficijentima, je već prije
+objašnjen.
+
+Za generiranje značajki korišten je paket otvorenog koda [wen_opensmile_cite] tvrtke
+audEERING UG (haftungsbeschränkt) [audeering], koji nažalost trenutno ne podržava 
+normalizaciju značajki na način koji nam je potreban, već se to mora obaviti pomoću 
+programa 'nc-standardize' koji je dio programskog paketa CURRENNT [wen_currennt_tools_README].
+
+  - pomoćne skripte, openSMILE ? [wen_currennt_tools_README]
   
+Set podataka za treniranje se sastoji od ulaznih nizova značajki dobivenih
+od zašumljenog signala i očekivanih nizova značajki koji odgovaraju signalu
+koji je izobličen sa jekom.
+Jeka u ovom slučaju ne utječe značajno na točnost
+prepoznavanja, a pokusno treniranje je pokazalo da ova neuronska mreža ima problema sa konvergiranjem
+ako joj se dade zadatak da nauči i poništiti utjecaj jeke.
+
+Sve python skripte koje su razvijene za pripremanje podataka su javno dostupne [github_nc_packer].
+
+###Treniranje mreže
+
+Za treniranje na grafičkim procesorima koristi se biblioteka CUDA verzije 5 ili više,
+što znači da je potreban pristup računalu sa NVIDIA grafičkom karticom. [wen_currennt_README]
+
+Računalo koje je korišteno
 
 Uvježbavanje algoritma, opis radne okoline i stroja, komentar na trajanje
 
-
-
-Za treniranje na grafičkim procesorima koristi se biblioteka CUDA verzije 5 ili više,
-što znači da je potreban pristup računalu sa NVIDIA grafičkom karticom.
-
 specifikacije...
-
-Set podataka za treniranje se sastoji od ulaznih nizova značajki dobivenih
-od zašumljenog signala i očekivanih nizova značajki koji odgovaraju signalu
-koji je izobličen sa jekom. Jeka u ovom slučaju ne utječe značajno na točnost
-prepoznavanja, a pokus je pokazao da ova neuronska mreža ima problema sa konvergiranjem
-ako joj se dade zadatak da nauči i poništiti utjecaj jeke.
 
 
 	-12 dana, 211 epoha po 4850 sekundi (oko 1h 21 min)
 	-- ukupno oko 17 dana
 	- najbolje bi bilo pokrenuti nekoliko puta ispočetka zato jer se koristi random inicijalizacija
 
+
 [training.png]
 
 kako se računa greška u usporedbi s onim što se stvarno optimizira - euklidska udaljenost 
 
+
+###Rezultati
+- dobivena točnost, u usporedbi sa očekivanom
+
 [rezultati]
-Rezultati - dobivena točnost, u usporedbi sa očekivanom
 
 [usporedba.png]
 
-OpenSMILE - mjerenje brzine real-time izvršavanja mreže ?
+CURRENNT - mjerenje brzine izvršavanja mreže - bez parallel sequences ali sa i bez CUDA -RT faktor
++ složenost
+
+- 18 minuta podataka 
 
 ---------- Primjena -----------
 
-
-
-
-# Rezultati i diskusija
+# Diskusija
 	- obrada rezultata, što se iz njih može zaključiti
 
 - koliko je super, ali da poboljšanje na small-vocabulary tasku ne znači
 	nužno da će biti toliko na mid i big vocabulary task
-
-
-
-# Zaključak
-	
-Ipak sa dovoljno računalnih resursa vjerojatno bi se mogao napraviti primjenjivi
-sustav
-
-
 
 Indeed, ASR systems can be surpris-
 ingly sensitive to speaker location and it is well known that
@@ -544,8 +552,22 @@ to scale to larger vocabulary spontaneous speech.[chime_data]
 
 CTC možda bi dao bolje rezultate [graves14]
 
+BLSTM i live primjena
+
 Pristup većim računalnim resursima omogućio bi više eksperimentiranja i
 bolje rezultate [ang_deep_speech].
+
+
+# Zaključak
+
+što je napravljeno i kolika je važnost toga, skratit 
+
+Ipak sa dovoljno računalnih resursa vjerojatno bi se mogao napraviti primjenjivi
+sustav
+
+
+
+
 
 
 # Literatura
