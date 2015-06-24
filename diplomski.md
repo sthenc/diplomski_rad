@@ -393,7 +393,7 @@ Izlaz svakog od N neurona na koji je ovaj blok spojen spaja se na sva
 
 [Jednadžbe - prilagodit ?  4.1 - 4.16 ? (str. 37-38)]
 
-### Arhitektura mreže
+### Arhitektura sustava
 
 U ovom radu je korištena dvosmjerna LSTM mreža (eng. BLSTM), koja je zapravo
 obična dvosmjerna rekurzivna mreža samo su neuroni zamijenjeni sa LSTM blokovima.
@@ -409,18 +409,30 @@ Jedan je povezan sa izlazom iz prošlog koraka od svih LSTM blokova koji računa
 Drugi je povezan sa izlazom iz idućeg koraka od svih LSTM blokova koji računaju unazad u tom sloju.
 Tako je ukupni broj parametara za ovu mrežu 582339.
 
+Mreža ima 39 neurona u ulaznom sloju jer toliko parametara ima standardni 
+MFCC_E_D_A_Z vektor značajki koji se koristi u osnovnom prepoznavaču govora
+koji je referentan na CHiME natjecanju [chime_data].
+
+Slika [sustav.png] prikazuje shemu sustava. Ulazni stereo zvučni zapis se
+usrednjavanjem oba kanala prebacuje u mono zapis. Zatim se na temelju
+tog zapisa izračunavaju MFCC značajke na način opisan u poglavlju [broj poglavlja].
+Dobivene značajke se normiraju sa vrijednostima izračunatim na cijelom 
+skupu podataka za treniranje, tako da je srednja vrijednost svakog koeficijenta
+0 i standardna devijacija 1. Na taj način se ne gubi nikakva informacija, 
+ali bi se mreža trebala brže trenirati [wen_chime13].
+Zatim se izračunava izlaz mreže za cijeli zapis tj. niz značajki.
+Izlazne značajke iz mreže su također približno normirane tako da bi ih se za korištenje
+u uobičajenim sustavima za prepoznavanje govora treba pomnožiti sa standardnom
+devijacijom i dodati srednju vrijednost izračunatu na training setu.
+CHiME osnovni sustav za prepoznavanje govora baziran na HTK paketu koristi normalizirane značajke,
+no one su po svemu sudeći nekako drugačije normalizirane. Stoga se izlazne MFCC značajke
+moraju normalizirati tako da im statistička svojstva odgovaraju značajkama na kojima je treniran
+model koji se koristi u sustavu za prepoznavanje, jer će u suprotnom doći do pada točnosti prepoznavanja.
 
 
 
-Arhitektura sustava  #Opis CURRENNT [wen_currennt_README][wen_currennt_cite]
-što onda točno radimo
-signal, spektar, mfcc, [čisti, smetnje, i mješavine]
- mreža, slojevi 
-izlaz (mfcc, spektar, signal?)
-[slika]
-
-Treniranje
-			#Opis kriterija testiranja kod CHiME
+Treniranje# Opis CURRENNT [wen_currennt_README][wen_currennt_cite]
+			
 	kako se računa greška u usporedbi s onim što se stvarno optimizira
 
 	Nešto o validation i test setu [test_val]
@@ -444,9 +456,12 @@ Uvježbavanje algoritma, opis radne okoline i stroja, komentar na trajanje
 	-- ukupno oko 17 dana
 	- najbolje bi bilo pokrenuti nekoliko puta ispočetka zato jer se koristi random inicijalizacija
 
+[training.png]
 
 
 Rezultati - dobivena točnost, u usporedbi sa očekivanom
+
+[usporedba.png]
 
 OpenSMILE - mjerenje brzine real-time izvršavanja mreže ?
 
@@ -461,7 +476,7 @@ OpenSMILE - mjerenje brzine real-time izvršavanja mreže ?
 - koliko je super, ali da poboljšanje na small-vocabulary tasku ne znači
 	nužno da će biti toliko na mid i big vocabulary task
 
-spomenut razlik
+
 
 # Zaključak
 	
