@@ -38,13 +38,13 @@ def aggregate(sheet, folder, epoch, data):
 	
 	print("Received ", folder, epoch, data)
 	
-	for i in range(247, 247 + 1):#range(2, 301 + 1):
+	for i in range(2, 323 + 1):
 		
-		print ('A' + str(i), 'B' + str(i))
+		#print ('A' + str(i), 'B' + str(i))
 		
-		print(sheet['A' + str(i)].value, folder)
-		print(sheet['B' + str(i)].value, float(epoch))
-		if sheet['A' + str(i)].value == folder and str(int(sheet['B' + str(i)].value)) == epoch:
+		#print(sheet['A' + str(i)].value, folder)
+		#print(sheet['B' + str(i)].value, float(epoch))
+		if sheet['A' + str(i)].value == folder and int(sheet['B' + str(i)].value) == int(epoch, 10):
 			
 			print("Found ", i)
 			
@@ -57,7 +57,7 @@ def aggregate(sheet, folder, epoch, data):
 	
 
 
-for i in range(0,1): #range(0, val_cnt):
+for i in range(0, val_cnt):
 	print(val_names[i])
 	
 	sheet = val_shs[i]
