@@ -620,30 +620,35 @@ zapisa pomoću dobivene mreže i CURRENNT paketa.
 
 # Diskusija
 
-Dobiveni rezultati su očekivani. Kod neprilagođenog sustav za prepoznavanje
-dobiveno je apsolutno poboljšanje točnosti prepoznavanja od 26.5% dodavanjem
-predkoraka sa pročišćavanjem govora.
-Najveće poboljšanje je naravno dobiveno u slučaju kada je signal govora za 6dB
-tiši od smetnje, gdje je postignuto poboljšanje od apsolutnih 39.1%.
+Dobiveni rezultati su očekivani. Kod sustava za prepoznavanje govora koji
+je specijaliziran za čisti govor dobiveno je poboljšanje točnosti
+prepoznavanja od 26.5% dodavanjem izdvajanja govora.
+
+Najveće poboljšanje je dobiveno u slučaju kada je signal govora za 6dB
+tiši od smetnje, gdje je postignuto poboljšanje od 39.1%.
 Ovaj rezultat nam govori kakav utjecaj bi dodavanje ovakvog pročišćavanje
-govora trebalo imati na performanse sustava za automatsko prepoznavanje govora
-bez prilagođavanja njegovog modela.
+govora moglo imati na performanse sustava za automatsko prepoznavanje govora
+specijaliziranog za čisti govor bez ikakvih promjena.
 
 Za slučaj kada je prilagođavanje modela moguće, imamo druge rezultate.
 U usporedbi sa prepoznavačem koji je već uvježban na govoru sa smetnjom,
-prosječno poboljšanje korištenjem pročišćavanja govora i prilagodbom modela
-je apsolutnih 14.3% bolje, a u najgorim uvjetima prepoznavanja čak 24% bolje.
+prosječno poboljšanje korištenjem izdvajanjem govora i prilagodbom modela
+je 14.3%, a u najgorim uvjetima prepoznavanja čak 24%.
 
-Rezultati su 1 do 1.5% lošiji od onih koji su dani u literaturi [wen_chime13],
-vjerojatno zato jer je vjerojatno bilo potrebno nekoliko puta trenirati mrežu kako bi se
+Ovi rezultati su impresivni jer bi ovaj sustav svrstali u najboljih pet sustava na CHiME2
+natjecanju sa malim vokabularom [chime_overview][chime_website],
+a sustav je značajno jednostavniji.
+
+Rezultati su 1 do 1.5% lošiji od onih koji su dani za isti pristup u literaturi [wen_chime13],
+vjerojatno zato jer je bilo potrebno nekoliko puta trenirati mrežu kako bi se
 dobro inicijalizirala i konvergirala bliže globalnom minimumu.
 Pristup većim računalnim resursima omogućio bi više eksperimentiranja u istom
-vremenu i sasvim sigurno i jednake, a možda i bolje, rezultate.
+vremenu i sasvim sigurno i bolje rezultate.
 	
-Na slici [usporedba.png] dana je ilustracija izlaza iz mreže i pročišćavanja
-značajki za jedan slučaj signala govora 6dB tišeg od smetnje.
+Na slici [usporedba.png] dana je ilustracija izlaza iz mreže i izdvajanja
+značajki govora. Uzet je primjer signala govora za 6dB tišeg od smetnje.
 Dane su ilustracije kako jeka i dodavanje buke izobličavaju obični, spektralni
-i MFCC prikaz signala. Također je vidljivo kako mreža uspijeva proizvesti
+i MFCC prikaz govora. Također je vidljivo kako mreža uspijeva proizvesti
 nešto što je slično MFCC značajkama govora sa jekom, iako je prikaz dosta
 glađi od originala. To po mišljenju autora može značiti ili da model dobro
 generalizira ili da bi složeniji model mogao dati još bolje performanse.
@@ -654,61 +659,69 @@ Ideja koja stoji iza ovog diplomskog rada bila je istražiti postoji li metoda
 koja bi omogućila da se iskoristi govor iz brojnih radio i televizijskih 
 emisija na hrvatskom jeziku za razvoj prepoznavanja govora na našem jeziku.
 
-U emitiranim emisijama često govor prati muzika, a povremeno slabiji šumovi
-(ako je govor snimljen van studija) i govor više osoba koje govore istovremeno.
-No, zato je snimljeni govor uglavnom jako dobre kvalitete, glasniji je od
-svih pozadinskih smetnji i utjecaj jeke je puno manji jer je mikrofon u 
-pravilu blizu govornika. Pročišćavanje takvog govora trebalo bi biti lakši
-problem od pročišćavanja govora u CHiME skupu podataka, gdje je jeka prisutna
-u svim snimkama i odnos snage govora i smetnje mnogo nepovoljniji.
+U emitiranim emisijama govor često prati muzika, ponekad i slabiji šumovi
+(ako je govor snimljen van studija) ili govor više osoba koje govore istovremeno.
+No, zato je snimljeni govor uglavnom jako dobre kvalitete i glasniji je od
+svih pozadinskih smetnji. Utjecaj jeke je također malen jer je mikrofon u 
+pravilu blizu govornika. Izdvajanje takvog govora trebalo bi biti lakši
+problem od izdvajanja govora u CHiME2 skupu podataka, gdje je jeka prisutna
+u svim snimkama i odnos snage govora i smetnje je mnogo nepovoljniji.
 
-Sa druge strane, u literaturi se iznosi činjenica da dobar rezultat u pročišćavanju
-i prepoznavanju govora sa malim rječnikom ne mora nužno biti prenosiv na prepoznavanje
+S druge strane, u literaturi se iznosi činjenica da dobar rezultat u izdvajanju
+i prepoznavanju govora s malim rječnikom ne mora nužno biti prenosiv na prepoznavanje
 govora sa srednjim i velikim rječnicima.
-CHiME natjecanje u svojoj drugoj verziji uključuje i prepoznavanje govora
-sa srednjim riječnikom (Wall Street Journal korpus čitanog govora sa rječnikom od 5000 riječi)[chime_data],
-no ti podaci nisu javno dostupni [chime_website2].
+CHiME2 natjecanje  uključuje i prepoznavanje govora
+sa srednjim riječnikom. Čisti govor je uzet iz Wall Street Journal korpusa čitanog govora sa rječnikom od 5000 riječi [chime_data].
+Nažalost ti podaci nisu mogli biti korišteni jer nisu javno dostupni [chime_website2].
+Ipak, rezultati iz literature [wen_chime13] pokazuju da se metodom korištenom u ovom radu
+može dobiti slično poboljšanje i na skupu podataka sa srednjim rječnikom.
 
-Svakako je zanimljiva i mogućnost pročišćavanja i prepoznavanja govora u stvarnom vremenu,
-i stoga je izmjeren RT faktor. Zanimljivo je da iako primjena grafičkih procesora
+Svakako je zanimljiva mogućnost izdvajanja i prepoznavanja govora u stvarnom vremenu,
+i stoga je izmjeren RT faktor za izvršavanje mreže pomoću CURRENNT-a.
+Zanimljivo je da iako primjena grafičkih procesora
 ubrzava treniranje mreže za 2.6 puta (Tablica [tab 3]), to ne bi bio slučaj kod primjene mreže uživo.
-U scenariju kada se mreža primjenjuje samo na jednom ulaznom podatku usporenje je 3 puta (Tablica [tab 4]),
-vjerojatno zbog puno veće latencije prebacivanja podataka iz glavne memorije u memoriju grafičke kartice.
+U scenariju kada se mreža primjenjuje serijski na jednom po jednom ulaznom nizu usporenje je 3 puta (Tablica [tab 4])
+u usporedbi s izvršavanjem tog algoritma na običnom procesoru.
+Razlog tome je vjerojatno puno veće latencija uslijed prebacivanja
+podataka iz glavne memorije u memoriju grafičke kartice.
 
-Zanimljiv je i podatak da OpenSMILE podržava obradu zvučnog signala uživo pomoću
-rekurzivnih mreža, no trenutno ne podržava dvosmjerne rekurzivne mreže.
-Vjerojatno se korištenjem LSTM-RNN može dobiti nešto lošije, ali još uvijek
-dobre performanse.
+Zanimljiv je i podatak da openSMILE podržava obradu zvučnog signala uživo pomoću
+rekurzivnih neuronskih mreža, no trenutno ne podržava dvosmjerne rekurzivne mreže.
+Korištenjem LSTM-RNN u takvom scenariju vjerojatno bi se mogli dobiti nešto lošiji, ali još uvijek
+dobri rezultati.
 
-Za istražiti još uvijek preostaje i utjecaj korištenja drugih značajki
-na ulazu neuronske mreže. Pokazano je da primjena jednostavnijih značajki
-koje imitiraju svojstva ljudske pužnice (engl. log-filterbank) 
-daje još bolje rezultate jer omogućava mreži da nauči bolju parametrizaciju signala [wen_chime14].
+Još uvijek preostaje za istražiti utjecaj korištenja drugih značajki
+parametriziranje ulaznog govora. Pokazano je da primjena jednostavnijih značajki
+koje imitiraju svojstva ljudske pužnice (engl. log-filterbank features) 
+daje još bolje rezultate jer omogućava mreži da sama nauči najbolju parametrizaciju signala [wen_chime14].
 
 Još jedan relativno novi doprinos polju dubokog učenja je algoritam za 
 vremensku klasifikaciju pomoću neuronskih mreža ili CTC algoritam
 [graves14] [graves_blstm], koji omogućava treniranje neuronskih mreža koje obavljaju cijeli proces
-od pročišćavanja govora do njegove transkripcije. To bi rješilo i problem koji je bio prisutan u ovom 
-radu, da funkcija greške koja se koristi za treniranje mreže ne odgovara točno željenim performansama.
+od pročišćavanja govora do njegove transkripcije. To bi rješilo problem koji je bio prisutan u ovom 
+radu, tj. činjenicu da funkcija greške koja se koristi za treniranje mreže ne odgovara onome što se
+zapravo želi optimizirati, a to je točnost prepoznavanja govora.
 
 Glavna i vjerojatno neizbježna boljka svih spomenutih pristupa temeljenih 
 na dubokom učenju je što zahtijevaju velike računalne resurse.
 Velike svjetske kompanije koje imaju pristup upravo spomenutim velikim
-računalnim resursima postižu zavidne rezultate [ang_deep_speech].
-Složenost i računalna moć ljudskog slušnog sustava koji je svojevrsni ideal kojemu se teži,
-svakako opravdava korištenje barem dijela tih resursa, no postavlja se
-pitanje kako umješnim korištenjem umjerene količine računalne moći
-postići slične rezultate i ostvariti upotrebljivo prepoznavanje govora
-na hrvatskom jeziku.
+računalnim resursima postižu zavidne rezultate, između ostalog i na računalnom prepoznavanju govora [ang_deep_speech].
+Složenost i računalna moć ljudskog slušnog sustava, koji je svojevrsni ideal kojemu teži
+računalno prepoznavanje govora,
+svakako opravdava korištenje barem dijela tih resursa.
+No isto tako je moguće da se mudrim korištenjem dostupne računalne moći
+može postići slične rezultate, no mišljenje autora je da će za to vjerojatno
+biti potrebno razviti algoritme za brže treniranje dubokih neuronskih mreža. 
+
 
 # Zaključak - max 350 riječi
 
-U ovom radu dan je uvod u i definicija problema računalnog izdvajanja govora.
-Dana je usporedba osjetljivosti ljudskog i računalnog prepoznavanja govora
-na točnost prepoznavanja kao motivacija za računalno izdvajanje govora.
+U ovom radu dan je uvod u problem računalnog izdvajanja govora.
+Velika razlika u osjetljivosti ljudskog i računalnog prepoznavanja govora
+na smetnje dana je kao motivacija za računalno izdvajanje govora.
 Nakon kratkog pregleda povijesnih pristupa izdvajanju govora, među
 najuspješnijim novijim pristupima odabran je pristup korištenjem dubokih neuronskih
-mreža. BLSTM-RNN tip neuronske mreže je pokazana kao trenutno najbolji izbor za
+mreža. BLSTM-RNN tip neuronske mreže je pokazan kao trenutno najbolji izbor za
 arhitekturu mreže u ovoj primjeni.
 Od pet javno dostupnih paketa za rad sa rekurzivnim mrežama odabran je CURRENNT,
 koji podržava odabrani tip mreže i ubrzavanje treniranja korištenjem grafičkih procesora.
@@ -719,38 +732,35 @@ i alati drugog CHiME natjecanja (engl. CHiME 2nd challenge).
 Mreža je istrenirana i izmjerena je uspješnost prepoznavanja.
 Najvažniji rezultat je koliko poboljšanje se dobiva u prepoznavanju govora 
 sa smetnjama korištenjem sustava koji je specijaliziran za prepoznavanje čistog govora.
-U tom scenariju je dobiveno apsolutno poboljšanje točnosti prepoznavanja od 26% za sve
-odnose govora i smetnje i čak 39.1% za nepovoljniji odnos( 6dB u korist smetnje).
+U tom scenariju je dobiveno apsolutno poboljšanje točnosti prepoznavanja od 25% za sve
+odnose govora i smetnje i čak 39.1% za najnepovoljniji odnos (6dB u korist smetnje).
+Time je demonstrirana učinkovitost izdvajanja govora korištenjem dubokih neuronskih mreža.
 
 Dana je analiza koliki je značaj tog rezultata za povećanje otpornosti na smetnje
-kod sustava za prepoznavanja govora sa velikim rječnikom
-i koje su mogući pravci daljnjeg istraživanja.
-
-Demonstrirana je učinkovitost dubokih neuronskih mreža u izdvajanju govornih signala iz zvučnih zapisa.
-Isto tako je pokazano da je za stvaranje praktičnog sustava za izdvajanje govora iz snimki snimljenih u
-realnim uvjetima potrebno još ulagati.
+kod sustava za prepoznavanja govora sa velikim i srednjim rječnikom
+i koji su mogući pravci daljnjeg istraživanja.
 
 # Sažetak - max. 100 riječi
 
 U ovom radu dan je pregled trenutnog stanja područja izdvajanja govora
-i pregled najuspješnijih strategija s posebnim naglaskom na dubokim neuronskim mrežama.
+i pregled najuspješnijih strategija. Poseban naglaskom na dubokim neuronskim mrežama.
 Odabrana je BLSTM-RNN arhitektura i CURRENNT kao programski paket za rad
 s tom mrežom. Uspješnost izdvajanja govora je ispitana na skupu podataka prvog zadatka
-drugog CHiME natjecanja (engl. CHiME 2nd challenge) i postignuto je apsolutno poboljšanje
-od 25% u točnosti prepoznavanja govora sa smetnjama koristeći sustav za prepoznavanje
-čistog govora.
+drugog CHiME natjecanja (engl. CHiME 2nd challenge Task 1) i postignuto je apsolutno poboljšanje
+točnosti od 25% za prepoznavanja govora sa smetnjama koristeći sustav za prepoznavanje
+čistog govora s malim opsegom rječnika.
 
 ključne riječi: izdvajanje govora, duboke neuronske mreže, RNN, BLSTM, CUDA, CHiME, CURRENNT
 
 # Summary - max. 100 riječi
 
 A overview of recent developments in the speech extraction field is given,
-including the survey of most succesfull strategies with a special emphassis
+including the survey of most succesfull strategies. A special emphassis is put on approaches based
 on deep neural networks. The BLSTM-RNN architecture is chosen along with the
 CURRENNT software package for working with the network.
-Successfullness of speech extraction is evaluated on Task 1 of the CHiME 2nd challenge, 
+Success of speech extraction is evaluated on Task 1 of the CHiME 2nd challenge, 
 and an absolute improvement in word accuracy of 25% is achieved on a noisy speech
-recognition task using an ASR system specialised for clean speech.
+recognition task using an small-dictionary ASR system specialised for clean speech.
 
 keywords: speech extraction, deep neural networks, RNN, BLSTM, CUDA, CHiME, CURRENNT
 
