@@ -696,7 +696,18 @@ arhitekturu mreže u ovoj primjeni.
 Od pet javno dostupnih paketa za rad sa rekurzivnim mrežama odabran je CURRENNT,
 koji podržava odabrani tip mreže i ubrzavanje treniranja korištenjem grafičkih procesora.
 
-Za ispitivanje uspješnosti 
+Za ispitivanje uspješnosti izdvajanja govora odabrani su javno dostupni podaci
+i alati drugog CHiME natjecanja (eng. CHiME 2nd challenge Task 1).
+
+Mreža je istrenirana i izmjerena je uspješnost prepoznavanja.
+Najvažniji rezultat je koliko poboljšanje se dobiva u prepoznavanju govora 
+sa smetnjama korištenjem sustava koji je specijaliziran za prepoznavanje čistog govora.
+U tom scenariju je dobiveno apsolutno poboljšanje točnosti prepoznavanja od 26% za sve
+odnose govora i smetnje i čak 39.1% za nepovoljniji odnos(6dB u korist smetnje).
+
+Dana je analiza koliki je značaj tog rezultata za povećanje otpornosti na smetnje
+kod sustava za prepoznavanja govora sa velikim rječnikom
+i koje su mogući pravci daljnjeg istraživanja.
 
 Demonstrirana je učinkovitost dubokih neuronskih mreža u izdvajanju govornih signala iz zvučnih zapisa.
 Isto tako je pokazano da je za stvaranje praktičnog sustava za izdvajanje govora iz snimki snimljenih u
