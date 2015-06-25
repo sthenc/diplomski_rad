@@ -443,9 +443,9 @@ paketa CURRENNT, jedinog koji podržava treniranje BLSTM mreža pomoću grafičk
 procesora i time omogućuje ubrzavanje treniranja i do 20 puta u nekim scenarijima [wen_currennt_cite].
 
 Kako bi se ostvarilo ubrzanje u treniranju CURRENNT obavlja treniranje na više 
-ulaznih sekvenci paralelno i tako izračunava gradijent greške na cijelom tom
-skupu ulaznih podataka. Zatim se nakon svake te mini-serije osvježavaju težine,
-dakle riječ je o hibridnom online-batch treniranju.
+ulaznih sekvenci paralelno i tako izračunava gradijent greške na cijelom
+podskupu ulaznih podataka. Zatim se nakon svake mini-serije osvježavaju težine,
+dakle riječ je o stohastičkom hibridnom online-batch treniranju.
 Kod dubokih neuronskih mreža ključna je dobra početna inicjalizacija, pa 
 CURRENNT podržava podešavanje parametara distribucija za slučajnu inicijalizaciju. [wen_currennt_README]
 
@@ -528,14 +528,24 @@ Korišten je operativni sustav Lubuntu Linux 14.04, na kojem su lako dostupni i 
 svi potrebni paketi za pripremanje izvršnih verzija CURRENNT (verzija 0.2-rc1) i OpenSMILE (verzija 2.1) paketa
 iz izvornog koda.
 
-[parametri treniranja]
-
 Jedna epoha na ovom računalu i u tom programskom okruženju trajala je oko 4850 sekundi,
 tj. oko 1 sat i 20 minuta. Za treniranje finalne mreže trebalo je 211 epoha, tj. oko 12 dana.
 No ukupno vrijeme treniranja, s neuspješnim pokušajima je bilo oko 24 dana.
 Zbog dugog vremena treniranja mreže i kratkog trajanja semestra nije bilo dovoljno vremena
 da se eksperimentira s arhitekturom mreže i parametrima treniranja, već su uzete
 već provjerene vrijednosti iz literature [wen_chime13].
+
+Arhitektura mreže je već opisana u poglavlju [Arhitektura sustava],
+stopa učenja učenja iznosi [ni = 10e-5], a moment [m = 0.9].
+Težinama i ulazima se dodaju slučajne vrijednosti iz distribucije sa
+srednjom vrijednosti [mi=0] i standardnom devijacijom [sigma=0.1].
+Veličina mini-serije (eng. mini-batch) koja se paralelno obrađuje je
+100 ulaznih nizova.
+Treniranje se zaustavlja kada nakon 30 epoha više ne dođe do smanjenja greške
+na skupu za validaciju.
+CURRENNT je također bio konfiguriran da sprema težine mreže nakon svake epohe,
+što omogućava i naknadno proučavanje svojstava mreže.
+
 Obično se kod korištenja stohastičke inicijalizacije mreža nekoliko puta 
 trenira ispočetka, pa se odabire mreža koja postigne najmanju grešku na validacijskom
 skupu podataka, no ni to nije napravljeno zbog vremenskih ograničenja.
