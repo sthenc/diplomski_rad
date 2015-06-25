@@ -527,11 +527,17 @@ No ukupno vrijeme treniranja, s neuspješnim pokušajima je bilo oko 24 dana.
 Zbog dugog vremena treniranja mreže i kratkog trajanja semestra nije bilo dovoljno vremena
 da se eksperimentira s arhitekturom mreže i parametrima treniranja, već su uzete
 već provjerene vrijednosti iz literature [wen_chime13].
+Obično se kod korištenja stohastičke inicijalizacije mreža nekoliko puta 
+trenira ispočetka, pa se odabire mreža koja postigne najmanju grešku na validacijskom
+skupu podataka, no ni to nije napravljeno zbog vremenskih ograničenja.
 
-Na slici [training.png] prikazana je krivulja učenja. 
+Na slici [training.png] prikazana je krivulja učenja.
+Greška treniranja i validacije je kvadratna sredina greške između izlaznog
+vektora značajki i očekivanog vektora značajki. 
+Formula za kvadratnu sredinu greške je:
 
+[RMSE]
 
-	- najbolje bi bilo pokrenuti nekoliko puta ispočetka zato jer se koristi random inicijalizacija
 
 
 
