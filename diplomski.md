@@ -716,19 +716,26 @@ realnim uvjetima potrebno još ulagati.
 # Sažetak - max. 100 riječi
 
 U ovom radu dan je pregled trenutnog stanja područja izdvajanja govora
-i pregled najuspješnijih strategija s posebnim naglaskom na neuronske mreže.
+i pregled najuspješnijih strategija s posebnim naglaskom na dubokim neuronskim mrežama.
 Odabrana je BLSTM-RNN arhitektura i CURRENNT kao programski paket za rad
 s tom mrežom. Uspješnost izdvajanja govora je ispitana na skupu podataka prvog zadatka
 drugog CHiME natjecanja (eng. CHiME 2nd challenge Task 1) i postignuto je apsolutno poboljšanje
 od 25% u točnosti prepoznavanja govora sa smetnjama koristeći sustav za prepoznavanje
 čistog govora.
 
-ključne riječi:
+ključne riječi: izdvajanje govora, duboke neuronske mreže, RNN, BLSTM, CUDA
 
 # Summary - max. 100 riječi
 
+A overview of recent developments in the speech extraction field is given,
+including the survey of most succesfull strategies with a special emphassis
+on deep neural networks. The BLSTM-RNN architecture is chosen along with the
+CURRENNT software package for working with the network.
+Successfullness of speech extraction is evaluated on Task 1 of the CHiME 2nd challenge, 
+and an absolute improvement in word accuracy of 25% is achieved on a noisy speech
+recognition task using an ASR system specialised for clean speech.
 
-keywords: 
+keywords: speech extraction, deep neural networks, RNN, BLSTM, CUDA
 
 # Literatura
 
