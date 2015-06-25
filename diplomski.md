@@ -659,18 +659,24 @@ jednom ulaznom nizu značajki usporenje je 3x, vjerojatno zbog puno veće latenc
 prebacivanja podataka iz glavne memorije u memoriju grafičke kartice.
 
 Zanimljiv je i podatak da OpenSMILE podržava obradu zvučnog signala uživo pomoću
-rekurzivnih mreža, no trenutno ne podržava dvosmjerne rekurzivne mreže, vjerojatno
-jer su složenije za primjenu u tom slučaju.
+rekurzivnih mreža, no trenutno ne podržava dvosmjerne rekurzivne mreže.
+Vjerojatno se korištenjem LSTM-RNN može dobiti nešto lošije, ali još uvijek
+dobre performanse.
 
+Za istražiti još uvijek preostaje i utjecaj korištenja drugih značajki
+na ulazu neuronske mreže. Pokazano je da primjena jednostavnijih značajki
+koje imitiraju svojstva ljudske pužnice (eng. log-filterbank) 
+daje još bolje rezultate jer omogućava mreži da nauči bolju parametrizaciju signala [wen_chime14].
 
+Još jedan relativno novi doprinos polju dubokog učenja je algoritam za 
+vremensku klasifikaciju pomoću neuronskih mreža (eng. Connectionist Temporal Classification - CTC)
+[graves14] [graves_blstm], koji omogućava treniranje neuronskih mreža koje obavljaju cijeli proces
+od pročišćavanja govora do njegove transkripcije.
+Budući da smo pokazali da u ovom slučaju točnost djelomično 
 
-- drugi pristupi	
-Vjerojatno bi se mogli postići bolji rezultati kada bi se greška
-prepoznavanja mogla koristiti direktno u backpropagation algoritmu. To nije moguće
-jer je potrebna greška za svaku značajku u svakom koraku , CTC moguće rješenje
-CTC možda bi dao bolje rezultate [graves14]
 
 [ang_deep_speech]
+
 
 # Zaključak - max 350 riječi
 
