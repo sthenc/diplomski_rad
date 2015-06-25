@@ -1,15 +1,11 @@
 title: Neuralne mreže u izdvajanju govornog signala iz zvučnog zapisa
 author: Stjepan Henc
 
-
-
 ##Neuralne mreže u izdvajanju govornog signala iz zvučnog zapisa
-
-
 
 # Kratice
 
-engl.
+engl. - engleski
 GPU - grafički procesor opće namjene (engl. Graphic Processor Unit)
 SNR - omjer korisnog signala i signala smetnje (engl. Signal to Noise Ratio)
 CHiME - natjecanje u računalnom prepoznavanju govora u okruženjima gdje je prisutno više
@@ -17,12 +13,12 @@ izvora signala(engl. Computational Hearing in Multisource Environments)
 CHiME2 - druga iteracija CHiME natjecanja (engl. CHiME 2nd challenge)
 PCA - analiza principalnih komponenata (engl. PCA - Principal Component Analysis)
 ICA - analiza neovisnih komponenata (engl. PCA - Principal Component Analysis)
-NMF - nenegativna faktorizacija matrica (engl. Non-negative Matrix Factorisation)
+NMF - nenegativna faktorizacija matrica (engl. Non-negative Matrix Factorization)
 DNN - duboka neuronska mreža (engl. Deep Neural Network)
 RNN - rekurzivna neuronska mreža (engl. Recursive Neural Network)
 BRNN - dvosmjerna rekurzivna neuronska mreža (engl. Bidirectional Recursive Neural Network)
-LSTM - dugotrajno-kratkotrajna memorija (engl. Long-Short Term Memmory)
-BLSTM - dvosmjerna dugotrajno-kratkotrajna memorija (engl. Bidirectional Long-Short Term Memmory)
+LSTM - dugotrajno-kratkotrajna memorija (engl. Long-Short Term Memory)
+BLSTM - dvosmjerna dugotrajno-kratkotrajna memorija (engl. Bidirectional Long-Short Term Memory)
 BPTT - nadogradnja backpropagation algoritma za treniranje RNN (engl. Backpropagation Through Time)
 CTC - klasifikacija vremenskih nizova pomoću neuronskih mreža (engl. Connectionist Temporal Classification)
 
@@ -104,7 +100,6 @@ no njegovu opravdanost potvrđuju mnoga otrkića na području psihologije
 [book_nn_sp: 184].
 
 CHiME
-
 
 ### Motivacija
 U zadnjih nekoliko godina veoma je značajno CHiME natjecanje u razdvajanju
@@ -716,7 +711,7 @@ drugog CHiME natjecanja (engl. CHiME 2nd challenge) i postignuto je apsolutno po
 od 25% u točnosti prepoznavanja govora sa smetnjama koristeći sustav za prepoznavanje
 čistog govora.
 
-ključne riječi: izdvajanje govora, duboke neuronske mreže, RNN, BLSTM, CUDA
+ključne riječi: izdvajanje govora, duboke neuronske mreže, RNN, BLSTM, CUDA, CHiME, CURRENNT
 
 # Summary - max. 100 riječi
 
@@ -728,7 +723,7 @@ Successfullness of speech extraction is evaluated on Task 1 of the CHiME 2nd cha
 and an absolute improvement in word accuracy of 25% is achieved on a noisy speech
 recognition task using an ASR system specialised for clean speech.
 
-keywords: speech extraction, deep neural networks, RNN, BLSTM, CUDA
+keywords: speech extraction, deep neural networks, RNN, BLSTM, CUDA, CHiME, CURRENNT
 
 # Literatura
 
