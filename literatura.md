@@ -77,46 +77,39 @@ speech recognition", The Journal of the Acoustical Society of America, Acoustica
 
 [wen_chime13] Weninger, Felix; Geiger, Jurgen; Wollmer, Martin; Schuller, Bjorn; Rigoll, Gerhard: "The Munich feature enhancement approach to the 2nd CHiME challenge using BLSTM recurrent neural networks", Proceedings of the 2nd CHiME workshop on machine listening in multisource environments, Citeseer, 2013.
 
+[wen_chime14] Weninger, Felix; Geiger, Jurgen; Wollmer, Martin; Schuller, Bjorn; Rigoll, Gerhard: "Feature enhancement by deep LSTM networks for ASR in reverberant multisource environments", Computer Speech & Language, Elsevier, 2014
 
-[wen_chime14]
+[wen_sdr_lstm] Weninger, Felix; Hershey, John R.; Le Roux, Jonathan; Schuller, Bjorn: "Discriminatively trained recurrent neural networks for single-channel speech separation", Signal and Information Processing (GlobalSIP), 2014 IEEE Global Conference on, IEEE, 2014.
 
-[wen_sdr_lstm]
-
-[wen_chime1]
+[wen_chime1] Weninger, Felix; Geiger, Jurgen; Wollmer, Martin; Schuller, Bjorn; Rigoll, Gerhard: "The Munich 2011 CHiME Challenge Contribution: BLSTM-NMF Speech Enhancement and Recognition for Reverberated Multisource Environments", CHiME 2011 Workshop on Machine Listening in Multisource Environments, Citeseer, 2011.
 
 [pybrain_cite] Schaul, Tom; Bayer, Justin; Wierstra, Daan; Sun, Yi; Felder, Martin; Sehnke, Frank; Rückstieß, Thomas; Schmidhuber, Jürgen: "PyBrain", Journal of Machine Learning Research, JMLR. org, 2010. 
 
-[theano_cite1]
+[theano_cite1] Bastien, Frederic; Lamblin, Pascal; Pascanu, Razvan; Bergstra, James; Goodfellow, Ian; Bergeron, Arnaud; Bouchard, Nicolas; Warde-Farley, David; Bengio, Yoshua : "Theano: new features and speed improvements", arXiv preprint arXiv:1211.5590, 2012.
 
-[theano_cite2]
+[theano_cite2] Bergstra, James; Breuleux, Olivier; Bastien, Frederic; Lamblin, Pascal; Pascanu, Razvan; Desjardins, Guillaume; Turian, Joseph; Warde-Farley, David; Bengio, Yoshua : "Theano: a CPU and GPU math expression compiler", Proceedings of the Python for scientific computing conference, SciPy, 2010.
 
-[torch7_cite]
+[torch7_cite] Collobert, Ronan; Kavukcuoglu, Koray; Farabet, Clement: "Torch7: A matlab-like environment for machine learning", BigLearn, NIPS Workshop, 2011.
 
-[wen_currennt_cite]
+[wen_currennt_cite] Weninger, Felix; Bergmann, Johannes; Schuller, Bjorn: "Introducing CURRENNT: The Munich Open-Source CUDA RecurREnt Neural Network Toolkit", Journal of Machine Learning Research, 2015.
 
 [rnnlib] Alex Graves, RNNLIB: A recurrent neural network library for sequence learning problems, http://sourceforge.net/projects/rnnl/, 25.6.2015
 
-[cuda-cite]
+[cuda-cite] "Parallel Programming and Computing Platform - CUDA - NVIDIA", http://www.nvidia.com/object/cuda_home_new.html, 25.6.2015
 
-[graves_blstm] str. 20, 21, 26
+[graves_blstm] Graves, Alex: "Supervised Sequence Labelling with Recurrent Neural Networks", Springer, http://www.cs.toronto.edu/~graves/preprint.pdf, 2012., str. 20, 21, 26
 
-[wen_currennt_README]
+[wen_currennt_README] "CURRENNT README", sourceforge.net/projects/currennt/, 25.6.2015
 
-[test_val]
+[test_val] Elkan, Charles: "Evaluating Classifiers", 20.1.2012, http://cseweb.ucsd.edu/~elkan/250Bwinter2012/classifiereval.pdf, 25.6.2015
 
-[wen_opensmile_cite]
+[wen_opensmile_cite] Eyben, Florian; Weninger, Felix; Gross, Florian; Schuller, Bjoern: "Recent developments in opensmile, the munich open-source multimedia feature extractor", Proceedings of the 21st ACM international conference on Multimedia, ACM, 2013.
 
-[wen_currennt_tools_README]
+[wen_currennt_tools_README] "CURRENNT tools README", sourceforge.net/projects/currennt/, 25.6.2015
 
-[github_nc_packer] https://github.com/sthenc/nc_packer
+[github_nc_packer] Henc, Stjepan: "Scripts for creating netCDF databases for CURRENNT", https://github.com/sthenc/nc_packer, 25.6.2015
 
+[chime_website] "The 2nd 'CHiME' Speech Separation and Recognition Challenge: Medium vocabulary track", http://spandh.dcs.shef.ac.uk/chime_challenge/chime2013/chime2_task2.html, 25.6.2015
 
-
-[chime_website2] http://spandh.dcs.shef.ac.uk/chime_challenge/chime2013/chime2_task2.html 25.6.2015
-
-
-
-[NetCDF] http://www.unidata.ucar.edu/software/netcdf/
-
-
+[NetCDF] "Network Common Data Form (NetCDF)", http://www.unidata.ucar.edu/software/netcdf/, 25.6.2015
 
