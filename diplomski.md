@@ -510,22 +510,31 @@ Sve Python skripte koje su razvijene za pripremanje podataka su javno dostupne [
 
 ###Treniranje mreže
 
-Za treniranje na grafičkim procesorima koristi se biblioteka CUDA verzije 5 ili više,
-što znači da je potreban pristup računalu sa NVIDIA grafičkom karticom. [wen_currennt_README]
+Korišteno je računalo sa procesorom AMD Athlon II X3 450, sa 3 jezgre i radnim taktom od 3.2GHz, te 8 GB radne memorije.
+Kao grafička kartica korištena je kineska kopija "Nvidia GeForce GT 630" ili sličnog modela kartice
+sa 1 GB grafičke radne memorije i 96 procesnih jedinica.
+Iako je kartica nelegitimnog porijekla, podržava naredbe CUDA 2.1 arhitekture, što
+znači da bez problema može izvršavati sve algoritme za treniranje mreže.
+Za treniranje na grafičkim procesorima CURRENNT treba biblioteku CUDA verzije 5 ili više,
+a korištena je verzija 6.5 [wen_currennt_README].
+Korišten je operativni sustav Lubuntu Linux 14.04, na kojem su lako dostupni i besplatni
+svi potrebni paketi za pripremanje izvršnih verzija CURRENNT (verzija 0.2-rc1) i OpenSMILE (verzija 2.1) paketa
+iz izvornog koda.
 
-Računalo koje je korišteno
+Jedna epoha na ovom računalu i u tom programskom okruženju trajala je oko 4850 sekundi,
+tj. oko 1 sat i 20 minuta. Za treniranje finalne mreže trebalo je 211 epoha, tj. oko 12 dana.
+No ukupno vrijeme treniranja, s neuspješnim pokušajima je bilo oko 24 dana.
+Zbog dugog vremena treniranja mreže i kratkog trajanja semestra nije bilo dovoljno vremena
+da se eksperimentira s arhitekturom mreže i parametrima treniranja, već su uzete
+već provjerene vrijednosti iz literature [wen_chime13].
 
-Uvježbavanje algoritma, opis radne okoline i stroja, komentar na trajanje
-
-specifikacije...
+Na slici [training.png] prikazana je krivulja učenja. 
 
 
-	-12 dana, 211 epoha po 4850 sekundi (oko 1h 21 min)
-	-- ukupno oko 17 dana
 	- najbolje bi bilo pokrenuti nekoliko puta ispočetka zato jer se koristi random inicijalizacija
 
 
-[training.png]
+
 
 kako se računa greška u usporedbi s onim što se stvarno optimizira - euklidska udaljenost 
 
@@ -541,7 +550,9 @@ CURRENNT - mjerenje brzine izvršavanja mreže - bez parallel sequences ali sa i
 + složenost
 
 - 18 minuta podataka 
-
+1 po 1
+cpu - 10 min
+gup - 31 min
 ---------- Primjena -----------
 
 # Diskusija

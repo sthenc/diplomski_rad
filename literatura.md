@@ -24,6 +24,8 @@ Frank Sehnke, Thomas Rückstieß, Jürgen Schmidhuber. PyBrain. To appear in: Jo
 
 [cuda-cite]
 
-[audeering] ?
+[audeering] http://www.audeering.com/
+
+[NetCDF] http://www.unidata.ucar.edu/software/netcdf/
 
 [github_nc_packer] https://github.com/sthenc/nc_packer
