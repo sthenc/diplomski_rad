@@ -671,12 +671,22 @@ daje još bolje rezultate jer omogućava mreži da nauči bolju parametrizaciju 
 Još jedan relativno novi doprinos polju dubokog učenja je algoritam za 
 vremensku klasifikaciju pomoću neuronskih mreža (eng. Connectionist Temporal Classification - CTC)
 [graves14] [graves_blstm], koji omogućava treniranje neuronskih mreža koje obavljaju cijeli proces
-od pročišćavanja govora do njegove transkripcije.
-Budući da smo pokazali da u ovom slučaju točnost djelomično 
+od pročišćavanja govora do njegove transkripcije. To bi rješilo i problem koji je bio prisutan u ovom 
+radu, da funkcija greške koja se koristi za treniranje mreže ne odgovara točno željenim performansama.
 
+Glavna i vjerojatno neizbježna boljka svih spomenutih pristupa temeljenih 
+na dubokom učenju je što zahtijevaju velike računalne resurse.
+Velike svjetske kompanije koje imaju pristup upravo spomenutim velikim
+računalnim resursima postižu zavidne rezultate [ang_deep_speech].
+Složenost i računalna moć ljudskog slušnog sustava koji je svojevrsni ideal kojemu se teži,
+svakako opravdava korištenje barem dijela tih resursa, no postavlja se
+pitanje kako umješnim korištenjem umjerene količine računalne moći
+postići slične rezultate i ostvariti upotrebljivo prepoznavanje govora
+na hrvatskom jeziku.
 
-[ang_deep_speech]
-
+U svakom slučaju, autor ovog rada se nada da je uspješno demonstrirao 
+učinkovitost metoda dubokog učenja u izdvajanju govornih signala iz zvučnih zapisa,
+i da je problem uz odgovarajuća znanja i resurse danas itekako rješiv.
 
 # Zaključak - max 350 riječi
 
