@@ -686,12 +686,21 @@ na hrvatskom jeziku.
 
 # Zaključak - max 350 riječi
 
-U ovom radu definirali smo problem
+U ovom radu dan je uvod u i definicija problema računalnog izdvajanja govora.
+Dana je usporedba osjetljivosti ljudskog i računalnog prepoznavanja govora
+na točnost prepoznavanja kao motivacija za računalno izdvajanje govora.
+Nakon kratkog pregleda povijesnih pristupa izdvajanju govora, među
+najuspješnijim novijim pristupima odabran je pristup korištenjem dubokih neuronskih
+mreža. BLSTM-RNN tip neuronske mreže je pokazana kao trenutno najbolji izbor za
+arhitekturu mreže u ovoj primjeni.
+Od pet javno dostupnih paketa za rad sa rekurzivnim mrežama odabran je CURRENNT,
+koji podržava odabrani tip mreže i ubrzavanje treniranja korištenjem grafičkih procesora.
 
-Autor ovog rada se nada da je uspješno demonstrirao 
-učinkovitost metoda dubokog učenja u izdvajanju govornih signala iz zvučnih zapisa,
-i da je problem uz odgovarajuća znanja i resurse danas itekako rješiv.
+Za ispitivanje uspješnosti 
 
+Demonstrirana je učinkovitost dubokih neuronskih mreža u izdvajanju govornih signala iz zvučnih zapisa.
+Isto tako je pokazano da je za stvaranje praktičnog sustava za izdvajanje govora iz snimki snimljenih u
+realnim uvjetima potrebno još ulagati.
 
 # Sažetak - max. 100 riječi
 
@@ -700,8 +709,8 @@ i pregled najuspješnijih strategija s posebnim naglaskom na neuronske mreže.
 Odabrana je BLSTM-RNN arhitektura i CURRENNT kao programski paket za rad
 s tom mrežom. Uspješnost izdvajanja govora je ispitana na skupu podataka prvog zadatka
 drugog CHiME natjecanja (eng. CHiME 2nd challenge Task 1) i postignuto je apsolutno poboljšanje
-od 25% u točnosti prepoznavanja govora korištenjem sustava za prepoznavanje
-uvježbanog na čistom govoru. 
+od 25% u točnosti prepoznavanja govora sa smetnjama koristeći sustav za prepoznavanje
+čistog govora.
 
 ključne riječi:
 
