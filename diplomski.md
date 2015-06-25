@@ -440,19 +440,20 @@ CHiME2 osnovni prepoznavač koristi normalizirane značajke,
 no one su normalizirane na način koji nije sasvim jednoznačno objašnjen u dokumentaciji i drugačiji
 je od normalizacije korištene za treniranje mreže. Stoga se izlazne MFCC značajke
 moraju normalizirati tako da im statistička svojstva odgovaraju značajkama na kojima je treniran
-model za prepoznavanje. Razlika u statičkim svojstvima između podataka na kojima je treniran 
-model za prepoznavanje i onih na kojima 
+model za prepoznavanje. To se radi da se izbjegne pad performansi uslijed razlike
+između podataka na kojima je obavljeno treniranje i onima na kojima se ispituje točnost.
 
 ###Metoda treniranja neuronske mreže
 
 Treniranje i izvršavanje neuronske mreže obavljeno je korištenjem programskog
 paketa CURRENNT, jedinog koji podržava treniranje BLSTM mreža pomoću grafičkih
-procesora i time omogućuje ubrzavanje treniranja i do 20 puta u nekim scenarijima [wen_currennt_cite].
+procesora. Korištenje GPU-a u nekim scenarijima omogućuje ubrzavanje treniranja i do 20 puta [wen_currennt_cite].
 
-Kako bi se ostvarilo ubrzanje u treniranju CURRENNT obavlja treniranje na više 
-ulaznih sekvenci paralelno i tako izračunava gradijent greške na cijelom
-podskupu ulaznih podataka. Zatim se nakon svake mini-serije osvježavaju težine,
-dakle riječ je o stohastičkom hibridnom online-batch treniranju.
+Kako bi se ubrzalo treniranje, CURRENNT obavlja treniranje na više 
+ulaznih sekvenci paralelno i tako izračunava gradijent greške na tom
+podskupu (engl. mini-batch) ulaznih podataka.
+Zatim se nakon izračuna greške na svakom podskupu osvježavaju težine.
+Ta metoda se naziva stohastičko hibridno online-batch treniranje.
 Kod dubokih neuronskih mreža ključna je dobra početna inicjalizacija, pa 
 CURRENNT podržava podešavanje parametara distribucija za slučajnu inicijalizaciju. [wen_currennt_README]
 
@@ -462,22 +463,32 @@ CURRENNT može koristiti sve tri uobičajene metode [graves_blstm: 26][wen_curre
 da bi smanjio problem pretreniranja:
 uranjeno zaustavljanje (engl. early stopping),
 zašumljavanje ulaza (engl. input noise),
-zašumljavanje težina (engl. weight noise), i u ovom radu su i korištene.
+zašumljavanje težina (engl. weight noise).
+U ovom radu su korištene sve tri navedene metode.
 
-Zašumljvanje ulaza i težina se provodi tako da se jednostavno pri treniranju
-svakom ulazu ili težini pribroji mala slučajna vrijednost da bi se poboljšala
-sposobnost generalizacije kod mreže. Kod testiranja se te vrijednosti ne dodaju.
+Zašumljvanje ulaza i težina provodi se tako da se pri treniranju
+svakom ulazu ili težini pribroji mala slučajna vrijednost.
+Ideja je da će to smanjiti osjetljivost mreže na nebitne detalje u ulaznim podacima
+i poboljšati sposobnost generalizacije mreže. Testiranje se provodi bez dodavanja
+tih slučajnih vrijednosti, jer bi to dovelo do pada performansi.
 
 Za uranjeno zaustavljanje je osim uobičajenog skupa za treniranje i skupa
 za testiranje potrebno imati i skup za validaciju.
-Kod uranjenog zaustavljanja se mreža trenira na skupu za treniranje i 
-računa se greška na skupu za treniranje i skupu za validaciju.
-U jednom trenutku će greška na skupu za validaciju prestati padati iako će
-greška na skupu za treniranje i dalje padati. Obično se treniranje nastavi još
-nekoliko epoha da bi se osiguralo da je to stvarno minimum, ali se kao najbolja
-mreža odabire ona koja daje najbolji rezultat na skupu za validaciju.
-U tu svrhu bi se mogao koristiti i skup za testiranje, no to bi bio oblik 
-indirektnog treniranja na skupu za testiranje. To ne bi imalo smisla jer 
+Kod uranjenog zaustavljanja mreža se, naravno, trenira na skupu za treniranje.
+Tijekom treniranja računa se greška na skupu za treniranje i skupu za validaciju.
+Skup podataka za validaciju nam omogućava da detektiramo kada je došlo do pretreniranja.
+Kada mreža počne biti pretrenirana, greška na primjerima za treniranje i dalje pada
+dok na neviđenim ispitnim primjerima (skupu za validaciju) stagnira ili počinje rasti.
+Obično se treniranje nastavi još
+nekoliko epoha nakon toga da bi se osiguralo da je to stvarno minimum,
+ali se prekida nakon unaprijed određenog broja epoha.
+
+Kao najbolja mreža odabire ona koja daje najbolji rezultat na skupu za validaciju.
+
+Za spriječavanje pretreniranja u ovom slučaju se ne koristi skup za testiranje,
+jer 
+no moguće je da se pri tome mreža nenamjerno op
+To ne bi imalo smisla jer 
 nam skup za testiranje služi kako bismo dobili procjenu kako će se mreža 
 ponašati ako na ulaz dobije još neviđene podatke [test_val].
 
