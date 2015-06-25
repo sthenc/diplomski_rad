@@ -584,7 +584,6 @@ prilagođen takvom govoru. Točnost prepoznavanja čistog govora izobličenog je
 na podacima sa validaciju iznosi 93.8%, a na podacima za testiranje je vjerojatno
 1-2% veča, no to nije moguće provjeriti. Taj podatak je dan kao procjena gornje
 granice točnosti koju može postići teoretski idealni sustav za pročišćavanje govora.
-
 [rezultati tab1]
 
 
@@ -598,7 +597,6 @@ običnom i na grafičkom procesoru.
 
 U tablici [tab4] prikazani su rezultati mjerenja brzine obrade 18 minuta zvučnih
 zapisa pomoću dobivene mreže i CURRENNT paketa. 
-
 [rezultati tab4]
 
 ---------- Primjena -----------
@@ -627,19 +625,35 @@ vremenu i sasvim sigurno i jednake, a možda i bolje, rezultate.
 	
 Na slici [usporedba.png] dana je ilustracija izlaza iz mreže i pročišćavanja
 značajki za jedan slučaj signala govora 6dB tišeg od smetnje.
-
+Dane su ilustracije kako jeka i dodavanje buke izobličavaju obični, spektralni
+i MFCC prikaz signala. Također je vidljivo kako mreža uspijeva proizvesti
+nešto što je slično MFCC značajkama govora sa jekom, iako je prikaz dosta
+glađi od originala. To po mišljenju autora može značiti ili da model dobro
+generalizira ili da bi složeniji model mogao dati još bolje performanse.
 
 [usporedba.png]
 
+Ideja koja stoji iza ovog diplomskog rada bila je istražiti postoji li metoda
+koja bi omogućila da se iskoristi govor iz brojnih radio i televizijskih 
+emisija na hrvatskom jeziku za razvoj prepoznavanja govora na našem jeziku.
+
+U emitiranim emisijama često govor prati muzika, a povremeno slabiji šumovi
+(ako je govor snimljen van studija) i govor više osoba koje govore istovremeno.
+No, zato je snimljeni govor uglavnom jako dobre kvalitete, glasniji je od
+svih pozadinskih smetnji i utjecaj jeke je puno manji jer je mikrofon u 
+pravilu blizu govornika. Pročišćavanje takvog govora trebalo bi biti lakši
+problem od pročišćavanja govora u CHiME skupu podataka, gdje je jeka prisutna
+u svim snimkama i odnos snage govora i smetnje mnogo nepovoljniji.
 
 
-- koliko je super, ali da poboljšanje na small-vocabulary tasku ne znači
-	nužno da će biti toliko na mid i big vocabulary task
+Sa druge strane, u literaturi se iznosi činjenica da dobar rezultat u pročišćavanju
+i prepoznavanju govora sa malim rječnikom ne mora nužno biti prenosiv na prepoznavanje
+govora sa srednjim i velikim rječnicima.
+CHiME natjecanje u svojoj drugoj verziji uključuje i prepoznavanje govora
+sa srednjim riječnikom (Wall Street Journal korpus čitanog govora sa rječnikom od 5000 riječi)[chime_data],
+no ti podaci nisu javno dostupni.
 
-Indeed, ASR systems can be surpris-
-ingly sensitive to speaker location and it is well known that
-systems optimized for small vocabulary read speech often fail
-to scale to larger vocabulary spontaneous speech.[chime_data]
+Zanimljiv
 
 BLSTM i live primjena
 
