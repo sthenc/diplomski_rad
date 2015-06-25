@@ -591,6 +591,7 @@ za pročišćavanje govora [wen_chime13] i dobiveni rezultati su samo 1 do 1.5 %
 
 U tablici [tab3] je prikaz prosječnog trajanje epohe za treniranje mreže na
 običnom i na grafičkom procesoru.
+[rezultati tab3] 
 
 U tablici [tab4] prikazani su rezultati mjerenja brzine obrade 18 minuta zvučnih
 zapisa pomoću dobivene mreže i CURRENNT paketa. 
@@ -600,11 +601,22 @@ zapisa pomoću dobivene mreže i CURRENNT paketa.
 ---------- Primjena -----------
 
 # Diskusija
+
+
 	- obrada rezultata, što se iz njih može zaključiti
+	
+- zašto  1-1.5% manje
+
+Pristup većim računalnim resursima omogućio bi više eksperimentiranja i
+bolje rezultate.
+
 	
 Na slici [usporedba.png] dana je ilustracija izlaza iz mreže.
 
 [usporedba.png]
+
+BLSTM i live primjena
+
 
 - koliko je super, ali da poboljšanje na small-vocabulary tasku ne znači
 	nužno da će biti toliko na mid i big vocabulary task
@@ -614,16 +626,13 @@ ingly sensitive to speaker location and it is well known that
 systems optimized for small vocabulary read speech often fail
 to scale to larger vocabulary spontaneous speech.[chime_data]
 
+- drugi pristupi
 Vjerojatno bi se mogli postići bolji rezultati kada bi se greška
 prepoznavanja mogla koristiti direktno u backpropagation algoritmu. To nije moguće
 jer je potrebna greška za svaku značajku u svakom koraku , CTC moguće rješenje
 CTC možda bi dao bolje rezultate [graves14]
 
-BLSTM i live primjena
-
-Pristup većim računalnim resursima omogućio bi više eksperimentiranja i
-bolje rezultate [ang_deep_speech].
-
+[ang_deep_speech]
 
 # Zaključak - max 350 riječi
 
