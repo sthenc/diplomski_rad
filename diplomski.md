@@ -531,19 +531,26 @@ Obično se kod korištenja stohastičke inicijalizacije mreža nekoliko puta
 trenira ispočetka, pa se odabire mreža koja postigne najmanju grešku na validacijskom
 skupu podataka, no ni to nije napravljeno zbog vremenskih ograničenja.
 
-Na slici [training.png] prikazana je krivulja učenja.
-Greška treniranja i validacije je kvadratna sredina greške između izlaznog
+Na slici [training_colors.png] prikazana je krivulja učenja.
+Prikazane greške treniranja i validacije su kvadratne sredine greške između izlaznog
 vektora značajki i očekivanog vektora značajki. 
 Formula za kvadratnu sredinu greške je:
 
 [RMSE]
 
+Treniranje mreže sa stopom učenja [ni = 10e-5] daje najmanju grešku na validacijskom skupu za epohu 182.
+Eksperiment je pokazao da smanjivanje stope učenja na [ni = 10e-6] i nastavljanje treniranja na mreži
+iz epohe 180 dodatno smanjuje grešku na skupu za treniranje i skupu za validaciju.
 
+Na slici [training_colors.png] prikazane je i točnost prepoznavanja (na obrnutoj skali)
+na validacijskom skupu
+podataka korištenjem modela treniranog na govoru izobličenom jekom [chime_data].
+Tijekom provjeravanja uspješnosti rada mreže uočeno je da smanjivanje greške
+između izlaznih i očekivanih značajki ne odgovara sasvim smanjivanju pogreške
+prepoznavanja. 
 
-
-
-kako se računa greška u usporedbi s onim što se stvarno optimizira - euklidska udaljenost 
-
+Stoga je finalni kriterij za odabir najbolje mreže točnost prepoznavanja
+na validacijskom skupu.
 
 ###Rezultati
 - dobivena točnost, u usporedbi sa očekivanom
@@ -572,6 +579,9 @@ ingly sensitive to speaker location and it is well known that
 systems optimized for small vocabulary read speech often fail
 to scale to larger vocabulary spontaneous speech.[chime_data]
 
+Vjerojatno bi se mogli postići bolji rezultati kada bi se greška
+prepoznavanja mogla koristiti direktno u backpropagation algoritmu. To nije moguće
+jer je potrebna greška za svaku značajku u svakom koraku , CTC moguće rješenje
 CTC možda bi dao bolje rezultate [graves14]
 
 BLSTM i live primjena
