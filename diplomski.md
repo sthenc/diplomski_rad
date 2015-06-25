@@ -485,16 +485,15 @@ ali se prekida nakon unaprijed određenog broja epoha.
 
 Kao najbolja mreža odabire ona koja daje najbolji rezultat na skupu za validaciju.
 
-Za spriječavanje pretreniranja u ovom slučaju se ne koristi skup za testiranje,
-jer 
-no moguće je da se pri tome mreža nenamjerno op
-To ne bi imalo smisla jer 
-nam skup za testiranje služi kako bismo dobili procjenu kako će se mreža 
-ponašati ako na ulaz dobije još neviđene podatke [test_val].
+Za spriječavanje pretreniranja na taj način u ovom slučaju se ne koristi skup za testiranje,
+jer je odabir najbolje mreže ovisno o greški na skupu za testiranje ekvivalentno treniranju
+jednog parametra na tom skupu podataka. Skup podataka za testiranje služi da se dobije
+procjena kako će se mreža ponašati ako na ulaz dobije još neviđene podatke [test_val].
 
 CHiME skup podataka je već podijeljen na skup za treniranje sa 17000 zapisa (500 za svakog od 34 govornika),
-skup za testiranje sa 3600 zapisa i skup sa validaciju sa 3600 zapisa (600 za svaku od 6 SNR vrijednosti) [chime_data].
-Skup za testiranje se ne može koristiti za treniranje ili validaciju jer snimke sa čistim signalom nisu dostupne.
+skup za testiranje sa 3600 zapisa i skup za validaciju sa 3600 zapisa (600 za svaku od 6 SNR vrijednosti) [chime_data].
+Skup za testiranje i ne bi se mogao koristiti za treniranje ili validaciju
+jer nisu dostupne snimke čistog govora za taj dio podataka.
 
 --------- Metodologija ------
 
