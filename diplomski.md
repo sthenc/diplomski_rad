@@ -580,13 +580,16 @@ Za usporedbu su dani i rezultati prepoznavanja na nepročišćenom govoru.
 "Odjek" (eng. reverberated) model je uvježban na govoru iz skupa za treniranje
 koji je izobličen samo bukom. "Buka" (eng. noisy) model je uvježban na govoru
 sa bukom, koji se koristi kao ulaz mreže kod treniranja, tako da je optimalno
-prilagođen takvom govoru.
+prilagođen takvom govoru. Točnost prepoznavanja čistog govora izobličenog jekom
+na podacima sa validaciju iznosi 93.8%, a na podacima za testiranje je vjerojatno
+1-2% veča, no to nije moguće provjeriti. Taj podatak je dan kao procjena gornje
+granice točnosti koju može postići teoretski idealni sustav za pročišćavanje govora.
 
 [rezultati tab1]
 
 
 U tablici [tab2] dani su rezultati iz rada u kojem je korištena ista strategija
-za pročišćavanje govora [wen_chime13] i dobiveni rezultati su samo 1 do 1.5 % lošiji.
+za pročišćavanje govora [wen_chime13] i dobiveni rezultati su samo apsolutno 1 do 1.5 % lošiji.
 [rezultati tab2] 
 
 U tablici [tab3] je prikaz prosječnog trajanje epohe za treniranje mreže na
@@ -602,20 +605,32 @@ zapisa pomoću dobivene mreže i CURRENNT paketa.
 
 # Diskusija
 
+Dobiveni rezultati su očekivani. Kod neprilagođenog sustav za prepoznavanje
+dobiveno je apsolutno poboljšanje točnosti prepoznavanja od 26.5% dodavanjem
+predkoraka sa pročišćavanjem govora.
+Najveće poboljšanje je naravno dobiveno u slučaju kada je signal govora za 6dB
+tiši od smetnje, gdje je postignuto poboljšanje od apsolutnih 39.1%.
+Ovaj rezultat nam govori kakav utjecaj bi dodavanje ovakvog pročišćavanje
+govora trebalo imati na performanse sustava za automatsko prepoznavanje govora
+bez prilagođavanja njegovog modela.
 
-	- obrada rezultata, što se iz njih može zaključiti
+Za slučaj kada je prilagođavanje modela moguće, imamo druge rezultate.
+U usporedbi sa prepoznavačem koji je već uvježban na govoru sa smetnjom,
+prosječno poboljšanje korištenjem pročišćavanja govora i prilagodbom modela
+je apsolutnih 14.3% bolje, a u najgorim uvjetima prepoznavanja čak 24% bolje.
+
+Rezultati su 1 do 1.5% lošiji od onih koji su dani u literaturi [wen_chime13],
+vjerojatno zato jer je vjerojatno bilo potrebno nekoliko puta trenirati mrežu kako bi se
+dobro inicijalizirala i konvergirala bliže globalnom minimumu.
+Pristup većim računalnim resursima omogućio bi više eksperimentiranja u istom
+vremenu i sasvim sigurno i jednake, a možda i bolje, rezultate.
 	
-- zašto  1-1.5% manje
+Na slici [usporedba.png] dana je ilustracija izlaza iz mreže i pročišćavanja
+značajki za jedan slučaj signala govora 6dB tišeg od smetnje.
 
-Pristup većim računalnim resursima omogućio bi više eksperimentiranja i
-bolje rezultate.
-
-	
-Na slici [usporedba.png] dana je ilustracija izlaza iz mreže.
 
 [usporedba.png]
 
-BLSTM i live primjena
 
 
 - koliko je super, ali da poboljšanje na small-vocabulary tasku ne znači
@@ -626,7 +641,9 @@ ingly sensitive to speaker location and it is well known that
 systems optimized for small vocabulary read speech often fail
 to scale to larger vocabulary spontaneous speech.[chime_data]
 
-- drugi pristupi
+BLSTM i live primjena
+
+- drugi pristupi	
 Vjerojatno bi se mogli postići bolji rezultati kada bi se greška
 prepoznavanja mogla koristiti direktno u backpropagation algoritmu. To nije moguće
 jer je potrebna greška za svaku značajku u svakom koraku , CTC moguće rješenje
