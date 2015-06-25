@@ -653,10 +653,10 @@ sa srednjim riječnikom (Wall Street Journal korpus čitanog govora sa rječniko
 no ti podaci nisu javno dostupni.
 
 Svakako je zanimljiva i mogućnost pročišćavanja i prepoznavanja govora u stvarnom vremenu,
-i stoga je izmjeren RT faktor. Zanimljivo je da iako primjena grafičkih procesora značajno
-ubrzava [? puta] treniranje mreže, u scenariju kada treba primijeniti mrežu na
-jednom ulaznom nizu značajki usporenje je 3x, vjerojatno zbog puno veće latencije
-prebacivanja podataka iz glavne memorije u memoriju grafičke kartice.
+i stoga je izmjeren RT faktor. Zanimljivo je da iako primjena grafičkih procesora
+ubrzava treniranje mreže za 2.6 puta (Tablica [tab 3]), to ne bi bio slučaj kod primjene mreže uživo.
+U scenariju kada se mreža primjenjuje samo na jednom ulaznom podatku usporenje je 3 puta (Tablica [tab 4]),
+vjerojatno zbog puno veće latencije prebacivanja podataka iz glavne memorije u memoriju grafičke kartice.
 
 Zanimljiv je i podatak da OpenSMILE podržava obradu zvučnog signala uživo pomoću
 rekurzivnih mreža, no trenutno ne podržava dvosmjerne rekurzivne mreže.
@@ -684,22 +684,31 @@ pitanje kako umješnim korištenjem umjerene količine računalne moći
 postići slične rezultate i ostvariti upotrebljivo prepoznavanje govora
 na hrvatskom jeziku.
 
-U svakom slučaju, autor ovog rada se nada da je uspješno demonstrirao 
-učinkovitost metoda dubokog učenja u izdvajanju govornih signala iz zvučnih zapisa,
-i da je problem uz odgovarajuća znanja i resurse danas itekako rješiv.
-
 # Zaključak - max 350 riječi
 
-što je napravljeno i kolika je važnost toga, skratit 
+U ovom radu definirali smo problem
 
-Ipak sa dovoljno računalnih resursa vjerojatno bi se mogao napraviti primjenjivi
-sustav
+Autor ovog rada se nada da je uspješno demonstrirao 
+učinkovitost metoda dubokog učenja u izdvajanju govornih signala iz zvučnih zapisa,
+i da je problem uz odgovarajuća znanja i resurse danas itekako rješiv.
 
 
 # Sažetak - max. 100 riječi
 
+U ovom radu dan je pregled trenutnog stanja područja izdvajanja govora
+i pregled najuspješnijih strategija s posebnim naglaskom na neuronske mreže.
+Odabrana je BLSTM-RNN arhitektura i CURRENNT kao programski paket za rad
+s tom mrežom. Uspješnost izdvajanja govora je ispitana na skupu podataka prvog zadatka
+drugog CHiME natjecanja (eng. CHiME 2nd challenge Task 1) i postignuto je apsolutno poboljšanje
+od 25% u točnosti prepoznavanja govora korištenjem sustava za prepoznavanje
+uvježbanog na čistom govoru. 
+
+ključne riječi:
+
 # Summary - max. 100 riječi
 
+
+keywords: 
 
 # Literatura
 
