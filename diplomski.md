@@ -10,20 +10,21 @@ author: Stjepan Henc
 # Kratice
 
 engl.
-GPU - grafički procesora opće namjene (engl. Graphic Processor Unit)
-SNR - 
-CHiME -
-CHiME2 - 
+GPU - grafički procesor opće namjene (engl. Graphic Processor Unit)
+SNR - omjer korisnog signala i signala smetnje (engl. Signal to Noise Ratio)
+CHiME - natjecanje u računalnom prepoznavanju govora u okruženjima gdje je prisutno više
+izvora signala(engl. Computational Hearing in Multisource Environments)
+CHiME2 - druga iteracija CHiME natjecanja (engl. CHiME 2nd challenge)
 PCA - analiza principalnih komponenata (engl. PCA - Principal Component Analysis)
 ICA - analiza neovisnih komponenata (engl. PCA - Principal Component Analysis)
-NMF 
-DNN
-RNN
-BRNN
-LSTM
-BLSTM
-BPTT - (engl. backpropagation through time)
-CTC - (eng. Connectionist Temporal Classification)
+NMF - nenegativna faktorizacija matrica (engl. Non-negative Matrix Factorisation)
+DNN - duboka neuronska mreža (engl. Deep Neural Network)
+RNN - rekurzivna neuronska mreža (engl. Recursive Neural Network)
+BRNN - dvosmjerna rekurzivna neuronska mreža (engl. Bidirectional Recursive Neural Network)
+LSTM - dugotrajno-kratkotrajna memorija (engl. Long-Short Term Memmory)
+BLSTM - dvosmjerna dugotrajno-kratkotrajna memorija (engl. Bidirectional Long-Short Term Memmory)
+BPTT - nadogradnja backpropagation algoritma za treniranje RNN (engl. Backpropagation Through Time)
+CTC - klasifikacija vremenskih nizova pomoću neuronskih mreža (engl. Connectionist Temporal Classification)
 
 # Uvod
 
@@ -40,7 +41,7 @@ Između mnogih opcija kao algoritam je odabrana RNN-BLSTM neuronska mreža
 implementiran u programskom paketu CURRENNT, koji ubrzava treniranje modela 
 pomoću GPU-a.
 
-Efikasnost ovog pristupa je ispitana pomoću skupa podataka "CHiME 2nd Challenge"  
+Efikasnost ovog pristupa je ispitana pomoću skupa podataka CHiME2
 i pripadnih alata.
 
 [stavit brojeve]
@@ -48,7 +49,7 @@ U poglavlju "Pregled literature" opisan je kratak pregled literature i stanja
 istraživanja na ovom području, s posebnim naglaskom na ono što je korišteno u ovom radu.
 
 U poglavlju "Metodologija" opisan je rad RNN-BLSTM algoritma, kako je tehnički
-izveden CURRENNT i detalji o "CHiME 2nd Challenge" skupu podataka.
+izveden CURRENNT i detalji o CHiME2 skupu podataka.
 
 U poglavlju "Primjena" opisano je što je bilo potrebno napraviti da bi se
 istrenirala neuronska mreža i koliko je poboljšanje u prepoznavanju govora
