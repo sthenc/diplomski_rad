@@ -9,21 +9,21 @@ author: Stjepan Henc
 
 # Kratice
 
-
+engl.
 GPU - grafički procesora opće namjene (engl. Graphic Processor Unit)
-BSS - slijepo razdvajanje signala (engl. Blind Signal Separation)
-BLSTM
-LSTM
-RNN
-DNN
-CUDA
-SNR 
-CHiME
-CURRENNT
-openSMILE 
- (engl. PCA - Principal Component Analysis)
- 
+SNR - 
+CHiME -
 CHiME2 - 
+PCA - analiza principalnih komponenata (engl. PCA - Principal Component Analysis)
+ICA - analiza neovisnih komponenata (engl. PCA - Principal Component Analysis)
+NMF 
+DNN
+RNN
+BRNN
+LSTM
+BLSTM
+BPTT - (engl. backpropagation through time)
+CTC - (eng. Connectionist Temporal Classification)
 
 # Uvod
 
@@ -87,8 +87,8 @@ za nova tehnološka rješenja [book_asa][book_casa][book_human_machine].
 
 Postoje tri glavna pristupa za izdvajanje govornog signala:
 
-1. Tehnologija nizova mikrofona (engl. microphone-array technology)
-2. Slijepo razdvajanje signala
+1. Tehnologija nizova mikrofona (engl. Microphone-Array Technology)
+2. Slijepo razdvajanje signala (engl. Blind Signal Separation)
 3. Razdvajanje temeljeno na modelu govora
 
 Prvi od tih pristupa, temeljen na akustičnoj tehnologiji, je tradicionalan
@@ -371,7 +371,7 @@ vodi sporijem učenju mreže. Posljedica toga je da rekurzivne neuronske mreže
 teško pamte kontekst duže od nekoliko desetaka koraka.
 
 Nadogradnja na rekurzivne mreže koja rješava te probleme je dugotrajna-kratkotrajna
-memorija (eng. LSTM) [lstm]. Na slici [lstm.png] je prikazana arhitektura LSTM
+memorija ili LSTM [lstm]. Na slici [lstm.png] je prikazana arhitektura LSTM
 ćelije.
 
 Slika [lstm.png] LSTM memorijski blok sa jednom ćelijom. Troja vrata koja su prikazana
@@ -382,10 +382,10 @@ funkcije. Aktivacijska funkcija vrata 'f' je obično sigmoidna funkcija, tako da
 je izlaz između 0 (vrata zatvorena) i 1 (vrata otvorena).
 Ulazna i izlazna aktivacijska funkcija ćelije ('g' i 'h') su obično tangens hiperbolni
 i sigmoidna funkcija, iako 'h' nekada može biti i funkcija identiteta.
-Veze od memorijske ćelije prema vratima (eng. peephole connections) su prikazane
+Veze od memorijske ćelije prema vratima (engl. peephole connections) su prikazane
 isprekidanim strelicama, i one za razliku od ostalih veza unutar bloka imaju težinu. [graves_blstm]
 Blok ima četiri ulaza i samo jedan izlaz. Tako svaki LSTM blok ima sedam parametara,
-tri unutarnje veze sa težinom, te još četiri pomaka (eng. bias) za svaki od ulaza.
+tri unutarnje veze sa težinom, te još četiri pomaka (engl. bias) za svaki od ulaza.
 Izlaz svakog od N neurona na koji je ovaj blok spojen spaja se na sva
 četiri ulaza, tako da je broj ulaznih težina 4 * N.
 
@@ -394,7 +394,7 @@ Izlaz svakog od N neurona na koji je ovaj blok spojen spaja se na sva
 
 ### Arhitektura sustava
 
-U ovom radu je korištena dvosmjerna LSTM mreža (eng. BLSTM), koja je zapravo
+U ovom radu je korištena dvosmjerna LSTM mreža ili BLSTM mreža, koja je zapravo
 obična dvosmjerna rekurzivna mreža samo su neuroni zamijenjeni sa LSTM blokovima.
 
 Na slici [arhitektura.png] je nacrtana arhitektura mreže koja je korištena.
@@ -410,7 +410,7 @@ Tako je ukupni broj parametara za ovu mrežu 582339.
 
 Mreža ima 39 neurona u ulaznom sloju jer toliko parametara ima standardni 
 MFCC_E_D_A_Z vektor značajki koji se koristi u osnovnom prepoznavaču govora
-koji je referentan na CHiME natjecanju [chime_data].
+koji je referentan na CHiME2 [chime_data].
 
 Slika [sustav.png] prikazuje shemu sustava. Ulazni stereo zvučni zapis se
 usrednjavanjem oba kanala prebacuje u mono zapis. Zatim se na temelju
@@ -441,13 +441,13 @@ dakle riječ je o stohastičkom hibridnom online-batch treniranju.
 Kod dubokih neuronskih mreža ključna je dobra početna inicjalizacija, pa 
 CURRENNT podržava podešavanje parametara distribucija za slučajnu inicijalizaciju. [wen_currennt_README]
 
-Kod dubokih neuronskih mreža također je veliki problem i pretreniranje (eng. overfitting).
+Kod dubokih neuronskih mreža također je veliki problem i pretreniranje (engl. overfitting).
 
 CURRENNT može koristiti sve tri uobičajene metode [graves_blstm: 26][wen_currennt_README]
 da bi smanjio problem pretreniranja:
-uranjeno zaustavljanje (eng. early stopping),
-zašumljavanje ulaza (eng. input noise),
-zašumljavanje težina (eng. weight noise), i u ovom radu su i korištene.
+uranjeno zaustavljanje (engl. early stopping),
+zašumljavanje ulaza (engl. input noise),
+zašumljavanje težina (engl. weight noise), i u ovom radu su i korištene.
 
 Zašumljvanje ulaza i težina se provodi tako da se jednostavno pri treniranju
 svakom ulazu ili težini pribroji mala slučajna vrijednost da bi se poboljšala
@@ -531,7 +531,7 @@ Arhitektura mreže je već opisana u poglavlju [Arhitektura sustava],
 stopa učenja učenja iznosi [ni = 10e-5], a moment [m = 0.9].
 Težinama i ulazima se dodaju slučajne vrijednosti iz distribucije sa
 srednjom vrijednosti [mi=0] i standardnom devijacijom [sigma=0.1].
-Veličina mini-serije (eng. mini-batch) koja se paralelno obrađuje je
+Veličina mini-serije (engl. mini-batch) koja se paralelno obrađuje je
 100 ulaznih nizova.
 Treniranje se zaustavlja kada nakon 30 epoha više ne dođe do smanjenja greške
 na skupu za validaciju.
@@ -569,7 +569,7 @@ na validacijskom skupu.
 
 Rezultati sa odabranu mrežu (epoha 197) prikazani su u Tablici [tab1].
 Za usporedbu su dani i rezultati prepoznavanja na nepročišćenom govoru.
-"Odjek" (eng. reverberated) model je uvježban na govoru iz skupa za treniranje
+"Odjek" (engl. reverberated) model je uvježban na govoru iz skupa za treniranje
 koji je izobličen samo bukom. "Buka" (eng. noisy) model je uvježban na govoru
 sa bukom, koji se koristi kao ulaz mreže kod treniranja, tako da je optimalno
 prilagođen takvom govoru. Točnost prepoznavanja čistog govora izobličenog jekom
@@ -657,11 +657,11 @@ dobre performanse.
 
 Za istražiti još uvijek preostaje i utjecaj korištenja drugih značajki
 na ulazu neuronske mreže. Pokazano je da primjena jednostavnijih značajki
-koje imitiraju svojstva ljudske pužnice (eng. log-filterbank) 
+koje imitiraju svojstva ljudske pužnice (engl. log-filterbank) 
 daje još bolje rezultate jer omogućava mreži da nauči bolju parametrizaciju signala [wen_chime14].
 
 Još jedan relativno novi doprinos polju dubokog učenja je algoritam za 
-vremensku klasifikaciju pomoću neuronskih mreža (eng. Connectionist Temporal Classification - CTC)
+vremensku klasifikaciju pomoću neuronskih mreža ili CTC algoritam
 [graves14] [graves_blstm], koji omogućava treniranje neuronskih mreža koje obavljaju cijeli proces
 od pročišćavanja govora do njegove transkripcije. To bi rješilo i problem koji je bio prisutan u ovom 
 radu, da funkcija greške koja se koristi za treniranje mreže ne odgovara točno željenim performansama.
@@ -689,13 +689,13 @@ Od pet javno dostupnih paketa za rad sa rekurzivnim mrežama odabran je CURRENNT
 koji podržava odabrani tip mreže i ubrzavanje treniranja korištenjem grafičkih procesora.
 
 Za ispitivanje uspješnosti izdvajanja govora odabrani su javno dostupni podaci
-i alati drugog CHiME natjecanja (eng. CHiME 2nd challenge Task 1).
+i alati drugog CHiME natjecanja (engl. CHiME 2nd challenge).
 
 Mreža je istrenirana i izmjerena je uspješnost prepoznavanja.
 Najvažniji rezultat je koliko poboljšanje se dobiva u prepoznavanju govora 
 sa smetnjama korištenjem sustava koji je specijaliziran za prepoznavanje čistog govora.
 U tom scenariju je dobiveno apsolutno poboljšanje točnosti prepoznavanja od 26% za sve
-odnose govora i smetnje i čak 39.1% za nepovoljniji odnos(6dB u korist smetnje).
+odnose govora i smetnje i čak 39.1% za nepovoljniji odnos( 6dB u korist smetnje).
 
 Dana je analiza koliki je značaj tog rezultata za povećanje otpornosti na smetnje
 kod sustava za prepoznavanja govora sa velikim rječnikom
@@ -711,7 +711,7 @@ U ovom radu dan je pregled trenutnog stanja područja izdvajanja govora
 i pregled najuspješnijih strategija s posebnim naglaskom na dubokim neuronskim mrežama.
 Odabrana je BLSTM-RNN arhitektura i CURRENNT kao programski paket za rad
 s tom mrežom. Uspješnost izdvajanja govora je ispitana na skupu podataka prvog zadatka
-drugog CHiME natjecanja (eng. CHiME 2nd challenge Task 1) i postignuto je apsolutno poboljšanje
+drugog CHiME natjecanja (engl. CHiME 2nd challenge) i postignuto je apsolutno poboljšanje
 od 25% u točnosti prepoznavanja govora sa smetnjama koristeći sustav za prepoznavanje
 čistog govora.
 
