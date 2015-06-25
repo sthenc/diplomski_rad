@@ -48,11 +48,12 @@ Template:
 43.[rnnlib] Alex Graves, RNNLIB: A recurrent neural network library for sequence learning problems, http://sourceforge.net/projects/rnnl/, 25.6.2015
 44.[cuda-cite] "Parallel Programming and Computing Platform - CUDA - NVIDIA", http://www.nvidia.com/object/cuda_home_new.html, 25.6.2015
 45.[graves_blstm] Graves, Alex: "Supervised Sequence Labelling with Recurrent Neural Networks", Springer, http://www.cs.toronto.edu/~graves/preprint.pdf, 2012., str. 20, 21, 26
-46.[wen_currennt_README] "CURRENNT README", sourceforge.net/projects/currennt/, 25.6.2015
-47.[test_val] Elkan, Charles: "Evaluating Classifiers", 20.1.2012, http://cseweb.ucsd.edu/~elkan/250Bwinter2012/classifiereval.pdf, 25.6.2015
-48.[wen_opensmile_cite] Eyben, Florian; Weninger, Felix; Gross, Florian; Schuller, Bjoern: "Recent developments in opensmile, the munich open-source multimedia feature extractor", Proceedings of the 21st ACM international conference on Multimedia, ACM, 2013.
-49.[wen_currennt_tools_README] "CURRENNT tools README", sourceforge.net/projects/currennt/, 25.6.2015
-50.[github_nc_packer] Henc, Stjepan: "Scripts for creating netCDF databases for CURRENNT", https://github.com/sthenc/nc_packer, 25.6.2015
-51.[chime_website] "The 2nd 'CHiME' Speech Separation and Recognition Challenge: Medium vocabulary track", http://spandh.dcs.shef.ac.uk/chime_challenge/chime2013/chime2_task2.html, 25.6.2015
-52.[NetCDF] "Network Common Data Form (NetCDF)", http://www.unidata.ucar.edu/software/netcdf/, 25.6.2015
+46.[lstm] Hochreiter, Sepp; Schmidhuber, Jurgen: "Long short-term memory", MIT Press, 1997.
+47.[wen_currennt_README] "CURRENNT README", sourceforge.net/projects/currennt/, 25.6.2015
+48.[test_val] Elkan, Charles: "Evaluating Classifiers", 20.1.2012, http://cseweb.ucsd.edu/~elkan/250Bwinter2012/classifiereval.pdf, 25.6.2015
+49.[wen_opensmile_cite] Eyben, Florian; Weninger, Felix; Gross, Florian; Schuller, Bjoern: "Recent developments in opensmile, the munich open-source multimedia feature extractor", Proceedings of the 21st ACM international conference on Multimedia, ACM, 2013.
+50.[wen_currennt_tools_README] "CURRENNT tools README", sourceforge.net/projects/currennt/, 25.6.2015
+51.[github_nc_packer] Henc, Stjepan: "Scripts for creating netCDF databases for CURRENNT", https://github.com/sthenc/nc_packer, 25.6.2015
+52.[chime_website] "The 2nd 'CHiME' Speech Separation and Recognition Challenge: Medium vocabulary track", http://spandh.dcs.shef.ac.uk/chime_challenge/chime2013/chime2_task2.html, 25.6.2015
+53.[NetCDF] "Network Common Data Form (NetCDF)", http://www.unidata.ucar.edu/software/netcdf/, 25.6.2015
 

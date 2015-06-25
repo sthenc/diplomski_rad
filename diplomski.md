@@ -9,17 +9,21 @@ author: Stjepan Henc
 
 # Kratice
 
-GPGPU (engl. General Purpouse Graphic Processor Unit - grafički procesora opće namjene)
-GPU
-BSS
+
+GPU - grafički procesora opće namjene (engl. Graphic Processor Unit)
+BSS - slijepo razdvajanje signala (engl. Blind Signal Separation)
 BLSTM
 LSTM
 RNN
+DNN
 CUDA
-SDR signal-to-distortion ratio
-SNR
+SNR 
 CHiME
-
+CURRENNT
+openSMILE 
+ (engl. PCA - Principal Component Analysis)
+ 
+CHiME2 - 
 
 # Uvod
 
@@ -54,18 +58,6 @@ U poglavlju "Rezultati i diskusija" dani su rezultati i što oni znače za
 računalno prepoznavanje govora u praksi.
 
 
-
-
-{Upute:
-što je zadatak (problem)
-zašto ga rješavamo (motivacija)
-kako ga rješavamo (pristup)
-opis organizacije ostatka dokumenta (najčešće, po poglavljima)
-za ovo obično ne treba više od 1 stranice/
-}
-
-
-
 ----- Pregled literature ---------
 
 Stanje istraživanja
@@ -81,7 +73,7 @@ ili izdvajanje govora (engl. speech separation).
 To je područje koje se intenzivno proučava već nekoliko desetljeća ,
 no problem još uvijek nije riješen [book_springer:843-845].
 
-Posebno važna primjena izdvajanja govora je računalno prepoznavanje govora (engl. ASR).
+Posebno važna primjena izdvajanja govora je računalno prepoznavanje govora.
 Iz inžinjerske perspektive ljudsko uho radi nevjerojatno dobro.
 Kod ljudskih bića razumijevanje govora, ovisno o primjeni, počinje padati
 kada je SNR od -6 do 0 dB, a tek se od -25 do -20 dB sasvim gubi razumljivost.
@@ -121,7 +113,7 @@ mogu usporediti svoja rješenja na skupu podataka koji daje dobar pokazatelj kol
 dobro bi ta rješenja mogla raditi na stvarnim podacima. [chime_data][chime_cite2]
 
 Iako je u tijeku već treća iteracija CHiME natjecanja, u ovom radu će se
-koristiti podaci za drugo CHiME natjecanje (engl. 2nd CHiME challenge),
+koristiti podaci za drugo CHiME natjecanje ili CHiME2,
 budući da u ovom trenutku već postoji mnogo objavljenih rezultata za taj skup podataka,
 a napravljena su i neka poboljšanja u odnosu na prvu verziju. [chime_overview]
 
@@ -155,7 +147,7 @@ nije prirodan i govornik je uglavnom na istom položaju, što prepoznavanje
 ljudskom točnosti koja je u tom slučaju oko 98.3% (točnost za slova je 99.05%, a za brojke 99.3%) [chime_grid_cite].
 
 ###Smetnje
-Kako bi se dobio željeni raspon odnosa signala prema smetnji (engl. SNR),
+Kako bi se dobio željeni raspon SNR,
 izgovorene rečenice su tako pozicionirane u odnosu na pozadinsku buku da se dobiju željenne
 vrijednost: -6, -3, 0, 3, 6 i 9 dB. To je učinjeno tako da je pozadinska buka
 nasumično pretražena i odabran je onaj vremenski interval koji ima željeni SNR
@@ -177,8 +169,8 @@ Osim ispitnih podataka, u sklopu CHiME 2 natjecanja dostupni su i alati za
 provođenje mjerenja točnosti baziranih na sustavu za prepoznavanje baziranom
 na besplatnom i standardnom HTK programskom paketu [book_htk].
 [chime_readme] Iako CHiME dozvoljava korištenje vlastitog
-rješenja za prepoznavanje govora, na raspolaganje je stavljen osnovni (engl. baseline)
-sustav sa nekoliko unaprijed istreniranih modela.
+rješenja za prepoznavanje govora, na raspolaganje je stavljen osnovni
+sustav (engl. baseline recognizer) sa nekoliko unaprijed istreniranih modela.
 To je učinjeno kako bi se moglo odrediti koji dio poboljšanja točnosti se može
 pripisati pročišćavanju govora, a koji sustavu za prepoznavanje govora 
 i olakšala usporedba između različitih sustava. [chime_readme]
@@ -189,17 +181,17 @@ prisutna u Grid korpusu modelirana pomoću skrivenog markovljevog modela sa
 2 stanja po fonemu. Vjerojatnost izostavljanja svakog stanja je predstavljena pomoću
 mješovitog Gaussovog modela sa 7 komponenti i dijagonalnom kovarijancom.
 Dana su tri unaprijed uvježbana modela za prepoznavanje:
-1. "Čisti" model (eng. clean - treniran na čistom govoru)
-2. "Jeka" model (eng. reverberated - treniran na govoru izobličenom jekom)
-3. "Buka" model (eng. noisy - treniran na govoru izobličenom bukom)
+1. "Čisti" model (engl. clean - treniran na čistom govoru)
+2. "Jeka" model (engl. reverberated - treniran na govoru izobličenom jekom)
+3. "Buka" model (engl. noisy - treniran na govoru izobličenom bukom)
 
-Osim ta tri modela, dostupni su alati za lako uvježbavanje tj. prilagođavanje modela (eng. retraining)
+Osim ta tri modela, dostupni su alati za lako uvježbavanje tj. prilagođavanje modela (engl. retraining)
 na skupu podataka za treniranje izobličenom algoritmom za pročišćavanje [chime_data].
 
 Govor je parametriziran kao niz standardnih MFCC značajki.
 Svaki vektor značajke sadrži 39 parametara:
 12 mel-kepstralnih koeficijenata koji su normalizirani po srednjoj vrijednosti
-(ali ne i standardnoj devijaciji) (engl. CMN), zatim logaritamska energija okvira,
+(ali ne i standardnoj devijaciji) (engl. CMN - Cepstral Mean Normalisation), zatim logaritamska energija okvira,
 ta zatim 13 differencijalnih koeficijenata prvog reda i 13 drugog reda 
 (engl. delta and acceleration coefficients). 
 Standardna HTK šifra za te značajke je MFCC_E_D_A_Z i detaljno (ali ne i jednoznačno)
@@ -214,11 +206,11 @@ Odabir strategije
 Zanimljiva povijesna činjenica je da su neuronske mreže u području slijepog
 razdvajanja signala prisutne od samog početka istraživanja na tom području
 80-ih godina prošlog stoljeća.
-Prvi algoritam koji je korišten je analiza principalnih komponenata (eng. PCA),
+Prvi algoritam koji je korišten je analiza principalnih komponenata,
 gdje se parametrizirana reprezentacija signala (najčešće spektar) pokušavala
 razdvojiti na komponente koje odgovaraju pojedinim izvorima signala pomoću
 određenih statističkih svojstava tih signala.
-Analiza neovisnih komponenata (eng. ICA) još je jedna metoda koja se može
+Analiza neovisnih komponenata ili kraće ICA još je jedna metoda koja se može
 svrstati u metode strojnog učenja pomoću neuronskih mrežam, a nastala je
 kao poboljšanje originalnog PCA algoritma [book_bss_ica:7-9] [book_nn_sp:180].
 
@@ -226,8 +218,8 @@ U literaturi se mogu naći stvarno brojni i nerijetko vrlo složeni pristupi ovo
 no valja izdvojiti dva koja su se pokazala posebno uspješnima i popularnima u posljednjih
 nekoliko godina.
 
-To su nenegativna faktorizacija matrica (eng. NMF) [book_bss_ica:515] i 
-duboke neuronske mreže (eng. DNN).
+To su nenegativna faktorizacija matrica ili NMF [book_bss_ica:515] i 
+duboke neuronske mreže ili DNN.
 Oba pristupa su relativno jednostavna, no NMF ima nekoliko nedostataka u
 usporedbi sa DNN.
 NMF je isključivo linearan model, dok DNN (ovisno o konkretnoj izvedbi)
@@ -241,7 +233,7 @@ istreniranog modela sastoji samo od množenja nekoliko matrica, što ih
 čini pogodnima sa primjenu u stvarnom vremenu.
 Svi ti faktori čine DNN-ove moćnijim i bržim modelom (jednom kada ga se uspije istrenirati) [dnn_faster_nmf].
 
-No, zanimljivo je da je na CHiME 2nd challenge pobijedio sustav koji, između ostalih,
+No, zanimljivo je da je na CHiME2 pobijedio sustav koji, između ostalih,
 koristi oba ova pristupa [wen_chime_pobjednik], te su u literaturi poznate 
 razne kombinacije ovih pristupa [dnn_nmf][dnn_vs_nmf_novo][deep_nmf].
 
@@ -320,8 +312,8 @@ kontekst, npr. prepoznavanja rukopisa, zato jer ova nadogradnja omogućava
 mreži da u svojem internom stanju pohrani informaciju o prethodnim ulazima.
 
 Prolaz unaprijed kod rekurzivne neuronske mreže izgleda isto kao kod 
-višeslojnog perceptrona, no kod prolaza unazad koristi se BPTT algoritam
-(engl. backpropagation through time).
+višeslojnog perceptrona, no kod prolaza unazad koristi se BPTT algoritam.
+
 Ideja algoritma je da se mreža "razmota", tako da se mreži na ulaz odjednom
 da cijeli ulazni niz. Izračuna se izlaz mreže za cijeli niz, i izračunaju
 se greške za svaki korak. Budući da se zbog razmotavanja mreže težine ponavljaju,
