@@ -565,18 +565,17 @@ na validacijskom skupu.
 
 Rezultati sa odabranu mrežu (epoha 197) prikazani su u Tablici [tab1].
 
-
-
 [rezultati tab1]
 
 
+[rezultati tab2] [wen_chime13]
 
 
 
 
 CURRENNT - mjerenje brzine izvršavanja mreže - bez parallel sequences ali sa i bez CUDA -RT faktor
 
-[rezultati tab2]
+[rezultati tab3]
 
 ---------- Primjena -----------
 
