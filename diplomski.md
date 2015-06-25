@@ -24,35 +24,34 @@ CTC - klasifikacija vremenskih nizova pomoću neuronskih mreža (engl. Connectio
 
 # Uvod
 
-U praksi je jako često da zvučne zapisi govora koje treba pretočiti u 
+U praksi je jako često da zvučni zapisi govora koje treba pretočiti u 
 tekstualne zapise (engl. speech-to-text) sadrže i razne smetnje 
-koje su prisutne jer govor nije bio sniman u studijskim uvjetima.
-Smetnje mogu biti razni šumovi, buka, muzika ili najgorem slučaju čak
-i drugi govor.
+koje su prisutne jer govor nije bio sniman u idealnim uvjetima.
+Smetnje mogu biti razni šumovi, buka, muzika ili istovremeni govor i žamor.
 Sve takve smetnje uzrokuju jako veliki pad točnosti računalnog prepoznavnja
-govora. [ book_articulation:2]
-Zadatak ovog diplomskog rada je pronaći odgovarajući algoritam i programski
-paket koji bi omogućio izdvajanje što čišćeg govora iz takvih zvučnih zapisa.
-Između mnogih opcija kao algoritam je odabrana RNN-BLSTM neuronska mreža 
-implementiran u programskom paketu CURRENNT, koji ubrzava treniranje modela 
-pomoću GPU-a.
-
+govora [ book_articulation:2].
+Zadatak ovog diplomskog rada je pronaći odgovarajuću metodu i programski
+paket koji bi omogućio izdvajanje najčišćeg mogućeg govora iz takvih zvučnih zapisa
+s ciljem povećanja točnosti prepoznavanja.
+Među mnogim opcijama kao metoda je odabrana RNN-BLSTM neuronska mreža,
+a od programskih paketa CURRENNT, koji podržava ubrzavanje treniranja pomoću
+GPU-a.
 Efikasnost ovog pristupa je ispitana pomoću skupa podataka CHiME2
 i pripadnih alata.
 
 [stavit brojeve]
-U poglavlju "Pregled literature" opisan je kratak pregled literature i stanja
+U poglavlju "Pregled literature" iznesen je pregled literature i stanja
 istraživanja na ovom području, s posebnim naglaskom na ono što je korišteno u ovom radu.
+Opisan je CHiME2 skup podataka kao dobra platforma za usporedbu rješenja za izdvajanje govornog signala.
 
-U poglavlju "Metodologija" opisan je rad RNN-BLSTM algoritma, kako je tehnički
-izveden CURRENNT i detalji o CHiME2 skupu podataka.
+U poglavlju "Metodologija" opisan je rad RNN-BLSTM algoritma, odabrana arhitektura mreže
+i metoda treniranja mreže koje podržava programski paket CURRENNT.
 
-U poglavlju "Primjena" opisano je što je bilo potrebno napraviti da bi se
-istrenirala neuronska mreža i koliko je poboljšanje u prepoznavanju govora
-postignuto.
+U poglavlju "Primjena" opisana je priprema podataka za treniranje, postupak treniranja mreže
+i dobiveni rezultati na CHiME2 skupu podataka.
 
-U poglavlju "Rezultati i diskusija" dani su rezultati i što oni znače za
-računalno prepoznavanje govora u praksi.
+U poglavlju "Diskusija" opisano je što bi ti rezultati mogli značiti za računalno prepoznavanje govora u praksi,
+te mogući daljnji pravci istraživanja.
 
 
 ----- Pregled literature ---------
@@ -67,22 +66,22 @@ digitalnom obradom signala prije svoje upotrebe.
 Taj proces pročišćavanja govora obično se naziva ili suzbijanje
 buke (engl. noise reduction) ili poboljšavanje govora (engl. speech enhancement)
 ili izdvajanje govora (engl. speech separation). 
-To je područje koje se intenzivno proučava već nekoliko desetljeća ,
+To je područje koje se intenzivno proučava već nekoliko desetljeća,
 no problem još uvijek nije riješen [book_springer:843-845].
 
 Posebno važna primjena izdvajanja govora je računalno prepoznavanje govora.
-Iz inžinjerske perspektive ljudsko uho radi nevjerojatno dobro.
+U usporedbi s računalnim sustavima za prepoznavanje govora, ljudsko uho radi nevjerojatno dobro.
 Kod ljudskih bića razumijevanje govora, ovisno o primjeni, počinje padati
 kada je SNR od -6 do 0 dB, a tek se od -25 do -20 dB sasvim gubi razumljivost.
-Računalno prepoznavanje govora počinje gubiti na točnosti več oko +20 dB,
+Računalno prepoznavanje govora počinje gubiti na točnosti već oko +20 dB,
 a na 0 dB (jednaka snaga signala govora i smetnje) se već približava nasumičnom
-pogađanju. [book_articulation:2]
+pogađanju [book_articulation:2].
 
 Činjenica da su ljudi tako sposobni u obavljanju tog zadatka potaknula je mnoge
-istraživače da u proučavanju ljudskog slušnog sustava pokušaju naći inspiraciju
+istraživače da u proučavanju ljudskog slušnog sustava pokušaju pronaći inspiraciju
 za nova tehnološka rješenja [book_asa][book_casa][book_human_machine].
 
-Postoje tri glavna pristupa za izdvajanje govornog signala:
+Postoje tri glavna pristupa izdvajanju govornog signala:
 
 1. Tehnologija nizova mikrofona (engl. Microphone-Array Technology)
 2. Slijepo razdvajanje signala (engl. Blind Signal Separation)
@@ -90,11 +89,11 @@ Postoje tri glavna pristupa za izdvajanje govornog signala:
 
 Prvi od tih pristupa, temeljen na akustičnoj tehnologiji, je tradicionalan
 i već u prisutan u praksi. No, iako radi dovoljno dobro u određenim uvjetima,
-kompaktnija rješenja su daleko od ljudske fleksibilnosti i sposobnosti.
+manji sustavi su, u usporedbi sa čovjekom, nefleksibilni i loši.
 Drugi pristup se temelji na teoriji informacija, i trenutno je glavni trend
-na polju istraživanja razdvajanja signala.
+u polju istraživanja razdvajanja signala.
 Treći pristup pokušava donekle emulirati ljudski slušni sustav koristeći
-apriorno znanje tj. model ciljnih signala kao najvažniji faktor.
+apriorno znanje, tj. model ciljnih signala, kao najvažniji faktor.
 U usporedbi sa slijepim razdvajanjem signala ovaj pristup je još u povojima,
 no njegovu opravdanost potvrđuju mnoga otrkića na području psihologije
 [book_nn_sp: 184].
@@ -105,71 +104,76 @@ CHiME
 U zadnjih nekoliko godina veoma je značajno CHiME natjecanje u razdvajanju
 i prepoznavanju govora (engl. CHiME Speech Separation and Recognition Challenge)
 kao platforma gdje različite istraživačke skupine iz akademskog svijeta i industrije
-mogu usporediti svoja rješenja na skupu podataka koji daje dobar pokazatelj koliko
-dobro bi ta rješenja mogla raditi na stvarnim podacima. [chime_data][chime_cite2]
+mogu usporediti svoja rješenja na skupu podataka koji je dobar pokazatelj koliko
+dobro bi ta rješenja mogla raditi na stvarnim podacima [chime_data][chime_cite2].
 
 Iako je u tijeku već treća iteracija CHiME natjecanja, u ovom radu će se
 koristiti podaci za drugo CHiME natjecanje ili CHiME2,
 budući da u ovom trenutku već postoji mnogo objavljenih rezultata za taj skup podataka,
-a napravljena su i neka poboljšanja u odnosu na prvu verziju. [chime_overview]
+pa je moguće usporediti dobivene rezultate s već objavljenima [chime_overview].
 
 Cilj CHiME natjecanja je dobiti što veću točnost prepoznavanja govora
-izobličenog sa realističnim izvorima smetnji.
-Problem pročišćivanja govora za automatsko prepoznavanje je različit od običnog pročišćivanja
-govora, zato jer velik broj tehnika pročišćivanja govora samo poboljšava doživljaj
-kvalitete govora, ali ne povećava i njegovu razumljivost. [book_speech_enhancement:609]
+izobličenog realističnim izvorima smetnji.
+Problem izdvajanja govora za automatsko prepoznavanje je različit od običnog pročišćivanja
+govora, zato jer veliki broj tehnika pročišćivanja govora samo poboljšava doživljaj
+kvalitete govora, ali ne povećava i njegovu razumljivost (bilo za ljudske ili računalne slušače) [book_speech_enhancement].
 
-Računalno prepoznavanje govora čak i u uvjetima savršeno čistog govornog signala je težak problem.
-Faktori koji taj problem mogu dodatno otežati su promjenjivost položaja i udaljenost govornika u odnosu na mikrofon, 
-veličina rječnika i prirodnost govora. 
-Budući da je fokus CHiME natjecanja izdvajanje govora, autori su odlučili napraviti
-set podataka sa realnim signalima smetnje, snimljenim u pravoj dnevnoj sobi.
+Računalno prepoznavanje govora je težak problem i u uvjetima savršeno čistog govornog signala.
+Faktori koji taj problem mogu dodatno otežati su: 1. promjenjivost položaja i udaljenost govornika u odnosu na mikrofon, 
+2. veličina rječnika i 3. prirodnost govora. 
+Budući da je fokus CHiME natjecanja na izdvajanju govora, autori su odlučili napraviti
+skup podataka s realnim signalima smetnje, snimljenim u pravoj dnevnoj sobi.
 Tako je govoru superponirana izrazito realna smetnja, no kako bi zadatak ostao
-rješiv, govor kojeg treba prepoznati je nerealno jednostavan. [chime_data]
+rješiv, govor kojeg treba prepoznati je nerealno jednostavan [chime_data].
 
 
 ###Grid corpus 
 Izvor čistog govora je Grid korpus govora, koji se sastoji
-od zvučnih zapisa jednostavnih komandi od 34 različita govornika engleskog jezika. [chime_grid_cite]
+od zvučnih zapisa jednostavnih komandi.
+Korištene su snimke 34 različita izvorna govornika engleskog jezika [chime_grid_cite].
 Zvučni zapisi su rečenice od šest riječi u obliku 
 <naredba:4><boja:4><prijedlog.:4><slovo:25><znamenka:10><prilog:4>,
-brojevi u uglatim zagradama označuju koliko u svakoj kategoriji ima mogućih riječi.
-Zadatak je prepoznati slovo i znamenku, i točnost prepoznavanja se mjeri 
+pri čemu brojevi u uglatim zagradama označuju koliko opcija postoji za svaku kategoriju.
+Zadatak je prepoznati slovo i znamenku pa se točnost prepoznavanja mjeri 
 samo na te dvije riječi.
 
-Dakle govor kojeg treba prepoznati se sastoji od malog rječnika i jednostavne gramatike,
+Dakle, govor kojeg treba prepoznati se sastoji od malog rječnika i jednostavne gramatike,
 nije prirodan i govornik je uglavnom na istom položaju, što prepoznavanje
-čistog govora čini vrlo laganim. Točnost za čisti govor je 97.25% [chime_data], usporedivim sa 
-ljudskom točnosti koja je u tom slučaju oko 98.3% (točnost za slova je 99.05%, a za brojke 99.3%) [chime_grid_cite].
+čistog govora čini laganim. Točnost za čisti govor je 97.25% [chime_data], što je usporedivio s 
+ljudskom točnošću koja je u tom slučaju oko 98.3% (točnost za slova je 99.05%, a za brojke 99.3%) [chime_grid_cite].
 
 ###Smetnje
+
 Kako bi se dobio željeni raspon SNR,
-izgovorene rečenice su tako pozicionirane u odnosu na pozadinsku buku da se dobiju željenne
-vrijednost: -6, -3, 0, 3, 6 i 9 dB. To je učinjeno tako da je pozadinska buka
-nasumično pretražena i odabran je onaj vremenski interval koji ima željeni SNR
-za tu rečenicu. Na 9dB, najpoboljnijem odnosu željenog i neželjenog signala,
-smetnje su uglavnom kvazi-stacionarni šumovi, dok su oni na -6dB uglavnom
-iznenadni nestacionarni zvučni događaji.
-Da bi zadatak bio još realističniji, napravljena je konvolucija čiste izgovorene rečenice 
-sa binauralnim impolsnim odzivima sobe [ BRIR-om] koji simuliraju jeku i ograničeno pomicanje govornika. 
-[chime_data]
+izgovorene rečenice su pozicionirane u odnosu na pozadinsku buku tako da se dobiju željenne
+vrijednosti: -6, -3, 0, 3, 6 i 9 dB. Pozadinska buka
+je nasumično pretraživana i odabrani su oni vremenski interval koji imaju željeni SNR
+u odnosu na zadanu rečenicu. Na 9dB, najpovoljnijem odnosu željenog i neželjenog signala,
+smetnje su uglavnom kvazi-stacionarni šumovi (npr. šum ventilatora), dok su oni na -6dB uglavnom
+iznenadni nestacionarni zvučni događaji (npr. dječje vrištanje).
+Kako bi zadatak bio još realističniji, napravljena je konvolucija čiste izgovorene rečenice 
+s vremenski promjenjivim binauralnim impulsnim odzivima sobe (engl. Binaural Room Impulse Response)
+koji simuliraju ograničeno pomicanje govornika i odjek prostorije [chime_data].
 
 ###Podaci
-Sve snimke su u 16-bitnom WAV formatu uzorkovanom na 16kHz.
-Set podataka za uvježbavanje (engl. training set) sarži 17000 rečenica, 500 za svakog od 34 govornika.
-Razvojni set podataka (engl. development set) i ispitni set podataka (engl. test set)
-sadrže 600 rečenica na 6 različitih SNR-a. [chime_website]
+
+Sve snimke u CHiME2 skupu podataka su u 16-bitnom WAV formatu uzorkovanom na 16kHz.
+Skup podataka za treniranje (engl. training set) sarži 17000 rečenica, 500 za svakog od 34 govornika.
+Skup podataka za validaciju (engl. validation/development set) i skup podataka za testiranje (engl. test set)
+sadrže 600 rečenica na 6 različitih SNR-a [chime_website].
 
 ###Ocjenjivanje točnosti
-Osim ispitnih podataka, u sklopu CHiME 2 natjecanja dostupni su i alati za
-provođenje mjerenja točnosti baziranih na sustavu za prepoznavanje baziranom
-na besplatnom i standardnom HTK programskom paketu [book_htk].
-[chime_readme] Iako CHiME dozvoljava korištenje vlastitog
+
+Osim ispitnih podataka, u sklopu CHiME2 dostupni su i alati za
+mjerenje točnosti prepoznavanja govora. 
+Ti alati su temeljeni na sustavima za prepoznavanje govora koji su dio
+HTK programskog paketa [book_htk][chime_readme].
+Iako CHiME dozvoljava korištenje vlastitog
 rješenja za prepoznavanje govora, na raspolaganje je stavljen osnovni
 sustav (engl. baseline recognizer) sa nekoliko unaprijed istreniranih modela.
 To je učinjeno kako bi se moglo odrediti koji dio poboljšanja točnosti se može
-pripisati pročišćavanju govora, a koji sustavu za prepoznavanje govora 
-i olakšala usporedba između različitih sustava. [chime_readme]
+pripisati izdvajanju govora, a koji sustavu za prepoznavanje govora.
+Time se olakšava i usporedba različitih sustava [chime_readme].
 
 Osnovni sustav za prepoznavanje je prilagođen sintaksi rečenica u Grid korpusu.
 Sustav je baziran na skrivenim markovljevim modelima. Svaka od 51 riječi
