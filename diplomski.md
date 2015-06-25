@@ -187,7 +187,14 @@ Osnovni sustav za prepoznavanje je prilagođen sintaksi rečenica u Grid korpusu
 Sustav je baziran na skrivenim markovljevim modelima. Svaka od 51 riječi
 prisutna u Grid korpusu modelirana pomoću skrivenog markovljevog modela sa 
 2 stanja po fonemu. Vjerojatnost izostavljanja svakog stanja je predstavljena pomoću
-mješovitog Gaussovog modela sa 7 komponenti i dijagonalnom kovarijancom. [chime_data]
+mješovitog Gaussovog modela sa 7 komponenti i dijagonalnom kovarijancom.
+Dana su tri unaprijed uvježbana modela za prepoznavanje:
+1. "Čisti" model (eng. clean - treniran na čistom govoru)
+2. "Jeka" model (eng. reverberated - treniran na govoru izobličenom jekom)
+3. "Buka" model (eng. noisy - treniran na govoru izobličenom bukom)
+
+Osim ta tri modela, dostupni su alati za lako uvježbavanje tj. prilagođavanje modela (eng. retraining)
+na skupu podataka za treniranje izobličenom algoritmom za pročišćavanje [chime_data].
 
 Govor je parametriziran kao niz standardnih MFCC značajki.
 Svaki vektor značajke sadrži 39 parametara:
@@ -542,6 +549,8 @@ Treniranje mreže sa stopom učenja [ni = 10e-5] daje najmanju grešku na valida
 Eksperiment je pokazao da smanjivanje stope učenja na [ni = 10e-6] i nastavljanje treniranja na mreži
 iz epohe 180 dodatno smanjuje grešku na skupu za treniranje i skupu za validaciju.
 
+[komentar na sliku: najbolje vrijednosti za sve tri krivulje su posebno označene]
+
 Na slici [training_colors.png] prikazane je i točnost prepoznavanja (na obrnutoj skali)
 na validacijskom skupu
 podataka korištenjem modela treniranog na govoru izobličenom jekom [chime_data].
@@ -553,23 +562,30 @@ Stoga je finalni kriterij za odabir najbolje mreže točnost prepoznavanja
 na validacijskom skupu.
 
 ###Rezultati
-- dobivena točnost, u usporedbi sa očekivanom
 
-[rezultati]
+Rezultati sa odabranu mrežu (epoha 197) prikazani su u Tablici [tab1].
 
-[usporedba.png]
+
+
+[rezultati tab1]
+
+
+
+
+
 
 CURRENNT - mjerenje brzine izvršavanja mreže - bez parallel sequences ali sa i bez CUDA -RT faktor
-+ složenost
 
-- 18 minuta podataka 
-1 po 1
-cpu - 10 min
-gup - 31 min
+[rezultati tab2]
+
 ---------- Primjena -----------
 
 # Diskusija
 	- obrada rezultata, što se iz njih može zaključiti
+	
+Na slici [usporedba.png] dana je ilustracija izlaza iz mreže.
+
+[usporedba.png]
 
 - koliko je super, ali da poboljšanje na small-vocabulary tasku ne znači
 	nužno da će biti toliko na mid i big vocabulary task
@@ -590,7 +606,7 @@ Pristup većim računalnim resursima omogućio bi više eksperimentiranja i
 bolje rezultate [ang_deep_speech].
 
 
-# Zaključak
+# Zaključak - max 350 riječi
 
 što je napravljeno i kolika je važnost toga, skratit 
 
@@ -598,8 +614,9 @@ Ipak sa dovoljno računalnih resursa vjerojatno bi se mogao napraviti primjenjiv
 sustav
 
 
+# Sažetak - max. 100 riječi
 
-
+# Summary - max. 100 riječi
 
 
 # Literatura
