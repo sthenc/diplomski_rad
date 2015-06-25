@@ -645,7 +645,6 @@ pravilu blizu govornika. Pročišćavanje takvog govora trebalo bi biti lakši
 problem od pročišćavanja govora u CHiME skupu podataka, gdje je jeka prisutna
 u svim snimkama i odnos snage govora i smetnje mnogo nepovoljniji.
 
-
 Sa druge strane, u literaturi se iznosi činjenica da dobar rezultat u pročišćavanju
 i prepoznavanju govora sa malim rječnikom ne mora nužno biti prenosiv na prepoznavanje
 govora sa srednjim i velikim rječnicima.
@@ -653,9 +652,17 @@ CHiME natjecanje u svojoj drugoj verziji uključuje i prepoznavanje govora
 sa srednjim riječnikom (Wall Street Journal korpus čitanog govora sa rječnikom od 5000 riječi)[chime_data],
 no ti podaci nisu javno dostupni.
 
-Zanimljiv
+Svakako je zanimljiva i mogućnost pročišćavanja i prepoznavanja govora u stvarnom vremenu,
+i stoga je izmjeren RT faktor. Zanimljivo je da iako primjena grafičkih procesora značajno
+ubrzava [? puta] treniranje mreže, u scenariju kada treba primijeniti mrežu na
+jednom ulaznom nizu značajki usporenje je 3x, vjerojatno zbog puno veće latencije
+prebacivanja podataka iz glavne memorije u memoriju grafičke kartice.
 
-BLSTM i live primjena
+Zanimljiv je i podatak da OpenSMILE podržava obradu zvučnog signala uživo pomoću
+rekurzivnih mreža, no trenutno ne podržava dvosmjerne rekurzivne mreže, vjerojatno
+jer su složenije za primjenu u tom slučaju.
+
+
 
 - drugi pristupi	
 Vjerojatno bi se mogli postići bolji rezultati kada bi se greška
