@@ -309,42 +309,45 @@ Programski paket koristi biblioteku CUDA za rad sa GPU-om [cuda-cite] i napisan 
 Rekurzivne neuronske mreže
 
 Naziv rekurzivna neuronska mreža u užem smislu odnosi se na nadogradnju višeslojnog
-perceptrona [graves_blstm]. U najčešćoj varijanti sloju se uz uobičajenu
-pobudu daje i njegov izlaz iz prethodnog trenutka (pod trenutak se podrazumijeva
+perceptrona [graves_blstm]. U najčešćoj varijanti RNN-a, sloju se uz uobičajenu
+pobudu daju i izlazi iz tog sloja u prethodnom trenutku (pod trenutak se podrazumijeva
 pozicija na vremenskoj ili prostornoj osi).
 Slika [rnn.png] daje primjer jedne takve mreže.
 
-Ovaj tip mreže najčešće se koristi kada je u problemu potrebno iskoristiti
-kontekst, npr. prepoznavanja rukopisa, zato jer ova nadogradnja omogućava
-mreži da u svojem internom stanju pohrani informaciju o prethodnim ulazima.
+Ovaj tip mreže najčešće se koristi kada je u problemu klasifikacije nekog niza
+podataka potrebno iskoristiti kontekst, npr. prepoznavanja rukopisa.
+Ova nadogradnja višeslojnog perceptrona omogućava
+mreži da u svojem internom stanju pohrani informaciju o prethodnim ulazima
+i na taj način pamti što je bilo na ulazu u prethodnim koracima.
 
 Prolaz unaprijed kod rekurzivne neuronske mreže izgleda isto kao kod 
 višeslojnog perceptrona, no kod prolaza unazad koristi se BPTT algoritam.
 
 Ideja algoritma je da se mreža "razmota", tako da se mreži na ulaz odjednom
-da cijeli ulazni niz. Izračuna se izlaz mreže za cijeli niz, i izračunaju
+postavi cijeli ulazni niz. Izračuna se izlaz mreže za cijeli niz, i izračunaju
 se greške za svaki korak. Budući da se zbog razmotavanja mreže težine ponavljaju,
-za svaku težinu se zbroje sve pripadne greške i s tom vrijednošću se osvježi 
-težina te veze.
+za svaku težinu se zbroje sve pripadne greške i s tom vrijednošću se osvježi njezina
+težina.
 
 [opcionalno rnn 3.30 - 3.35 (str. 20)]
 
 ### Dvosmjerna rekurzivna neuronska mreža
 
-Budući da je u mnogim primjena osim konteksta koji prethodi danom
-trenutku korisno uzeti u obzir i ono što slijedi nakon njega,
+Budući da je u mnogim primjenama osim konteksta koji prethodi danom
+korako korisno uzeti u obzir i ono što slijedi nakon njega,
 uvedene su i dvosmjerne rekurzivne neuronske mreže.
 
 To je nadogradnja rekurzivne neuronske mreže gdje jedna polovina rekurzivnog
 skrivenog sloja analizira ulazni niz u pozitivnom smjeru, a druga u negativnom,
-kao u primjeru na slici za dvosmjernu rekurzivnu mrežu sa jednim skrivenim slojem [brnn.png].
+kao u primjeru na slici [brnn.png], gdje je prikazana dvosmjerna rekurzivna mreža sa jednim skrivenim slojem .
 
-Kako bi se izbjegli ciklusi u neuronskoj mreži ta dva dijela sloja nisu 
-direktno međusobno povezani, već njihov izlaz služi kao ulaz višim slojevima.
+Kako bi se izbjegli ciklusi u neuronskoj mreži ta dio koji računa unaprijed
+i dio koji računa unazad u istom sloju ne smiju biti međusobno povezani,
+već njihov izlaz služi kao ulaz višim slojevima.
 
 Rad mreže je u osnovi isti kao kod obične rekurzivne neuronske mreže,
 no potrebno je malo prilagoditi algoritam za izračunavanje izlaza mreže
-i prolaz unatrag, algoritam [1.1] i algoritam [1.2].
+i prolaz unatrag. Te izmjene su prikazane pseudokodom [1.1] i pseudokodom [1.2] [graves_blstm].
 
 za t = 1 do T 
 	Prolaz unaprijed za skriveni sloj koji računa unaprijed, za svaki korak se spremaju
@@ -354,7 +357,7 @@ za t = T do 1
 	izlazi 
 za sve t, bilo kojim redoslijedom
 	Prolaz unaprijed za izlazni sloj, koristeći spremljene izlaze iz oba skrivena sloja
-Algorithm 3.1: BRNN prolaz unaprijed
+Pseudokod [1.1]: BRNN prolaz unaprijed
 
 
 za sve t, bilo kojim redoslijedom
@@ -365,34 +368,38 @@ za t = T do 1
 za t = 1 do T 
 	BPTT prolaz unazad za skriveni sloj koji računa unaprijed, koristeći δ članove
 	iz izlaznog sloja
-Algorithm 3.2: BRNN prolaz unazad [graves_blstm str.21.]
+Pseudokod [1.2]: BRNN prolaz unazad
 
-### Dugotrajna-kratkotrajna memorija
+### Dugotrajno-kratkotrajna memorija
 
-Rekurzivne neuronske mreže imaju boljku da kod treniranja pate od "eksplodirajućeg"
-ili "iščezavajućeg" gradijenta, tj. greška pri prolazu unatrag kroz mrežu ili
-naglo raste sa svakim korakom ili se naglo smanjuje.
+Rekurzivne neuronske mreže imaju boljku da kod treniranja pate od ili "eksplodirajućeg"
+ili "iščezavajućeg" gradijenta (engl. exploding and vanishing gradient),
+tj. greška pri prolazu unatrag kroz mrežu ili naglo raste sa svakim korakom ili se naglo smanjuje.
 Problem eksplodirajućeg gradijenta može dovesti do nestabilnosti mreže,
-pa je jedan način da se smanji stopa učenja, što kao i iščezavajući gradijent
-vodi sporijem učenju mreže. Posljedica toga je da rekurzivne neuronske mreže
+pa je jedan način da se tome doskoči smanjiti stopu učenja, što u skoro svim
+slučajevima vodi u drugu krajnost.
+Iščezavajući gradijent ima posljedicu da je treniranje mreže za pamćenje dužih
+vremenskih ovisnosti jako sporo.
+Posljedica toga je da rekurzivne neuronske mreže
 teško pamte kontekst duže od nekoliko desetaka koraka.
 
-Nadogradnja na rekurzivne mreže koja rješava te probleme je dugotrajna-kratkotrajna
+Nadogradnja na rekurzivne mreže koja rješava te probleme je dugotrajno-kratkotrajna
 memorija ili LSTM [lstm]. Na slici [lstm.png] je prikazana arhitektura LSTM
 ćelije.
 
-Slika [lstm.png] LSTM memorijski blok sa jednom ćelijom. Troja vrata koja su prikazana
+Slika [lstm.png] LSTM blok sa jednom ćelijom. Troja vrata koja su prikazana
 su nelinearne sume koje skupljaju pobude izvan i unutar bloka, i kontroliraju aktivnost
-ćelije preko množenja (mali crni krugovi). Ulazna i izlazna vrata množe ulaz i izlaz ćelije,
-dok vrata za brisanje množe ćelijino prethodno stanje. Unutar ćelije nema aktivacijske
-funkcije. Aktivacijska funkcija vrata 'f' je obično sigmoidna funkcija, tako da joj 
+ćelije preko množenja (mali crni krugovi). Ulazna i izlazna vrata množe redom ulaz i izlaz ćelije,
+dok vrata za brisanje množe prethodno stanje ćelije. Sama ćelija nema aktivacijsku
+funkciju već pamti nepromijenjeno ono što dobije na ulaz.
+Aktivacijska funkcija vrata 'f' je obično sigmoidna funkcija, tako da joj 
 je izlaz između 0 (vrata zatvorena) i 1 (vrata otvorena).
 Ulazna i izlazna aktivacijska funkcija ćelije ('g' i 'h') su obično tangens hiperbolni
-i sigmoidna funkcija, iako 'h' nekada može biti i funkcija identiteta.
+ili sigmoidna funkcija, iako 'h' nekada može biti i funkcija identiteta.
 Veze od memorijske ćelije prema vratima (engl. peephole connections) su prikazane
-isprekidanim strelicama, i one za razliku od ostalih veza unutar bloka imaju težinu. [graves_blstm]
-Blok ima četiri ulaza i samo jedan izlaz. Tako svaki LSTM blok ima sedam parametara,
-tri unutarnje veze sa težinom, te još četiri pomaka (engl. bias) za svaki od ulaza.
+isprekidanim strelicama, i one za razliku od ostalih veza unutar bloka imaju težinu [graves_blstm].
+Blok ima četiri ulaza i samo jedan izlaz. Tako svaki LSTM blok ima sedam parametara : 
+tri unutarnje veze sa težinama, te još četiri pomaka (engl. bias) za svaki od ulaza.
 Izlaz svakog od N neurona na koji je ovaj blok spojen spaja se na sva
 četiri ulaza, tako da je broj ulaznih težina 4 * N.
 
@@ -402,18 +409,18 @@ Izlaz svakog od N neurona na koji je ovaj blok spojen spaja se na sva
 ### Arhitektura sustava
 
 U ovom radu je korištena dvosmjerna LSTM mreža ili BLSTM mreža, koja je zapravo
-obična dvosmjerna rekurzivna mreža samo su neuroni zamijenjeni sa LSTM blokovima.
+obična dvosmjerna rekurzivna mreža, samo su neuroni zamijenjeni sa LSTM blokovima.
 
 Na slici [arhitektura.png] je nacrtana arhitektura mreže koja je korištena.
 Arhitektura je preuzeta iz drugog rada [wen_chime13] jer zbog ograničenih
 računalnih resursa nije bilo vremena da se empirijski odredi optimalna
-arhitektura.
+veličina i broj slojeva.
 
 Svaki BLSTM blok je povezan sa svim blokovima u slojevima ispod i iznad.
-BLSTM blok se sastoji od dva nepovezana LSTM bloka.
-Jedan je povezan sa izlazom iz prošlog koraka od svih LSTM blokova koji računaju unaprijed u tom sloju.
-Drugi je povezan sa izlazom iz idućeg koraka od svih LSTM blokova koji računaju unazad u tom sloju.
-Tako je ukupni broj parametara za ovu mrežu 582339.
+BLSTM blok se sastoji od dva nepovezana LSTM bloka (zbog izbjegavanja ciklusa).
+Jedan je povezan sa izlazom svih LSTM blokova koji računaju unaprijed tog sloja u prošlom koraku.
+Drugi je povezan sa izlazom svih LSTM blokova koji računaju unazad tog sloja u idućem koraku.
+Iz toga slijedi da je ukupni broj parametara za ovu mrežu 582339.
 
 Mreža ima 39 neurona u ulaznom sloju jer toliko parametara ima standardni 
 MFCC_E_D_A_Z vektor značajki koji se koristi u osnovnom prepoznavaču govora
@@ -421,19 +428,20 @@ koji je referentan na CHiME2 [chime_data].
 
 Slika [sustav.png] prikazuje shemu sustava. Ulazni stereo zvučni zapis se
 usrednjavanjem oba kanala prebacuje u mono zapis. Zatim se na temelju
-tog zapisa izračunavaju MFCC značajke na način opisan u poglavlju [broj poglavlja].
-Dobivene značajke se normiraju sa vrijednostima izračunatim na cijelom 
-skupu podataka za treniranje, tako da je srednja vrijednost svakog koeficijenta
-0 i standardna devijacija 1. Na taj način se ne gubi nikakva informacija, 
-ali bi se mreža trebala brže trenirati [wen_chime13].
+tog zapisa izračunavaju MFCC značajke metodom opisanom u poglavlju [broj poglavlja].
+Dobivene značajke se normaliziraju s vrijednostima izračunatim na cijelom 
+skupu podataka za treniranje. Na taj način se ne gubi nikakva informacija, 
+ali se mreža brže trenira [wen_chime13].
 Zatim se izračunava izlaz mreže za cijeli zapis tj. niz značajki.
-Izlazne značajke iz mreže su također približno normirane tako da bi ih se za korištenje
+Izlazne značajke iz mreže su također približno normalizirane tako da ih se za korištenje
 u uobičajenim sustavima za prepoznavanje govora treba pomnožiti sa standardnom
-devijacijom i dodati srednju vrijednost izračunatu na training setu.
-CHiME osnovni sustav za prepoznavanje govora baziran na HTK paketu koristi normalizirane značajke,
-no one su po svemu sudeći nekako drugačije normalizirane. Stoga se izlazne MFCC značajke
+devijacijom i dodati srednju vrijednost izračunatu na skupu za treniranje.
+CHiME2 osnovni prepoznavač koristi normalizirane značajke,
+no one su normalizirane na način koji nije sasvim jednoznačno objašnjen u dokumentaciji i drugačiji
+je od normalizacije korištene za treniranje mreže. Stoga se izlazne MFCC značajke
 moraju normalizirati tako da im statistička svojstva odgovaraju značajkama na kojima je treniran
-model koji se koristi u sustavu za prepoznavanje, jer će u suprotnom doći do pada točnosti prepoznavanja.
+model za prepoznavanje. Razlika u statičkim svojstvima između podataka na kojima je treniran 
+model za prepoznavanje i onih na kojima 
 
 ###Metoda treniranja neuronske mreže
 
