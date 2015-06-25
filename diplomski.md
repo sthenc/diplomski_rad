@@ -118,7 +118,7 @@ U zadnjih nekoliko godina veoma je značajno CHiME natjecanje u razdvajanju
 i prepoznavanju govora (engl. CHiME Speech Separation and Recognition Challenge)
 kao platforma gdje različite istraživačke skupine iz akademskog svijeta i industrije
 mogu usporediti svoja rješenja na skupu podataka koji daje dobar pokazatelj koliko
-dobro bi ta rješenja mogla raditi na stvarnim podacima. [chime_data]
+dobro bi ta rješenja mogla raditi na stvarnim podacima. [chime_data][chime_cite2]
 
 Iako je u tijeku već treća iteracija CHiME natjecanja, u ovom radu će se
 koristiti podaci za drugo CHiME natjecanje (engl. 2nd CHiME challenge),
@@ -243,7 +243,7 @@ Svi ti faktori čine DNN-ove moćnijim i bržim modelom (jednom kada ga se uspij
 
 No, zanimljivo je da je na CHiME 2nd challenge pobijedio sustav koji, između ostalih,
 koristi oba ova pristupa [wen_chime_pobjednik], te su u literaturi poznate 
-razne kombinacije ovih pristupa [dnn_nmf][dnn_vs_nmf][deep_nmf].
+razne kombinacije ovih pristupa [dnn_nmf][dnn_vs_nmf_novo][deep_nmf].
 
 Uglavnom svi visokorangirani sustavi koriste kombinaciju nekoliko složenih pristupa,
 i za razliku od ovog rada nije im cilj doći do sustava koji bi bio dovoljno brz za
@@ -489,7 +489,7 @@ Prije treniranja mreže potrebno je pripremiti podatke, što je u mnogim
 primjenama strojnog učenja, a tako i ovdje, velik dio posla.
 
 Za generiranje značajki korišten je paket otvorenog koda [wen_opensmile_cite] tvrtke
-audEERING UG (haftungsbeschränkt) [audeering], koji podržava generiranje HTK-kompatibilnih
+audEERING UG (haftungsbeschränkt), koji podržava generiranje HTK-kompatibilnih
 značajki. No budući da openSMILE ne podržava njihovo normiranje na način koji je potreban,
 generirane su MFCC_E_D_A značajke, a normalizacija je provedena naknadno.
 
@@ -650,7 +650,7 @@ i prepoznavanju govora sa malim rječnikom ne mora nužno biti prenosiv na prepo
 govora sa srednjim i velikim rječnicima.
 CHiME natjecanje u svojoj drugoj verziji uključuje i prepoznavanje govora
 sa srednjim riječnikom (Wall Street Journal korpus čitanog govora sa rječnikom od 5000 riječi)[chime_data],
-no ti podaci nisu javno dostupni.
+no ti podaci nisu javno dostupni [chime_website2].
 
 Svakako je zanimljiva i mogućnost pročišćavanja i prepoznavanja govora u stvarnom vremenu,
 i stoga je izmjeren RT faktor. Zanimljivo je da iako primjena grafičkih procesora
