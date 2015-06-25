@@ -505,38 +505,43 @@ jer nisu dostupne snimke čistog govora za taj dio podataka.
 Prije treniranja mreže potrebno je pripremiti podatke, što je u mnogim 
 primjenama strojnog učenja, a tako i ovdje, velik dio posla.
 
-Za generiranje značajki korišten je paket otvorenog koda [wen_opensmile_cite] tvrtke
+Za generiranje značajki korišten je openSMILE paket otvorenog koda [wen_opensmile_cite] tvrtke
 audEERING UG (haftungsbeschränkt), koji podržava generiranje HTK-kompatibilnih
 značajki. No budući da openSMILE ne podržava njihovo normiranje na način koji je potreban,
 generirane su MFCC_E_D_A značajke, a normalizacija je provedena naknadno.
 
-CURRENNT podatcima pristupa isključivo preko NetCDF znanstvenog formata sa
+CURRENNT podatcima pristupa isključivo preko NetCDF znanstvenog formata za
 razmjenu podataka, što znači da je sve podatke potrebno prebaciti u taj format [wen_currennt_README]. 
 Za to je korišten program 'htk2nc' koji je dio programskog paketa CURRENNT [wen_currennt_tools_README].
 
 Normalizacija se obavlja nakon što se skupovi za treniranje, testiranje i validaciju
-obrade i pospreme i zasebne NetCDF datoteke.
-U sklopu programskog paketa CURRENNT dostupan je 'nc-standardize' alat
+obrade i pospreme u zasebne NetCDF datoteke.
+U sklopu programskog paketa CURRENNT dostupan je i 'nc-standardize' alat [wen_currennt_tools_README]
 koji izračunava srednje vrijednosti i standardne devijacije za ulazne i izlazne podatke u NetCDF datoteci,
-sprema ih u istu datoteku, te normalizira nizove s tim vrijednostima.
+te ih sprema istu datoteku. Ulazne i izlazne nizove u NetCDF datoteci može normalizirati s
+vrijednostima izračunatima na njima samima ili sa srednjim vrijednostima i standardnim devijacijama
+drugog skupa podataka.
 Normalizacija je provedena tako da su skup podataka za validaciju i testiranje
 normalizirani sa srednjim vrijednostima i standardnim devijacijama skupa podataka
 za treniranje.
   
-Skup podataka za treniranje i validaciju se sastoje se od ulaznih nizova značajki dobivenih
+Skupovi podataka za treniranje i validaciju se sastoje se od ulaznih nizova značajki dobivenih
 od zašumljenog signala i očekivanih nizova značajki koji odgovaraju signalu
-koji je izobličen sa jekom. Skup podataka za testiranje sadrži samo zašumljene signale.
-Jeka u ovom slučaju ne utječe značajno na točnost prepoznavanja,
-a pokusno treniranje je pokazalo da ova neuronska mreža ima problema sa konvergiranjem
+koji je izobličen samo simuliranim odjekom. Skup podataka za testiranje sadrži samo zašumljene signale.
+Simulirani odjek prostorije u ovom slučaju ne utječe značajno na točnost prepoznavanja,
+a probno treniranje je pokazalo da ova neuronska mreža ima problema sa konvergiranjem
 ako joj se dade zadatak da nauči i poništavanje utjecaja jeke.
 
-Sve Python skripte koje su razvijene za pripremanje podataka su javno dostupne [github_nc_packer].
+Budući da je priprema podataka bila toliko zahtjevna, u sklopu ovog rada je razvijeno nekoliko
+skripti koje automatiziraju taj proces.
+Razvijene Python skripte su javno dostupne [github_nc_packer].
 
 ###Treniranje mreže
 
-Korišteno je računalo sa procesorom AMD Athlon II X3 450, sa 3 jezgre i radnim taktom od 3.2GHz, te 8 GB radne memorije.
+Za treniranje mreže korišteno je računalo sa procesorom AMD Athlon II X3 450,
+s tri jezgre i radnim taktom od 3.2GHz, te 8 GB radne memorije.
 Kao grafička kartica korištena je kineska kopija "Nvidia GeForce GT 630" ili sličnog modela kartice
-sa 1 GB grafičke radne memorije i 96 procesnih jedinica.
+sa 1 GB grafičke radne memorije i 96 CUDA procesnih jedinica.
 Iako je kartica nelegitimnog porijekla, podržava naredbe CUDA 2.1 arhitekture, što
 znači da bez problema može izvršavati sve algoritme za treniranje mreže.
 Za treniranje na grafičkim procesorima CURRENNT treba biblioteku CUDA verzije 5 ili više,
@@ -547,10 +552,11 @@ iz izvornog koda.
 
 Jedna epoha na ovom računalu i u tom programskom okruženju trajala je oko 4850 sekundi,
 tj. oko 1 sat i 20 minuta. Za treniranje finalne mreže trebalo je 211 epoha, tj. oko 12 dana.
-No ukupno vrijeme treniranja, s neuspješnim pokušajima je bilo oko 24 dana.
+No ukupno vrijeme treniranja, zajedno s neuspješnim pokušajima je bilo oko 24 dana.
 Zbog dugog vremena treniranja mreže i kratkog trajanja semestra nije bilo dovoljno vremena
-da se eksperimentira s arhitekturom mreže i parametrima treniranja, već su uzete
-već provjerene vrijednosti iz literature [wen_chime13].
+da se eksperimentira s arhitekturom mreže i parametrima treniranja, pa su uzete
+vrijednosti iz literature [wen_chime13], što garantira da će se mreža
+dobro istrenirati i u prvom pokušaju.
 
 Arhitektura mreže je već opisana u poglavlju [Arhitektura sustava],
 stopa učenja učenja iznosi [ni = 10e-5], a moment [m = 0.9].
@@ -561,51 +567,45 @@ Veličina mini-serije (engl. mini-batch) koja se paralelno obrađuje je
 Treniranje se zaustavlja kada nakon 30 epoha više ne dođe do smanjenja greške
 na skupu za validaciju.
 CURRENNT je također bio konfiguriran da sprema težine mreže nakon svake epohe,
-što omogućava i naknadno proučavanje svojstava mreže.
+što omogućava naknadno proučavanje svojstava mreže.
 
 Obično se kod korištenja stohastičke inicijalizacije mreža nekoliko puta 
 trenira ispočetka, pa se odabire mreža koja postigne najmanju grešku na validacijskom
-skupu podataka, no ni to nije napravljeno zbog vremenskih ograničenja.
+skupu podataka. To nije napravljeno zbog vremenskih ograničenja.
 
 Na slici [training_colors.png] prikazana je krivulja učenja.
-Prikazane greške treniranja i validacije su kvadratne sredine greške između izlaznog
+Prikazane greške treniranja i validacije su kvadratne sredine razlike između izlaznog
 vektora značajki i očekivanog vektora značajki. 
-Formula za kvadratnu sredinu greške je:
-
-[RMSE]
 
 Treniranje mreže sa stopom učenja [ni = 10e-5] daje najmanju grešku na validacijskom skupu za epohu 182.
-Eksperiment je pokazao da smanjivanje stope učenja na [ni = 10e-6] i nastavljanje treniranja na mreži
-iz epohe 180 dodatno smanjuje grešku na skupu za treniranje i skupu za validaciju.
+Eksperiment je pokazao da smanjivanje stope učenja na [ni = 10e-6] i nastavljanje treniranja
+od epohe 180 dodatno smanjuje grešku na skupu za treniranje i skupu za validaciju.
 
 [komentar na sliku: najbolje vrijednosti za sve tri krivulje su posebno označene]
 
-Na slici [training_colors.png] prikazane je i točnost prepoznavanja (na obrnutoj skali)
-na validacijskom skupu
-podataka korištenjem modela treniranog na govoru izobličenom jekom [chime_data].
-Tijekom provjeravanja uspješnosti rada mreže uočeno je da smanjivanje greške
-između izlaznih i očekivanih značajki ne odgovara sasvim smanjivanju pogreške
+Na slici [training_colors.png] prikazana je i točnost prepoznavanja (na obrnutoj skali)
+na validacijskom skupu podataka korištenjem "Odjek" osnovnog modela.
+Tijekom provjeravanja uspješnosti rada mreže uočeno je da smanjivanje mjere razlike
+između izlaznih i očekivanih značajki ne odgovara u svakom slučaju smanjivanju pogreške
 prepoznavanja. 
 
-Stoga je finalni kriterij za odabir najbolje mreže točnost prepoznavanja
+Stoga je kao finalni kriterij za odabir najbolje mreže uzeta točnost prepoznavanja
 na validacijskom skupu.
 
 ###Rezultati
 
 Rezultati sa odabranu mrežu (epoha 197) prikazani su u Tablici [tab1].
-Za usporedbu su dani i rezultati prepoznavanja na nepročišćenom govoru.
-"Odjek" (engl. reverberated) model je uvježban na govoru iz skupa za treniranje
-koji je izobličen samo bukom. "Buka" (eng. noisy) model je uvježban na govoru
-sa bukom, koji se koristi kao ulaz mreže kod treniranja, tako da je optimalno
-prilagođen takvom govoru. Točnost prepoznavanja čistog govora izobličenog jekom
-na podacima sa validaciju iznosi 93.8%, a na podacima za testiranje je vjerojatno
-1-2% veča, no to nije moguće provjeriti. Taj podatak je dan kao procjena gornje
-granice točnosti koju može postići teoretski idealni sustav za pročišćavanje govora.
+Za usporedbu su dani i rezultati prepoznavanja na zašumljenom govoru.
+Točnost prepoznavanja čistog govora izobličenog jekom
+na podacima za validaciju iznosi 93.8%, a na podacima za testiranje je vjerojatno
+1 do 2% veča, no to nije moguće provjeriti jer čisti govor nije javno dostupan.
+Točnost prepoznavanja na čistom govoru je gornja
+granica točnosti koju može postići teoretski idealni sustav za pročišćavanje govora.
 [rezultati tab1]
 
 
 U tablici [tab2] dani su rezultati iz rada u kojem je korištena ista strategija
-za pročišćavanje govora [wen_chime13] i dobiveni rezultati su samo apsolutno 1 do 1.5 % lošiji.
+za pročišćavanje govora [wen_chime13]. U usporedbi s tim rezultatima dobiveni rezultati su samo 1 do 1.5 % lošiji.
 [rezultati tab2] 
 
 U tablici [tab3] je prikaz prosječnog trajanje epohe za treniranje mreže na
