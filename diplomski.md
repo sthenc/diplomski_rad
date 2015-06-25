@@ -528,6 +528,8 @@ Korišten je operativni sustav Lubuntu Linux 14.04, na kojem su lako dostupni i 
 svi potrebni paketi za pripremanje izvršnih verzija CURRENNT (verzija 0.2-rc1) i OpenSMILE (verzija 2.1) paketa
 iz izvornog koda.
 
+[parametri treniranja]
+
 Jedna epoha na ovom računalu i u tom programskom okruženju trajala je oko 4850 sekundi,
 tj. oko 1 sat i 20 minuta. Za treniranje finalne mreže trebalo je 211 epoha, tj. oko 12 dana.
 No ukupno vrijeme treniranja, s neuspješnim pokušajima je bilo oko 24 dana.
@@ -564,18 +566,26 @@ na validacijskom skupu.
 ###Rezultati
 
 Rezultati sa odabranu mrežu (epoha 197) prikazani su u Tablici [tab1].
+Za usporedbu su dani i rezultati prepoznavanja na nepročišćenom govoru.
+"Odjek" (eng. reverberated) model je uvježban na govoru iz skupa za treniranje
+koji je izobličen samo bukom. "Buka" (eng. noisy) model je uvježban na govoru
+sa bukom, koji se koristi kao ulaz mreže kod treniranja, tako da je optimalno
+prilagođen takvom govoru.
 
 [rezultati tab1]
 
 
-[rezultati tab2] [wen_chime13]
+U tablici [tab2] dani su rezultati iz rada u kojem je korištena ista strategija
+za pročišćavanje govora [wen_chime13] i dobiveni rezultati su samo 1 do 1.5 % lošiji.
+[rezultati tab2] 
 
+U tablici [tab3] je prikaz prosječnog trajanje epohe za treniranje mreže na
+običnom i na grafičkom procesoru.
 
+U tablici [tab4] prikazani su rezultati mjerenja brzine obrade 18 minuta zvučnih
+zapisa pomoću dobivene mreže i CURRENNT paketa. 
 
-
-CURRENNT - mjerenje brzine izvršavanja mreže - bez parallel sequences ali sa i bez CUDA -RT faktor
-
-[rezultati tab3]
+[rezultati tab4]
 
 ---------- Primjena -----------
 
