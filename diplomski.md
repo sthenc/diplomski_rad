@@ -177,42 +177,48 @@ Time se olakšava i usporedba različitih sustava [chime_readme].
 
 Osnovni sustav za prepoznavanje je prilagođen sintaksi rečenica u Grid korpusu.
 Sustav je baziran na skrivenim markovljevim modelima. Svaka od 51 riječi
-prisutna u Grid korpusu modelirana pomoću skrivenog markovljevog modela sa 
+prisutna u Grid korpusu modelirana je pomoću skrivenog markovljevog modela s
 2 stanja po fonemu. Vjerojatnost izostavljanja svakog stanja je predstavljena pomoću
-mješovitog Gaussovog modela sa 7 komponenti i dijagonalnom kovarijancom.
+mješovitog Gaussovog modela s 7 komponenti i dijagonalnom kovarijancom.
+
 Dana su tri unaprijed uvježbana modela za prepoznavanje:
 1. "Čisti" model (engl. clean - treniran na čistom govoru)
-2. "Jeka" model (engl. reverberated - treniran na govoru izobličenom jekom)
+2. "Odjek" model (engl. reverberated - treniran na govoru izobličenom jekom)
 3. "Buka" model (engl. noisy - treniran na govoru izobličenom bukom)
 
 Osim ta tri modela, dostupni su alati za lako uvježbavanje tj. prilagođavanje modela (engl. retraining)
-na skupu podataka za treniranje izobličenom algoritmom za pročišćavanje [chime_data].
+svog vlastitog modela. To se radi tako da se skup podataka za treniranje propusti kroz algoritam
+za izdvajanje govora i model za prepoznavanje se onda trenira na tom govoru. Cilj je poništiti 
+utjecaj izobličenja govora koja nastaju njegovim izdvajanjem [chime_data].
 
 Govor je parametriziran kao niz standardnih MFCC značajki.
-Svaki vektor značajke sadrži 39 parametara:
-12 mel-kepstralnih koeficijenata koji su normalizirani po srednjoj vrijednosti
-(ali ne i standardnoj devijaciji) (engl. CMN - Cepstral Mean Normalisation), zatim logaritamska energija okvira,
-ta zatim 13 differencijalnih koeficijenata prvog reda i 13 drugog reda 
-(engl. delta and acceleration coefficients). 
-Standardna HTK šifra za te značajke je MFCC_E_D_A_Z i detaljno (ali ne i jednoznačno)
-je opisana u literaturi [book_htk:80][book_opensmile:32]
-MFCC značajke se računaju na vremenskim okvirima od 25 ms, a korak je 10 ms.
+Svaki vektor značajke sadrži 39 parametara.
+Prvi parametri u vektoru su 13 mel-kepstralnih koeficijenata koji su normalizirani po srednjoj vrijednosti
+(ali ne i standardnoj devijaciji). Ta metoda se zova kepstralna metoda normalizacije
+srednje vrijednosti (engl. CMN - Cepstral Mean Normalisation) i smanjuje utjecaj
+razlika u obliku vokalnog trakta na točnost prepoznavanja govora različitih govornika.
+Umjesto nultog MFCC parametra koristi se logaritamska energija okvira.
+Na tih 13 parametara dodaje se 13 differencijalnih koeficijenata prvog reda
+i 13 drugog reda (engl. delta and acceleration coefficients). 
+Standardna HTK šifra za te značajke je MFCC_E_D_A_Z i detaljno
+je opisana u literaturi [book_htk][book_opensmile].
+MFCC značajke se standardno računaju na vremenskim okvirima od 25 ms, a korak je 10 ms.
 Budući da su zvučni podaci dani u stereo formatu, signal je pretvoren u
-mono signal uzimanjem srednje vrijednosti oba kanala. [chime_data]
+mono signal uzimanjem srednje vrijednosti oba kanala [chime_data].
 
 
 Odabir strategije
 
 Zanimljiva povijesna činjenica je da su neuronske mreže u području slijepog
-razdvajanja signala prisutne od samog početka istraživanja na tom području
-80-ih godina prošlog stoljeća.
-Prvi algoritam koji je korišten je analiza principalnih komponenata,
+razdvajanja signala prisutne od samog početka njegovog 80-ih godina prošlog stoljeća.
+
+Prvi algoritam koji je korišten je analiza principalnih komponenata ili PCA,
 gdje se parametrizirana reprezentacija signala (najčešće spektar) pokušavala
-razdvojiti na komponente koje odgovaraju pojedinim izvorima signala pomoću
+razdvojiti na komponente koje odgovaraju pojedinim izvorima signala korištenjem
 određenih statističkih svojstava tih signala.
 Analiza neovisnih komponenata ili kraće ICA još je jedna metoda koja se može
-svrstati u metode strojnog učenja pomoću neuronskih mrežam, a nastala je
-kao poboljšanje originalnog PCA algoritma [book_bss_ica:7-9] [book_nn_sp:180].
+svrstati u neuronske mreže, a nastala je
+nadogradnjom originalnog PCA algoritma [book_bss_ica:7-9] [book_nn_sp:180].
 
 U literaturi se mogu naći stvarno brojni i nerijetko vrlo složeni pristupi ovoj problematici, 
 no valja izdvojiti dva koja su se pokazala posebno uspješnima i popularnima u posljednjih
@@ -221,59 +227,59 @@ nekoliko godina.
 To su nenegativna faktorizacija matrica ili NMF [book_bss_ica:515] i 
 duboke neuronske mreže ili DNN.
 Oba pristupa su relativno jednostavna, no NMF ima nekoliko nedostataka u
-usporedbi sa DNN.
+usporedbi s DNN.
 NMF je isključivo linearan model, dok DNN (ovisno o konkretnoj izvedbi)
 u pravilu može modelirati i nelinearno preslikavanje iz izvora signala 
 u mješavinu.
 Također, kod primjene istreniranog NMF modela mora se provoditi iterativni
-postupak koji uključuje operacije množenja matrica, što je jako zahtjevno
-po računalne resurse.
-S druge strane, DNN-ovi se u pravilu duže treniraju, ali se zato primjena
-istreniranog modela sastoji samo od množenja nekoliko matrica, što ih
-čini pogodnima sa primjenu u stvarnom vremenu.
-Svi ti faktori čine DNN-ove moćnijim i bržim modelom (jednom kada ga se uspije istrenirati) [dnn_faster_nmf].
+postupak koji uključuje množenje nekoliko velikih matrica, što je jako računski zahtjevno.
 
-No, zanimljivo je da je na CHiME2 pobijedio sustav koji, između ostalih,
-koristi oba ova pristupa [wen_chime_pobjednik], te su u literaturi poznate 
+S druge strane, duboke neuronske mreže se u pravilu duže treniraju, ali se zato primjena
+istreniranog modela sastoji samo od jednokratnog množenja nekoliko matrica, što ih
+čini pogodnima sa primjenu u stvarnom vremenu jer imaju u osnovi linearnu složenost.
+Svi ti faktori čine duboke neuronske mreže moćnijim i bržim modelom (jednom kada ih se uspije istrenirati) [dnn_faster_nmf].
+
+No, zanimljivo je da je na CHiME2 pobijedio sustav koji, među ostalima,
+koristi i DNN i NMF [wen_chime_pobjednik], te su u literaturi poznate 
 razne kombinacije ovih pristupa [dnn_nmf][dnn_vs_nmf_novo][deep_nmf].
 
-Uglavnom svi visokorangirani sustavi koriste kombinaciju nekoliko složenih pristupa,
-i za razliku od ovog rada nije im cilj doći do sustava koji bi bio dovoljno brz za
-primjenu u praksi, već pod svaku cijenu dobiti čim veće performanse na testnim podacima [chime_overview].
+Uglavnom svi visokorangirani sustavi koriste kombinaciju nekoliko složenih pristupa i,
+za razliku od ovog rada, nije im cilj doći do sustava koji bi bio dovoljno brz za
+primjenu u praksi, već pod cijenu brzine i jednostavnosti dobiti čim veće performanse
+na skupu podataka za testiranje [chime_overview].
 
-Duboke neuronske mreže su dio jednog većeg pokreta na području umjetne inteligencije
+Duboke neuronske mreže su dio jedne šire paradigme na području umjetne inteligencije
 pod nazivom duboko učenje.
-Ideja vodilja tog pokreta je da su korištenje veće količine podataka [ang_banko_brill_scale]
+Glavna ideja te paradigme je da su korištenje veće količine podataka [ang_banko_brill_scale]
 i većih modela [ang_coates_model_size] glavni motori povećanja performansi.
-Cilje je iskoristiti sve veću raspoloživu računalna moć kako bi se u osnovi stari
+Cilj je iskoristiti sve veću raspoloživu računalna moć i sve veća količina podataka kako bi se u svojoj osnovi stari
 algoritmi iskoristili za rješavanje dosad nezamislivih problema.
 Računalni resursi koji se koriste mogu biti tisuće servera u nekoj od velikih
 internetskih kompanija [ang_large_dnn], ili pak grafički procesori [ang_cudnn] koji 
 danas i običnim studentima čine dostupnom računalnu moć u rangu nekadašnjih 
 superračunala.
+
 No, najmoćnija je kombinacija više servera sa nekoliko grafičkih procesora,
-što omogućuje brzo treniranje neuronskih mreža sa nekoliko milijardi parametara [ang_cots_hpc].
+što omogućuje treniranje neuronskih mreža sa nekoliko milijardi parametara
+u roku nekoliko dana [ang_cots_hpc].
 
 Povećani intenzitet istraživanja na ovom području doveo je i do novih
 algoritama i ideja, između ostalog i obećavajućih postignuća na području
 računalnog prepoznavanja govora [ang_deep_speech][graves14].
 
-
 Dosad je u ovom poglavlju pojam DNN korišten kao da se radi o jednom pristupu,
-no samo u području pročišćavanja govora može se odnositi na mnogo različitih
-tipova mreža sa različitim svojstvima[dnn_turci][dnn_wang_ss_frontend][dnn_rnn_smaragdis]
+no samo u području izdvajanja govora može se odnositi na mnogo različitih
+tipova mreža s različitim svojstvima [dnn_turci][dnn_wang_ss_frontend][dnn_rnn_smaragdis]
 [dnn_kinezi][dnn_multitalker][dnn_music].
 
-Povećani interes za i šira primjena neuronskih mreža dovela 
-
 Tip duboke neuronske mreže koji se pokazao najprikladniji za ovaj problem je
-rekurzivna neuronska mreža (RNN) sa dvosmjernom dugom-kratkom memorijom (BLSTM),
-i to će biti daljnji fokus ovog rada [wen_chime13][wen_chime14][wen_sdr_lstm][wen_chime1].
+rekurzivna neuronska mreža ili RNN  s dvosmjernim dugom-kratkom memorijskim ćelijama ili BLSTM [wen_chime13][wen_chime14][wen_sdr_lstm][wen_chime1].
+Taj pristup će biti daljnji fokus ovog rada.
 
 
 Odabir programskog paketa
 
-Budući da su duboke neuronske mreže u zadnje vrijeme vrlo popularno područje za istraživanje,
+Budući da su duboke neuronske mreže u zadnje vrijeme vrlo popularno područje istraživanja,
 pojavili su se mnogi programski paketi koji olakšavaju njihovu upotrebu.
 
 Budući da je odabran BLSTM tip rekurzivne neuronske mreže, u obzir dolaze samo paketi
@@ -285,15 +291,16 @@ mreže moglo premašiti trajanje ljetnog semestra.
 Tablica [broj N] daje usporedbu dostupnih paketa otvorenog koda i neke
 njihove karakteristike [pybrain_cite][theano_cite1][theano_cite2][torch7_cite][wen_currennt_cite][rnnlib]. 
 
+[prebacit u tablicu]
 			pybrain		    torch7 	      theano          rnnlib           CURRENNT
 GPU 		ne                 da             da              ne               da
 BLSTM		da                 ne             ne              da               da
 jezik       python             lua/c          python          c++              c++
 
-Jedino programski paket CURRENNT zadovoljava sve potrebne kriterije,
-podržava BLSTM-RNN neuronske mreže, ubrzavanje izvršavanja na grafičkim procesorima
-korištenjem biblioteke CUDA [cuda-cite] i napisan je u programskom jeziku C++,
-što vjerojatno znači da će zadovoljavajuće brzo obaviti treniranje mreže.
+Jedino programski paket CURRENNT zadovoljava sve zadane kriterije:
+podržava BLSTM-RNN neuronske mreže i ubrzavanje izvršavanja na grafičkim procesorima.
+Programski paket koristi biblioteku CUDA za rad sa GPU-om [cuda-cite] i napisan je u programskom jeziku C++,
+što mu omogućava da obavi treniranje mreže zadovoljavajućom brzinom.
 
 ----- Pregled literature ---------
 
@@ -301,8 +308,8 @@ korištenjem biblioteke CUDA [cuda-cite] i napisan je u programskom jeziku C++,
 
 Rekurzivne neuronske mreže
 
-Naziv "rekurzivna neuronska mreža" u užem smislu odnosi se na nadogradnju višeslojnog
-perceptrona [graves_blstm : 20]. U najčešćoj varijanti sloju se uz uobičajenu
+Naziv rekurzivna neuronska mreža u užem smislu odnosi se na nadogradnju višeslojnog
+perceptrona [graves_blstm]. U najčešćoj varijanti sloju se uz uobičajenu
 pobudu daje i njegov izlaz iz prethodnog trenutka (pod trenutak se podrazumijeva
 pozicija na vremenskoj ili prostornoj osi).
 Slika [rnn.png] daje primjer jedne takve mreže.
