@@ -743,11 +743,12 @@ i koji su mogući pravci daljnjeg istraživanja.
 # Sažetak - max. 100 riječi
 
 U ovom radu dan je pregled trenutnog stanja područja izdvajanja govora
-i pregled najuspješnijih strategija. Poseban naglaskom na dubokim neuronskim mrežama.
-Odabrana je BLSTM-RNN arhitektura i CURRENNT kao programski paket za rad
+i pregled najuspješnijih strategija za izdvajanje govora. Poseban naglaskom stavljen 
+je na duboke neuronske mreže.
+Odabrana je BLSTM-RNN arhitektura neuronske mreže i CURRENNT kao programski paket za rad
 s tom mrežom. Uspješnost izdvajanja govora je ispitana na skupu podataka prvog zadatka
 drugog CHiME natjecanja (engl. CHiME 2nd challenge Task 1) i postignuto je apsolutno poboljšanje
-točnosti od 25% za prepoznavanja govora sa smetnjama koristeći sustav za prepoznavanje
+točnosti od 25% za prepoznavanje govora sa smetnjama koristeći sustav za prepoznavanje
 čistog govora s malim opsegom rječnika.
 
 ključne riječi: izdvajanje govora, duboke neuronske mreže, RNN, BLSTM, CUDA, CHiME, CURRENNT
@@ -755,12 +756,12 @@ ključne riječi: izdvajanje govora, duboke neuronske mreže, RNN, BLSTM, CUDA, 
 # Summary - max. 100 riječi
 
 A overview of recent developments in the speech extraction field is given,
-including the survey of most succesfull strategies. A special emphassis is put on approaches based
-on deep neural networks. The BLSTM-RNN architecture is chosen along with the
+including the survey of most successful strategies. A special emphasis is put on approaches based
+on deep neural networks. The BLSTM-RNN neural network architecture is chosen along with the
 CURRENNT software package for working with the network.
 Success of speech extraction is evaluated on Task 1 of the CHiME 2nd challenge, 
 and an absolute improvement in word accuracy of 25% is achieved on a noisy speech
-recognition task using an small-dictionary ASR system specialised for clean speech.
+recognition task using a small-dictionary ASR system specialised for clean speech.
 
 keywords: speech extraction, deep neural networks, RNN, BLSTM, CUDA, CHiME, CURRENNT
 
