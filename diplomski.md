@@ -409,7 +409,7 @@ Izlaz svakog od N neurona na koji je ovaj blok spojen spaja se na sva
 
 [Jednadžbe - prilagodit ?  4.1 - 4.16 ? (str. 37-38)]
 
-### Arhitektura sustava
+Arhitektura sustava
 
 U ovom radu je korištena dvosmjerna LSTM mreža ili BLSTM mreža, koja je zapravo
 obična dvosmjerna rekurzivna mreža, samo su neuroni zamijenjeni sa LSTM blokovima.
@@ -446,7 +446,7 @@ moraju normalizirati tako da im statistička svojstva odgovaraju značajkama na 
 model za prepoznavanje. To se radi da se izbjegne pad performansi uslijed razlike
 između podataka na kojima je obavljeno treniranje i onima na kojima se ispituje točnost.
 
-###Metoda treniranja neuronske mreže
+Metoda treniranja neuronske mreže
 
 Treniranje i izvršavanje neuronske mreže obavljeno je korištenjem programskog
 paketa CURRENNT, jedinog koji podržava treniranje BLSTM mreža pomoću grafičkih
