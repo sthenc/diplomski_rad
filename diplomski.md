@@ -5,22 +5,23 @@ author: Stjepan Henc
 
 # Kratice
 
-engl. - engleski
-GPU - grafički procesor opće namjene (engl. Graphic Processor Unit)
-SNR - omjer korisnog signala i signala smetnje (engl. Signal to Noise Ratio)
-CHiME - natjecanje u računalnom prepoznavanju govora u okruženjima gdje je prisutno više
-izvora signala(engl. Computational Hearing in Multisource Environments)
-CHiME2 - druga iteracija CHiME natjecanja (engl. CHiME 2nd challenge)
-PCA - analiza principalnih komponenata (engl. PCA - Principal Component Analysis)
-ICA - analiza neovisnih komponenata (engl. PCA - Principal Component Analysis)
-NMF - nenegativna faktorizacija matrica (engl. Non-negative Matrix Factorization)
-DNN - duboka neuronska mreža (engl. Deep Neural Network)
-RNN - rekurzivna neuronska mreža (engl. Recursive Neural Network)
-BRNN - dvosmjerna rekurzivna neuronska mreža (engl. Bidirectional Recursive Neural Network)
-LSTM - dugotrajno-kratkotrajna memorija (engl. Long-Short Term Memory)
-BLSTM - dvosmjerna dugotrajno-kratkotrajna memorija (engl. Bidirectional Long-Short Term Memory)
-BPTT - nadogradnja backpropagation algoritma za treniranje RNN (engl. Backpropagation Through Time)
-CTC - klasifikacija vremenskih nizova pomoću neuronskih mreža (engl. Connectionist Temporal Classification)
+BLSTM  |  dvosmjerna dugotrajno-kratkotrajna memorija (engl. Bidirectional Long-Short Term Memory)
+BRNN   |  dvosmjerna rekurzivna neuronska mreža (engl. Bidirectional Recursive Neural Network)
+BPTT   |  nadogradnja backpropagation algoritma za treniranje RNN (engl. Backpropagation Through Time)
+CHiME  |  natjecanje u računalnom prepoznavanju govora u okruženjima gdje je prisutno više izvora signala(engl. Computational Hearing in Multisource Environments)
+CHiME2 |  druga iteracija CHiME natjecanja (engl. CHiME 2nd challenge)
+CTC    |  klasifikacija vremenskih nizova pomoću neuronskih mreža (engl. Connectionist Temporal Classification)
+DNN    |  duboka neuronska mreža (engl. Deep Neural Network)
+engl   |  engleski
+GPU    |  grafički procesor opće namjene (engl. Graphic Processor Unit)
+ICA    |  analiza neovisnih komponenata (engl. PCA - Principal Component Analysis)
+LSTM   |  dugotrajno-kratkotrajna memorija (engl. Long-Short Term Memory)
+NMF    |  nenegativna faktorizacija matrica (engl. Non-negative Matrix Factorization)
+PCA    |  analiza principalnih komponenata (engl. PCA - Principal Component Analysis)
+RNN    |  rekurzivna neuronska mreža (engl. Recursive Neural Network)
+SNR    |  omjer korisnog signala i signala smetnje (engl. Signal to Noise Ratio)
+
+
 
 # Uvod
 
