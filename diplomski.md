@@ -486,15 +486,15 @@ Obično se treniranje nastavi još
 nekoliko epoha nakon toga da bi se osiguralo da je to stvarno minimum,
 ali se prekida nakon unaprijed određenog broja epoha.
 
-Kao najbolja mreža odabire ona koja daje najbolji rezultat na skupu za validaciju.
+Kao najbolja mreža odabire se ona koja daje najbolji rezultat na skupu za validaciju.
 
-Za spriječavanje pretreniranja na taj način u ovom slučaju se ne koristi skup za testiranje,
-jer je odabir najbolje mreže ovisno o greški na skupu za testiranje ekvivalentno treniranju
+Za sprječavanje pretreniranja se tako u ovom slučaju ne koristi skup za testiranje,
+jer je odabir najbolje mreže po kriteriju greške na skupu za testiranje ekvivalentan treniranju
 jednog parametra na tom skupu podataka. Skup podataka za testiranje služi da se dobije
 procjena kako će se mreža ponašati ako na ulaz dobije još neviđene podatke [test_val].
 
-CHiME skup podataka je već podijeljen na skup za treniranje sa 17000 zapisa (500 za svakog od 34 govornika),
-skup za testiranje sa 3600 zapisa i skup za validaciju sa 3600 zapisa (600 za svaku od 6 SNR vrijednosti) [chime_data].
+CHiME skup podataka je već podijeljen na skup za treniranje s 17000 zapisa (500 za svakog od 34 govornika),
+skup za testiranje s 3600 zapisa i skup za validaciju s 3600 zapisa (600 za svaku od 6 SNR vrijednosti) [chime_data].
 Skup za testiranje i ne bi se mogao koristiti za treniranje ili validaciju
 jer nisu dostupne snimke čistog govora za taj dio podataka.
 
@@ -513,7 +513,7 @@ audEERING UG (haftungsbeschränkt), koji podržava generiranje HTK-kompatibilnih
 značajki. No budući da openSMILE ne podržava njihovo normiranje na način koji je potreban,
 generirane su MFCC_E_D_A značajke, a normalizacija je provedena naknadno.
 
-CURRENNT podatcima pristupa isključivo preko NetCDF znanstvenog formata za
+CURRENNT podacima pristupa isključivo preko NetCDF znanstvenog formata za
 razmjenu podataka, što znači da je sve podatke potrebno prebaciti u taj format [wen_currennt_README]. 
 Za to je korišten program 'htk2nc' koji je dio programskog paketa CURRENNT [wen_currennt_tools_README].
 
@@ -521,18 +521,18 @@ Normalizacija se obavlja nakon što se skupovi za treniranje, testiranje i valid
 obrade i pospreme u zasebne NetCDF datoteke.
 U sklopu programskog paketa CURRENNT dostupan je i 'nc-standardize' alat [wen_currennt_tools_README]
 koji izračunava srednje vrijednosti i standardne devijacije za ulazne i izlazne podatke u NetCDF datoteci,
-te ih sprema istu datoteku. Ulazne i izlazne nizove u NetCDF datoteci može normalizirati s
+te ih sprema u istu datoteku. Ulazne i izlazne nizove u NetCDF datoteci može normalizirati s
 vrijednostima izračunatima na njima samima ili sa srednjim vrijednostima i standardnim devijacijama
 drugog skupa podataka.
 Normalizacija je provedena tako da su skup podataka za validaciju i testiranje
 normalizirani sa srednjim vrijednostima i standardnim devijacijama skupa podataka
 za treniranje.
   
-Skupovi podataka za treniranje i validaciju se sastoje se od ulaznih nizova značajki dobivenih
+Skupovi podataka za treniranje i validaciju sastoje se od ulaznih nizova značajki dobivenih
 od zašumljenog signala i očekivanih nizova značajki koji odgovaraju signalu
 koji je izobličen samo simuliranim odjekom. Skup podataka za testiranje sadrži samo zašumljene signale.
 Simulirani odjek prostorije u ovom slučaju ne utječe značajno na točnost prepoznavanja,
-a probno treniranje je pokazalo da ova neuronska mreža ima problema sa konvergiranjem
+a probno treniranje je pokazalo da ova neuronska mreža ima problema s učenjem
 ako joj se dade zadatak da nauči i poništavanje utjecaja jeke.
 
 Budući da je priprema podataka bila toliko zahtjevna, u sklopu ovog rada je razvijeno nekoliko
@@ -541,10 +541,10 @@ Razvijene Python skripte su javno dostupne [github_nc_packer].
 
 ###Treniranje mreže
 
-Za treniranje mreže korišteno je računalo sa procesorom AMD Athlon II X3 450,
-s tri jezgre i radnim taktom od 3.2GHz, te 8 GB radne memorije.
+Za treniranje mreže korišteno je računalo s procesorom AMD Athlon II X3 450,
+s tri jezgre i radnim taktom od 3.2 GHz, te 8 GB radne memorije.
 Kao grafička kartica korištena je kineska kopija "Nvidia GeForce GT 630" ili sličnog modela kartice
-sa 1 GB grafičke radne memorije i 96 CUDA procesnih jedinica.
+s 1 GB grafičke radne memorije i 96 CUDA procesnih jedinica.
 Iako je kartica nelegitimnog porijekla, podržava naredbe CUDA 2.1 arhitekture, što
 znači da bez problema može izvršavati sve algoritme za treniranje mreže.
 Za treniranje na grafičkim procesorima CURRENNT treba biblioteku CUDA verzije 5 ili više,
@@ -558,16 +558,16 @@ tj. oko 1 sat i 20 minuta. Za treniranje finalne mreže trebalo je 211 epoha, tj
 No ukupno vrijeme treniranja, zajedno s neuspješnim pokušajima je bilo oko 24 dana.
 Zbog dugog vremena treniranja mreže i kratkog trajanja semestra nije bilo dovoljno vremena
 da se eksperimentira s arhitekturom mreže i parametrima treniranja, pa su uzete
-vrijednosti iz literature [wen_chime13], što garantira da će se mreža
+vrijednosti iz literature [wen_chime13], što je garantiralo da će se mreža
 dobro istrenirati i u prvom pokušaju.
 
 Arhitektura mreže je već opisana u poglavlju [Arhitektura sustava],
-stopa učenja učenja iznosi [ni = 10e-5], a moment [m = 0.9].
+stopa učenja iznosi [ni = 10e-5], a moment [m = 0.9].
 Težinama i ulazima se dodaju slučajne vrijednosti iz distribucije sa
 srednjom vrijednosti [mi=0] i standardnom devijacijom [sigma=0.1].
 Veličina mini-serije (engl. mini-batch) koja se paralelno obrađuje je
 100 ulaznih nizova.
-Treniranje se zaustavlja kada nakon 30 epoha više ne dođe do smanjenja greške
+Treniranje se zaustavlja kada se u zadnjih 30 epoha nije smanjila greška
 na skupu za validaciju.
 CURRENNT je također bio konfiguriran da sprema težine mreže nakon svake epohe,
 što omogućava naknadno proučavanje svojstava mreže.
@@ -589,19 +589,18 @@ od epohe 180 dodatno smanjuje grešku na skupu za treniranje i skupu za validaci
 Na slici [training_colors.png] prikazana je i točnost prepoznavanja (na obrnutoj skali)
 na validacijskom skupu podataka korištenjem "Odjek" osnovnog modela.
 Tijekom provjeravanja uspješnosti rada mreže uočeno je da smanjivanje mjere razlike
-između izlaznih i očekivanih značajki ne odgovara u svakom slučaju smanjivanju pogreške
+između izlaznih i očekivanih značajki ne rezultira u svakom slučaju i proporcionalnim smanjivanjem pogreške
 prepoznavanja. 
-
 Stoga je kao finalni kriterij za odabir najbolje mreže uzeta točnost prepoznavanja
 na validacijskom skupu.
 
 ###Rezultati
 
-Rezultati sa odabranu mrežu (epoha 197) prikazani su u Tablici [tab1].
+Rezultati za odabranu mrežu (epoha 197) prikazani su u tablici [tab1].
 Za usporedbu su dani i rezultati prepoznavanja na zašumljenom govoru.
 Točnost prepoznavanja čistog govora izobličenog jekom
 na podacima za validaciju iznosi 93.8%, a na podacima za testiranje je vjerojatno
-1 do 2% veča, no to nije moguće provjeriti jer čisti govor nije javno dostupan.
+1 do 2% veća, no to nije moguće provjeriti jer čisti govor nije javno dostupan.
 Točnost prepoznavanja na čistom govoru je gornja
 granica točnosti koju može postići teoretski idealni sustav za pročišćavanje govora.
 [rezultati tab1]
@@ -631,28 +630,28 @@ Najveće poboljšanje je dobiveno u slučaju kada je signal govora za 6dB
 tiši od smetnje, gdje je postignuto poboljšanje od 39.1%.
 Ovaj rezultat nam govori kakav utjecaj bi dodavanje ovakvog pročišćavanje
 govora moglo imati na performanse sustava za automatsko prepoznavanje govora
-specijaliziranog za čisti govor bez ikakvih promjena.
+specijaliziranog za čisti govor bez ikakvih promjena na modelu sustava za prepoznavanje.
 
 Za slučaj kada je prilagođavanje modela moguće, imamo druge rezultate.
-U usporedbi sa prepoznavačem koji je već uvježban na govoru sa smetnjom,
+U usporedbi s prepoznavačem koji je već uvježban na govoru sa smetnjom,
 prosječno poboljšanje korištenjem izdvajanjem govora i prilagodbom modela
 je 14.3%, a u najgorim uvjetima prepoznavanja čak 24%.
 
 Ovi rezultati su impresivni jer bi ovaj sustav svrstali u najboljih pet sustava na CHiME2
-natjecanju sa malim vokabularom [chime_overview][chime_website],
-a sustav je značajno jednostavniji.
+natjecanju s malim vokabularom [chime_overview][chime_website],
+a sustav je još uvijek relativno jednostavan.
 
 Rezultati su 1 do 1.5% lošiji od onih koji su dani za isti pristup u literaturi [wen_chime13],
-vjerojatno zato jer je bilo potrebno nekoliko puta trenirati mrežu kako bi se
+vjerojatno jer je bilo potrebno nekoliko puta trenirati mrežu kako bi se
 dobro inicijalizirala i konvergirala bliže globalnom minimumu.
 Pristup većim računalnim resursima omogućio bi više eksperimentiranja u istom
 vremenu i sasvim sigurno i bolje rezultate.
 	
 Na slici [usporedba.png] dana je ilustracija izlaza iz mreže i izdvajanja
-značajki govora. Uzet je primjer signala govora za 6dB tišeg od smetnje.
+značajki govora. Uzet je primjer signala govora za 6 dB tišeg od smetnje.
 Dane su ilustracije kako jeka i dodavanje buke izobličavaju obični, spektralni
 i MFCC prikaz govora. Također je vidljivo kako mreža uspijeva proizvesti
-nešto što je slično MFCC značajkama govora sa jekom, iako je prikaz dosta
+nešto što je slično MFCC značajkama govora s jekom, iako je prikaz dosta
 glađi od originala. To po mišljenju autora može značiti ili da model dobro
 generalizira ili da bi složeniji model mogao dati još bolje performanse.
 
@@ -668,13 +667,13 @@ No, zato je snimljeni govor uglavnom jako dobre kvalitete i glasniji je od
 svih pozadinskih smetnji. Utjecaj jeke je također malen jer je mikrofon u 
 pravilu blizu govornika. Izdvajanje takvog govora trebalo bi biti lakši
 problem od izdvajanja govora u CHiME2 skupu podataka, gdje je jeka prisutna
-u svim snimkama i odnos snage govora i smetnje je mnogo nepovoljniji.
+u svim snimkama, a i odnos snage govora i smetnje je mnogo nepovoljniji.
 
 S druge strane, u literaturi se iznosi činjenica da dobar rezultat u izdvajanju
 i prepoznavanju govora s malim rječnikom ne mora nužno biti prenosiv na prepoznavanje
 govora sa srednjim i velikim rječnicima.
 CHiME2 natjecanje  uključuje i prepoznavanje govora
-sa srednjim riječnikom. Čisti govor je uzet iz Wall Street Journal korpusa čitanog govora sa rječnikom od 5000 riječi [chime_data].
+sa srednjim rječnikom. Čisti govor je uzet iz Wall Street Journal korpusa čitanog govora s rječnikom od 5000 riječi [chime_data].
 Nažalost ti podaci nisu mogli biti korišteni jer nisu javno dostupni [chime_website2].
 Ipak, rezultati iz literature [wen_chime13] pokazuju da se metodom korištenom u ovom radu
 može dobiti slično poboljšanje i na skupu podataka sa srednjim rječnikom.
@@ -683,9 +682,9 @@ Svakako je zanimljiva mogućnost izdvajanja i prepoznavanja govora u stvarnom vr
 i stoga je izmjeren RT faktor za izvršavanje mreže pomoću CURRENNT-a.
 Zanimljivo je da iako primjena grafičkih procesora
 ubrzava treniranje mreže za 2.6 puta (Tablica [tab 3]), to ne bi bio slučaj kod primjene mreže uživo.
-U scenariju kada se mreža primjenjuje serijski na jednom po jednom ulaznom nizu usporenje je 3 puta (Tablica [tab 4])
-u usporedbi s izvršavanjem tog algoritma na običnom procesoru.
-Razlog tome je vjerojatno puno veće latencija uslijed prebacivanja
+U scenariju kada se mreža primjenjuje serijski na jednom po jednom ulaznom nizu, izvršavanje je 3 puta (Tablica [tab 4])
+sporije u usporedbi s izvršavanjem tog algoritma na običnom procesoru.
+Razlog tome je vjerojatno puno veća latencija uslijed prebacivanja
 podataka iz glavne memorije u memoriju grafičke kartice.
 
 Zanimljiv je i podatak da openSMILE podržava obradu zvučnog signala uživo pomoću
@@ -693,7 +692,7 @@ rekurzivnih neuronskih mreža, no trenutno ne podržava dvosmjerne rekurzivne mr
 Korištenjem LSTM-RNN u takvom scenariju vjerojatno bi se mogli dobiti nešto lošiji, ali još uvijek
 dobri rezultati.
 
-Još uvijek preostaje za istražiti utjecaj korištenja drugih značajki
+Još uvijek treba istražiti utjecaj korištenja drugih značajki za
 parametriziranje ulaznog govora. Pokazano je da primjena jednostavnijih značajki
 koje imitiraju svojstva ljudske pužnice (engl. log-filterbank features) 
 daje još bolje rezultate jer omogućava mreži da sama nauči najbolju parametrizaciju signala [wen_chime14].
@@ -701,9 +700,9 @@ daje još bolje rezultate jer omogućava mreži da sama nauči najbolju parametr
 Još jedan relativno novi doprinos polju dubokog učenja je algoritam za 
 vremensku klasifikaciju pomoću neuronskih mreža ili CTC algoritam
 [graves14] [graves_blstm], koji omogućava treniranje neuronskih mreža koje obavljaju cijeli proces
-od pročišćavanja govora do njegove transkripcije. To bi rješilo problem koji je bio prisutan u ovom 
+od pročišćavanja govora do njegove transkripcije. To bi riješilo problem koji je bio prisutan u ovom 
 radu, tj. činjenicu da funkcija greške koja se koristi za treniranje mreže ne odgovara onome što se
-zapravo želi optimizirati, a to je točnost prepoznavanja govora.
+zapravo želi optimizirati (točnost prepoznavanja govora).
 
 Glavna i vjerojatno neizbježna boljka svih spomenutih pristupa temeljenih 
 na dubokom učenju je što zahtijevaju velike računalne resurse.
@@ -713,7 +712,7 @@ Složenost i računalna moć ljudskog slušnog sustava, koji je svojevrsni ideal
 računalno prepoznavanje govora,
 svakako opravdava korištenje barem dijela tih resursa.
 No isto tako je moguće da se mudrim korištenjem dostupne računalne moći
-može postići slične rezultate, no mišljenje autora je da će za to vjerojatno
+može postići slične rezultate. Ipak mišljenje autora je da će za to vjerojatno
 biti potrebno razviti algoritme za brže treniranje dubokih neuronskih mreža. 
 
 
