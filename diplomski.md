@@ -173,23 +173,23 @@ Ti alati su temeljeni na sustavima za prepoznavanje govora koji su dio
 HTK programskog paketa [book_htk][chime_readme].
 Iako CHiME dozvoljava korištenje vlastitog
 rješenja za prepoznavanje govora, na raspolaganje je stavljen osnovni
-sustav (engl. baseline recognizer) sa nekoliko unaprijed istreniranih modela.
+sustav (engl. baseline recognizer) s nekoliko unaprijed istreniranih modela.
 To je učinjeno kako bi se moglo odrediti koji dio poboljšanja točnosti se može
 pripisati izdvajanju govora, a koji sustavu za prepoznavanje govora.
 Time se olakšava i usporedba različitih sustava [chime_readme].
 
 Osnovni sustav za prepoznavanje je prilagođen sintaksi rečenica u Grid korpusu.
-Sustav je baziran na skrivenim markovljevim modelima. Svaka od 51 riječi
-prisutna u Grid korpusu modelirana je pomoću skrivenog markovljevog modela s
+Sustav je baziran na skrivenim Markovljevim modelima. Svaka od 51 riječi
+prisutne u Grid korpusu modelirana je pomoću skrivenog Markovljevog modela s
 2 stanja po fonemu. Vjerojatnost izostavljanja svakog stanja je predstavljena pomoću
-mješovitog Gaussovog modela s 7 komponenti i dijagonalnom kovarijancom.
+mješovitog Gaussovog modela sa 7 komponenti i dijagonalnom kovarijancom.
 
 Dana su tri unaprijed uvježbana modela za prepoznavanje:
 1. "Čisti" model (engl. clean - treniran na čistom govoru)
 2. "Odjek" model (engl. reverberated - treniran na govoru izobličenom jekom)
 3. "Buka" model (engl. noisy - treniran na govoru izobličenom bukom)
 
-Osim ta tri modela, dostupni su alati za lako uvježbavanje tj. prilagođavanje modela (engl. retraining)
+Osim ta tri modela, dostupni su alati za lako uvježbavanje tj. prilagođavanje (engl. retraining)
 svog vlastitog modela. To se radi tako da se skup podataka za treniranje propusti kroz algoritam
 za izdvajanje govora i model za prepoznavanje se onda trenira na tom govoru. Cilj je poništiti 
 utjecaj izobličenja govora koja nastaju njegovim izdvajanjem [chime_data].
@@ -201,7 +201,7 @@ Prvi parametri u vektoru su 13 mel-kepstralnih koeficijenata koji su normalizira
 srednje vrijednosti (engl. CMN - Cepstral Mean Normalisation) i smanjuje utjecaj
 razlika u obliku vokalnog trakta na točnost prepoznavanja govora različitih govornika.
 Umjesto nultog MFCC parametra koristi se logaritamska energija okvira.
-Na tih 13 parametara dodaje se 13 differencijalnih koeficijenata prvog reda
+Na tih 13 parametara dodaje se 13 diferencijalnih koeficijenata prvog reda
 i 13 drugog reda (engl. delta and acceleration coefficients). 
 Standardna HTK šifra za te značajke je MFCC_E_D_A_Z i detaljno
 je opisana u literaturi [book_htk][book_opensmile].
