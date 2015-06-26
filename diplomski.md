@@ -725,7 +725,7 @@ Nakon kratkog pregleda povijesnih pristupa izdvajanju govora, među
 najuspješnijim novijim pristupima odabran je pristup korištenjem dubokih neuronskih
 mreža. BLSTM-RNN tip neuronske mreže je pokazan kao trenutno najbolji izbor za
 arhitekturu mreže u ovoj primjeni.
-Od pet javno dostupnih paketa za rad sa rekurzivnim mrežama odabran je CURRENNT,
+Od pet javno dostupnih paketa za rad s rekurzivnim mrežama odabran je CURRENNT,
 koji podržava odabrani tip mreže i ubrzavanje treniranja korištenjem grafičkih procesora.
 
 Za ispitivanje uspješnosti izdvajanja govora odabrani su javno dostupni podaci
@@ -739,13 +739,13 @@ odnose govora i smetnje i čak 39.1% za najnepovoljniji odnos (6dB u korist smet
 Time je demonstrirana učinkovitost izdvajanja govora korištenjem dubokih neuronskih mreža.
 
 Dana je analiza koliki je značaj tog rezultata za povećanje otpornosti na smetnje
-kod sustava za prepoznavanja govora sa velikim i srednjim rječnikom
+kod sustava za prepoznavanja govora s velikim i srednjim rječnikom
 i koji su mogući pravci daljnjeg istraživanja.
 
 # Sažetak - max. 100 riječi
 
 U ovom radu dan je pregled trenutnog stanja područja izdvajanja govora
-i pregled najuspješnijih strategija za izdvajanje govora. Poseban naglaskom stavljen 
+i pregled najuspješnijih strategija za izdvajanje govora. Poseban naglasak stavljen 
 je na duboke neuronske mreže.
 Odabrana je BLSTM-RNN arhitektura neuronske mreže i CURRENNT kao programski paket za rad
 s tom mrežom. Uspješnost izdvajanja govora je ispitana na skupu podataka prvog zadatka
