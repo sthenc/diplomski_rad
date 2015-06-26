@@ -213,7 +213,7 @@ mono signal uzimanjem srednje vrijednosti oba kanala [chime_data].
 Odabir strategije
 
 Zanimljiva povijesna činjenica je da su neuronske mreže u području slijepog
-razdvajanja signala prisutne od samog početka njegovog 80-ih godina prošlog stoljeća.
+razdvajanja signala prisutne od njegovog samog početka 80-ih godina prošlog stoljeća.
 
 Prvi algoritam koji je korišten je analiza principalnih komponenata ili PCA,
 gdje se parametrizirana reprezentacija signala (najčešće spektar) pokušavala
@@ -231,7 +231,7 @@ To su nenegativna faktorizacija matrica ili NMF [book_bss_ica:515] i
 duboke neuronske mreže ili DNN.
 Oba pristupa su relativno jednostavna, no NMF ima nekoliko nedostataka u
 usporedbi s DNN.
-NMF je isključivo linearan model, dok DNN (ovisno o konkretnoj izvedbi)
+NMF je isključivo linearan model, dok DNN
 u pravilu može modelirati i nelinearno preslikavanje iz izvora signala 
 u mješavinu.
 Također, kod primjene istreniranog NMF modela mora se provoditi iterativni
@@ -239,8 +239,8 @@ postupak koji uključuje množenje nekoliko velikih matrica, što je jako račun
 
 S druge strane, duboke neuronske mreže se u pravilu duže treniraju, ali se zato primjena
 istreniranog modela sastoji samo od jednokratnog množenja nekoliko matrica, što ih
-čini pogodnima sa primjenu u stvarnom vremenu jer imaju u osnovi linearnu složenost.
-Svi ti faktori čine duboke neuronske mreže moćnijim i bržim modelom (jednom kada ih se uspije istrenirati) [dnn_faster_nmf].
+čini pogodnima za primjenu u stvarnom vremenu jer imaju linearnu složenost.
+Svi ti faktori čine duboke neuronske mreže moćnijim i bržim modelom [dnn_faster_nmf].
 
 No, zanimljivo je da je na CHiME2 pobijedio sustav koji, među ostalima,
 koristi i DNN i NMF [wen_chime_pobjednik], te su u literaturi poznate 
@@ -262,8 +262,8 @@ internetskih kompanija [ang_large_dnn], ili pak grafički procesori [ang_cudnn] 
 danas i običnim studentima čine dostupnom računalnu moć u rangu nekadašnjih 
 superračunala.
 
-No, najmoćnija je kombinacija više servera sa nekoliko grafičkih procesora,
-što omogućuje treniranje neuronskih mreža sa nekoliko milijardi parametara
+No, najmoćnija je kombinacija više servera s nekoliko grafičkih procesora,
+što omogućuje treniranje neuronskih mreža s nekoliko milijardi parametara
 u roku nekoliko dana [ang_cots_hpc].
 
 Povećani intenzitet istraživanja na ovom području doveo je i do novih
@@ -302,7 +302,7 @@ jezik       python             lua/c          python          c++              c
 
 Jedino programski paket CURRENNT zadovoljava sve zadane kriterije:
 podržava BLSTM-RNN neuronske mreže i ubrzavanje izvršavanja na grafičkim procesorima.
-Programski paket koristi biblioteku CUDA za rad sa GPU-om [cuda-cite] i napisan je u programskom jeziku C++,
+Programski paket koristi biblioteku CUDA za rad s GPU-om [cuda-cite] i napisan je u programskom jeziku C++,
 što mu omogućava da obavi treniranje mreže zadovoljavajućom brzinom.
 
 ----- Pregled literature ---------
@@ -313,7 +313,7 @@ Rekurzivne neuronske mreže
 
 Naziv rekurzivna neuronska mreža u užem smislu odnosi se na nadogradnju višeslojnog
 perceptrona [graves_blstm]. U najčešćoj varijanti RNN-a, sloju se uz uobičajenu
-pobudu daju i izlazi iz tog sloja u prethodnom trenutku (pod trenutak se podrazumijeva
+pobudu daju i izlazi iz tog sloja u prethodnom trenutku (pod izrazom trenutak se podrazumijeva
 pozicija na vremenskoj ili prostornoj osi).
 Slika [rnn.png] daje primjer jedne takve mreže.
 
@@ -321,7 +321,7 @@ Ovaj tip mreže najčešće se koristi kada je u problemu klasifikacije nekog ni
 podataka potrebno iskoristiti kontekst, npr. prepoznavanja rukopisa.
 Ova nadogradnja višeslojnog perceptrona omogućava
 mreži da u svojem internom stanju pohrani informaciju o prethodnim ulazima
-i na taj način pamti što je bilo na ulazu u prethodnim koracima.
+i tako pamti što je bilo na ulazu u prethodnim koracima.
 
 Prolaz unaprijed kod rekurzivne neuronske mreže izgleda isto kao kod 
 višeslojnog perceptrona, no kod prolaza unazad koristi se BPTT algoritam.
@@ -337,14 +337,14 @@ težina.
 ### Dvosmjerna rekurzivna neuronska mreža
 
 Budući da je u mnogim primjenama osim konteksta koji prethodi danom
-korako korisno uzeti u obzir i ono što slijedi nakon njega,
+koraku korisno uzeti u obzir i ono što slijedi nakon njega,
 uvedene su i dvosmjerne rekurzivne neuronske mreže.
 
 To je nadogradnja rekurzivne neuronske mreže gdje jedna polovina rekurzivnog
-skrivenog sloja analizira ulazni niz u pozitivnom smjeru, a druga u negativnom,
-kao u primjeru na slici [brnn.png], gdje je prikazana dvosmjerna rekurzivna mreža sa jednim skrivenim slojem .
+skrivenog sloja analizira ulazni niz u pozitivnom smjeru, a druga u negativnom.
+Primjer mreže dan je na slici [brnn.png], gdje je prikazana dvosmjerna rekurzivna mreža s jednim skrivenim slojem.
 
-Kako bi se izbjegli ciklusi u neuronskoj mreži ta dio koji računa unaprijed
+Kako bi se izbjegli ciklusi u neuronskoj mreži dio koji računa unaprijed
 i dio koji računa unazad u istom sloju ne smiju biti međusobno povezani,
 već njihov izlaz služi kao ulaz višim slojevima.
 
@@ -390,11 +390,11 @@ Nadogradnja na rekurzivne mreže koja rješava te probleme je dugotrajno-kratkot
 memorija ili LSTM [lstm]. Na slici [lstm.png] je prikazana arhitektura LSTM
 ćelije.
 
-Slika [lstm.png] LSTM blok sa jednom ćelijom. Troja vrata koja su prikazana
+Slika [lstm.png] LSTM blok s jednom ćelijom. Troja vrata koja su prikazana
 su nelinearne sume koje skupljaju pobude izvan i unutar bloka, i kontroliraju aktivnost
 ćelije preko množenja (mali crni krugovi). Ulazna i izlazna vrata množe redom ulaz i izlaz ćelije,
 dok vrata za brisanje množe prethodno stanje ćelije. Sama ćelija nema aktivacijsku
-funkciju već pamti nepromijenjeno ono što dobije na ulaz.
+funkciju već pamti nepromijenjenu vrijednost koju dobije na ulaz.
 Aktivacijska funkcija vrata 'f' je obično sigmoidna funkcija, tako da joj 
 je izlaz između 0 (vrata zatvorena) i 1 (vrata otvorena).
 Ulazna i izlazna aktivacijska funkcija ćelije ('g' i 'h') su obično tangens hiperbolni
@@ -402,7 +402,7 @@ ili sigmoidna funkcija, iako 'h' nekada može biti i funkcija identiteta.
 Veze od memorijske ćelije prema vratima (engl. peephole connections) su prikazane
 isprekidanim strelicama, i one za razliku od ostalih veza unutar bloka imaju težinu [graves_blstm].
 Blok ima četiri ulaza i samo jedan izlaz. Tako svaki LSTM blok ima sedam parametara : 
-tri unutarnje veze sa težinama, te još četiri pomaka (engl. bias) za svaki od ulaza.
+tri unutarnje veze s težinama, te još četiri pomaka (engl. bias) za svaki od ulaza.
 Izlaz svakog od N neurona na koji je ovaj blok spojen spaja se na sva
 četiri ulaza, tako da je broj ulaznih težina 4 * N.
 
@@ -421,8 +421,8 @@ veličina i broj slojeva.
 
 Svaki BLSTM blok je povezan sa svim blokovima u slojevima ispod i iznad.
 BLSTM blok se sastoji od dva nepovezana LSTM bloka (zbog izbjegavanja ciklusa).
-Jedan je povezan sa izlazom svih LSTM blokova koji računaju unaprijed tog sloja u prošlom koraku.
-Drugi je povezan sa izlazom svih LSTM blokova koji računaju unazad tog sloja u idućem koraku.
+Jedan je povezan s izlazom svih LSTM blokova koji računaju unaprijed tog sloja u prošlom koraku.
+Drugi je povezan s izlazom svih LSTM blokova koji računaju unazad tog sloja u idućem koraku.
 Iz toga slijedi da je ukupni broj parametara za ovu mrežu 582339.
 
 Mreža ima 39 neurona u ulaznom sloju jer toliko parametara ima standardni 
@@ -433,7 +433,7 @@ Slika [sustav.png] prikazuje shemu sustava. Ulazni stereo zvučni zapis se
 usrednjavanjem oba kanala prebacuje u mono zapis. Zatim se na temelju
 tog zapisa izračunavaju MFCC značajke metodom opisanom u poglavlju [broj poglavlja].
 Dobivene značajke se normaliziraju s vrijednostima izračunatim na cijelom 
-skupu podataka za treniranje. Na taj način se ne gubi nikakva informacija, 
+skupu podataka za treniranje. Tako se ne gubi nikakva informacija, 
 ali se mreža brže trenira [wen_chime13].
 Zatim se izračunava izlaz mreže za cijeli zapis tj. niz značajki.
 Izlazne značajke iz mreže su također približno normalizirane tako da ih se za korištenje
@@ -457,19 +457,19 @@ ulaznih sekvenci paralelno i tako izračunava gradijent greške na tom
 podskupu (engl. mini-batch) ulaznih podataka.
 Zatim se nakon izračuna greške na svakom podskupu osvježavaju težine.
 Ta metoda se naziva stohastičko hibridno online-batch treniranje.
-Kod dubokih neuronskih mreža ključna je dobra početna inicjalizacija, pa 
+Kod dubokih neuronskih mreža ključna je dobra početna inicijalizacija, pa 
 CURRENNT podržava podešavanje parametara distribucija za slučajnu inicijalizaciju. [wen_currennt_README]
 
 Kod dubokih neuronskih mreža također je veliki problem i pretreniranje (engl. overfitting).
 
 CURRENNT može koristiti sve tri uobičajene metode [graves_blstm: 26][wen_currennt_README]
 da bi smanjio problem pretreniranja:
-uranjeno zaustavljanje (engl. early stopping),
-zašumljavanje ulaza (engl. input noise),
-zašumljavanje težina (engl. weight noise).
+1. uranjeno zaustavljanje (engl. early stopping),
+2. zašumljivanje ulaza (engl. input noise),
+3. zašumljivanje težina (engl. weight noise).
 U ovom radu su korištene sve tri navedene metode.
 
-Zašumljvanje ulaza i težina provodi se tako da se pri treniranju
+Zašumljivanje ulaza i težina provodi se tako da se pri treniranju
 svakom ulazu ili težini pribroji mala slučajna vrijednost.
 Ideja je da će to smanjiti osjetljivost mreže na nebitne detalje u ulaznim podacima
 i poboljšati sposobnost generalizacije mreže. Testiranje se provodi bez dodavanja
