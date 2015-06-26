@@ -1,0 +1,4 @@
+			| pybrain|torch7|theano |rnnlib |CURRENNT
+GPU 		| ne     |da    |da     |ne 	|da
+BLSTM		| da     |ne    |ne     |da 	|da
+jezik   	| python |lua/c |python |c++	|c++

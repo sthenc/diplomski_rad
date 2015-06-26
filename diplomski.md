@@ -294,7 +294,7 @@ mreže moglo premašiti trajanje ljetnog semestra.
 Tablica [broj N] daje usporedbu dostupnih paketa otvorenog koda i neke
 njihove karakteristike [pybrain_cite][theano_cite1][theano_cite2][torch7_cite][wen_currennt_cite][rnnlib]. 
 
-[prebacit u tablicu]
+[tab5]
 			pybrain		    torch7 	      theano          rnnlib           CURRENNT
 GPU 		ne                 da             da              ne               da
 BLSTM		da                 ne             ne              da               da
