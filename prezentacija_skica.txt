@@ -1,0 +1,35 @@
+naslovnica
+
+uvodni slajd - zadatak 
+
+pregled različitih pristupa 
+	neuronske mreže PCA itd. - 1 slajd
+	
+objašnjenje RNN
+
+objašnjenje BLSTM
+
+pregled programskih paketa
+
+testiranje - CHiME
+
+krivulja treniranja
+
+rezultat
+
+brzina izvršavanja GPU vs. CPU
+
+zaključak
+
+literatura
+
+
+
+
+TODO:
+
+1. dizajn slajdova
+2. prezentacija
+3. tekst
+4. spellcheck 
+5. poslat okolo i backupirat 
