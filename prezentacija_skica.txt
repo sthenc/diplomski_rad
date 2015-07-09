@@ -1,11 +1,11 @@
-naslovnica
+Naslovnica
 
-uvodni slajd - zadatak 
+Uvod
 
 pregled različitih pristupa 
 	neuronske mreže PCA itd. - 1 slajd
 	
-objašnjenje RNN
+RNN
 
 objašnjenje BLSTM
 
