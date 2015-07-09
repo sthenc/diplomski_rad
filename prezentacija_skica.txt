@@ -13,11 +13,11 @@ pregled programskih paketa
 
 testiranje - CHiME
 
+izgled sustava
+
 krivulja treniranja
 
 rezultat
-
-brzina izvršavanja GPU vs. CPU
 
 zaključak
 
@@ -26,10 +26,12 @@ literatura
 
 
 
-TODO:
+
 
 1. dizajn slajdova
 2. prezentacija
 3. tekst
 4. spellcheck 
+TODO:
 5. poslat okolo i backupirat 
+- napisat si što ću pričati
